@@ -1,6 +1,6 @@
 <template>
   <md-app>
-    <md-app-content>
+    <md-app-content style="min-height: 100vh;">
       <div class="field-container">
         <h1 style="color:#8c8c8c;">Tell us about your education.</h1>
         <br>
@@ -60,6 +60,7 @@
       </div>
       <div class="flex space-between p10">
         <md-button :class="isButtonSelected(null,0)" :md-ripple="false">Back</md-button>
+        <md-progress-bar md-mode="determinate" :md-value="amount"></md-progress-bar>
         <md-button :class="isButtonSelected(null,0)" :md-ripple="false" @click="goNext">Next</md-button>
       </div>
     </md-app-content>
@@ -68,9 +69,14 @@
 
 <script>
 export default {
+  props: {
+    amount: {
+      type: Number,
+      default: 20
+    }
+  },
   data() {
     return {
-      movie: null,
       selUniversity: null,
       selField: null,
       selYear: null,
@@ -111,11 +117,13 @@ export default {
     },
     goNext() {
       if (this.checkInputs()) {
-        // go to next page
+        this.$router.push({
+          name: 'pageTwo'
+        })
       }
     },
     checkInputs() {
-      return false
+      return true
     },
     testFn(key, arr) {
       if (this[key] == null) {
@@ -155,5 +163,10 @@ export default {
   }
   .field-container {
     padding: 20px 10%;
+  }
+  .md-progress-bar {
+    margin: 24px;
+    width: 100%;
+    border-radius: 100px;
   }
 </style>

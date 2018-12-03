@@ -26,9 +26,27 @@
   justify-content: space-between;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 // .p5, p10 ....
 @for $i from 1 through 20 {
   .p#{$i * 5} {
     padding: $i * 5px;
   }
+}
+
+.range-slider-fill {
+  background-color: #448aff !important;
+}
+
+.button-chip {
+  border-radius: 20px !important;
+  height: 50px !important;
+  width: 180px;
+}
+
+.button-chip+.button-chip {
+  margin: 6px !important;
 }
