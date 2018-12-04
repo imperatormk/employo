@@ -2,15 +2,21 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.label {
+  color: #8c8c8c;
+}
+
 .flex {
   display: flex;
 }
 
 .flex-row {
+  display: flex;
   flex-direction: row;
 }
 
 .flex-column {
+  display: flex;
   flex-direction: column;
 }
 
@@ -49,4 +55,21 @@
 
 .button-chip+.button-chip {
   margin: 6px !important;
+}
+
+.btn {
+  border-radius: 5px;
+}
+
+.btn-selected {
+  background-color: #235cec !important;
+  color: white !important;
+}
+
+.btn:not(.btn-selected) {
+  color: #8c8c8c !important;
+}
+
+.field-container {
+  padding: 20px 10%;
 }

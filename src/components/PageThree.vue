@@ -1,22 +1,9 @@
 <template>
-  <PageContainer :curPage="1">
-    <div>
-      <h1 class="label">How many years of experience do you have?</h1>
-      <div class="flex space-between align-center p10">
-        <range-slider
-          class="yearSlider"
-          min="0"
-          max="5"
-          step="1"
-          v-model="numYears">
-        </range-slider>
-        <md-chip class="chip">{{ numYears }} years</md-chip>
-      </div>
-    </div>
-    <div>
-      <h1 class="label">What areas have you had most experience with?</h1>
-      <div class="flex space-between flex-wrap p10">
-        <md-button v-for="area in areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)">{{ area.title }}</md-button>
+  <PageContainer :curPage="2">
+    <div class="flex-column align-center">
+      <h1 class="label">What types of roles are you interested in?</h1>
+      <div class="flex-row">
+        <RoleType v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType"></RoleType>
       </div>
     </div>
   </PageContainer>
@@ -24,8 +11,7 @@
 
 <script>
 import PageContainer from '@/components/PageContainer'
-import RangeSlider from 'vue-range-slider'
-import 'vue-range-slider/dist/vue-range-slider.css'
+import RoleType from '@/components/RoleType'
 
 export default {
   props: {
@@ -37,38 +23,14 @@ export default {
   data() {
     return {
       numYears: 1,
-      areas: [{
+      roleTypes: [{
         id: 0,
-        title: 'Frontend',
-        isSelected: false
+        title: 'Technical',
+        desc: 'Software Engineers...'
       }, {
         id: 1,
-        title: 'Backend',
-        isSelected: false
-      }, {
-        id: 2,
-        title: 'Databases',
-        isSelected: false
-      }, {
-        id: 3,
-        title: 'Mobile',
-        isSelected: false
-      }, {
-        id: 4,
-        title: 'Design',
-        isSelected: false
-      }, {
-        id: 5,
-        title: 'QA',
-        isSelected: false
-      }, {
-        id: 6,
-        title: 'IT',
-        isSelected: false
-      }, {
-        id: 7,
-        title: 'Full stack',
-        isSelected: false
+        title: 'Non-Technical',
+        desc: 'Business Development...'
       }]
     }
   },
@@ -100,6 +62,17 @@ export default {
       const firstItem = arr[0].title || arr[0]
       return `eg. ${firstItem}`
     },
+    goBack() {
+      this.$router.go(-1)
+    },
+    goNext() {
+      if (this.checkInputs()) {
+        // go to next page
+      }
+    },
+    checkInputs() {
+      return false
+    },
     testFn(key, arr) {
       if (this[key] == null) {
         this[key] = arr[0].id != null ? arr[0].id : 0
@@ -107,7 +80,7 @@ export default {
     }
   },
   components: {
-    RangeSlider,
+    RoleType,
     PageContainer
   }
 }

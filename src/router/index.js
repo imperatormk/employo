@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import PageOne from '@/components/PageOne'
 import PageTwo from '@/components/PageTwo'
+import PageThree from '@/components/PageThree'
 
 Vue.use(Router)
 
@@ -21,6 +22,11 @@ export default new Router({
       path: '/page2',
       name: 'pageTwo',
       component: PageTwo
+    },
+    {
+      path: '/page3',
+      name: 'pageThree',
+      component: PageThree
     }
   ],
   mode: 'history'
