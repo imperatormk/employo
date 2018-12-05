@@ -77,7 +77,7 @@ export default {
       const isSelected = currentVal === expectedVal
       return {
         'md-raised': true,
-        'btn': true,
+        btn: true,
         'btn-selected': isSelected
       }
     },
@@ -85,14 +85,14 @@ export default {
       const isSelected = this.areas.find(area => area.id === areaId).isSelected
       return {
         'md-raised': true,
-        'p10': true,
-        'btn': true,
+        p10: true,
+        btn: true,
         'button-chip': true,
         'btn-selected': isSelected
       }
     },
     toggleAreaSelected(areaId) {
-      const area = this.areas.find(area => area.id === areaId)
+      const area = this.areas.find(areaObj => areaObj.id === areaId)
       area.isSelected = !area.isSelected
     },
     getPlaceholder(arr) {

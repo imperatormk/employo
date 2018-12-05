@@ -60,14 +60,14 @@ export default {
       const isSelected = this.industries.find(industry => industry.id === industryId).isSelected
       return {
         'md-raised': true,
-        'p10': true,
-        'btn': true,
+        p10: true,
+        btn: true,
         'button-chip': true,
         'btn-selected': isSelected
       }
     },
     toggleIndustrySelected(industryId) {
-      const industry = this.industries.find(industry => industry.id === industryId)
+      const industry = this.industries.find(industryObj => industryObj.id === industryId)
       industry.isSelected = !industry.isSelected
     }
   },

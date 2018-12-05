@@ -57,17 +57,17 @@ export default {
   },
   methods: {
     isSkillSelected(skillId) {
-      const isSelected = this.skills.find(skill => skill.id === skillId).isSelected
+      const isSelected = this.skills.find(skillObj => skillObj.id === skillId).isSelected
       return {
         'md-raised': true,
-        'p10': true,
-        'btn': true,
+        p10: true,
+        btn: true,
         'button-chip': true,
         'btn-selected': isSelected
       }
     },
     toggleSkillSelected(skillId) {
-      const skill = this.skills.find(skill => skill.id === skillId)
+      const skill = this.skills.find(skillObj => skillObj.id === skillId)
       skill.isSelected = !skill.isSelected
     }
   },

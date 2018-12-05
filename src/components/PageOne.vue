@@ -99,7 +99,7 @@ export default {
       const isSelected = currentVal === expectedVal
       return {
         'md-raised': true,
-        'btn': true,
+        btn: true,
         'btn-selected': isSelected
       }
     },
