@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      pages: ['pageOne', 'pageTwo', 'pageThree']
+      pages: ['pageOne', 'pageTwo', 'pageThree', 'pageFour', 'pageFive']
     }
   },
   methods: {

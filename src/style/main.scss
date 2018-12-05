@@ -73,3 +73,34 @@
 .field-container {
   padding: 20px 10%;
 }
+
+.md-field.md-theme-default:before {
+  background-color: transparent;
+}
+
+.md-field.md-theme-default:after {
+  background-color: transparent;
+}
+
+.input-box {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 1px -2px rgba(100, 100, 100, 0.1), 0 2px 2px 0 rgba(100, 100, 100, 0.1), 0 1px 5px 0 rgba(100, 100, 100, 0.1);
+}
+
+.text-box {
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+
+.field-label {
+  text-transform: uppercase;
+  color: #3164e3;
+  padding: 5px 5px 10px 5px;
+}
+
+.desc-label {
+  color: #3164e3;
+  padding: 10px 5px;
+  font-size: 20px;
+}

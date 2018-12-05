@@ -5,7 +5,7 @@
     <div class="md-layout md-gutter">
       <div class="md-layout-item">
         <div class="field-label">University</div>
-        <md-field class="select-box">
+        <md-field class="input-box">
           <md-select @md-opened="testFn('selUniversity', universities)" v-model="selUniversity" :placeholder="getPlaceholder(universities)">
             <md-option v-for="university in universities" :key="university.id" :value="university.id">{{ university.title }}</md-option>
           </md-select>
@@ -13,7 +13,7 @@
       </div>
       <div class="md-layout-item">
         <div class="field-label">Field of Study</div>
-        <md-field class="select-box">
+        <md-field class="input-box">
           <md-select @md-opened="testFn('selField', fields)" v-model="selField" :placeholder="getPlaceholder(fields)">
             <md-option v-for="field in fields" :key="field.id" :value="field.id">{{ field.title }}</md-option>
           </md-select>
@@ -23,7 +23,7 @@
     <div class="md-layout md-gutter">
       <div class="md-layout-item">
         <div class="field-label">Expected Year of Graduation</div>
-        <md-field class="select-box">
+        <md-field class="input-box">
           <md-select @md-opened="testFn('selYear', years)" v-model="selYear" :placeholder="getPlaceholder(years)">
             <md-option v-for="(year, idx) in years" :key="idx" :value="idx">{{ year }}</md-option>
           </md-select>
@@ -31,7 +31,7 @@
       </div>
       <div class="md-layout-item">
         <div class="field-label">Cumulative GPA</div>
-        <md-field class="select-box">
+        <md-field class="input-box">
           <md-select @md-opened="testFn('selGpa', gpas)" v-model="selGpa" :placeholder="getPlaceholder(gpas)">
             <md-option v-for="(gpa, idx) in gpas" :key="idx" :value="idx">{{ gpa }}</md-option>
           </md-select>
@@ -119,22 +119,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .select-box {
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 3px 1px -2px rgba(100, 100, 100, 0.1), 0 2px 2px 0 rgba(100, 100, 100, 0.1), 0 1px 5px 0 rgba(100, 100, 100, 0.1);
-  }
-  .md-field.md-theme-default:before {
-    background-color: transparent;
-  }
-  .md-field.md-theme-default:after {
-    background-color: transparent;
-  }
-  .field-label {
-    text-transform: uppercase;
-    color: #3164e3;
-    padding: 5px 5px 10px 5px;
-  }
-</style>
