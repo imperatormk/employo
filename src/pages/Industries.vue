@@ -1,30 +1,31 @@
 <template>
   <div>
-    <h1 class="label">What are your strongest skills?</h1>
+    <h1 class="label">Industries you would like to work with?</h1>
     <div class="desc-label">Choose as many that apply</div>
     <md-field class="input-box text-box">
-      <md-input v-model="criteria" placeholder="Search skills"></md-input>
+      <md-input v-model="criteria" placeholder="Search industries"></md-input>
     </md-field>
     <div class="flex space-between flex-wrap p10">
-      <md-button v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)">{{ skill.title }}</md-button>
+      <md-button v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)">{{ industry.title }}</md-button>
     </div>
   </div>
 </template>
 
 <script>
+import pagesList from '@/pages'
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById('pageFive')
-    this.$store.dispatch('curPageChange', 4)
+    this.fields = this.$store.getters.getById(pagesList[3])
+    this.$store.dispatch('curPageChange', 3)
   },
   data() {
     return {
       criteria: '',
       fields: {
-        selectedSkills: [],
+        selectedIndustries: [],
       },
-      skills: [{
+      industries: [{
         id: 0,
         title: 'Frontend'
       }, {
@@ -55,7 +56,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: 'pageFive',
+          pageId: pagesList[3],
           fields: val
         })
       },
@@ -63,8 +64,8 @@ export default {
     }
   },
   methods: {
-    isSkillSelected(skillId) {
-      const isSelected = this.fields.selectedSkills.find(id => id === skillId) != null
+    isIndustrySelected(industryId) {
+      const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
       return {
         'md-raised': true,
         p10: true,
@@ -73,19 +74,19 @@ export default {
         'btn-selected': isSelected
       }
     },
-    toggleSkillSelected(skillId) {
-      const isSelected = this.fields.selectedSkills.find(id => id === skillId) != null
+    toggleIndustrySelected(industryId) {
+      const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
       if (!isSelected) {
-        this.fields.selectedSkills.push(skillId)
+        this.fields.selectedIndustries.push(industryId)
       } else {
-        this.fields.selectedSkills = this.fields.selectedSkills.filter(id => id !== skillId)
+        this.fields.selectedIndustries = this.fields.selectedIndustries.filter(id => id !== industryId)
       }
     }
   },
   computed: {
-    getVisibleSkills() {
-      if (!this.criteria.trim()) return this.skills
-      return this.skills.filter(skill => skill.title.toLowerCase().includes(this.criteria.trim()))
+    getVisibleIndustries() {
+      if (!this.criteria.trim()) return this.industries
+      return this.industries.filter(industry => industry.title.toLowerCase().includes(this.criteria.trim()))
     }
   }
 }

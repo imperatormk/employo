@@ -59,10 +59,11 @@
 </template>
 
 <script>
+import pagesList from '@/pages'
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById('pageOne')
+    this.fields = this.$store.getters.getById(pagesList[0])
     this.$store.dispatch('curPageChange', 0)
   },
   data() {
@@ -97,7 +98,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: 'pageOne',
+          pageId: pagesList[0],
           fields: val
         })
       },

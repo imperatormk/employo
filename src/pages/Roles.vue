@@ -9,10 +9,11 @@
 
 <script>
 import RoleType from '@/components/RoleType'
+import pagesList from '@/pages'
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById('pageThree')
+    this.fields = this.$store.getters.getById(pagesList[2])
     this.$store.dispatch('curPageChange', 2)
   },
   data() {
@@ -35,7 +36,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: 'pageThree',
+          pageId: pagesList[2],
           fields: val
         })
       },

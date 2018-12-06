@@ -20,20 +20,23 @@
 </template>
 
 <script>
+import pagesList from '@/pages'
+
 export default {
   name: 'App',
   created() {
+    this.pages = pagesList
     this.initStore()
   },
   data() {
     return {
-      pages: ['pageOne', 'pageTwo', 'pageThree', 'pageFour', 'pageFive']
+      pages: []
     }
   },
   methods: {
     initStore() {
       this.$store.dispatch('dataChange', {
-        pageId: 'pageOne',
+        pageId: pagesList[0],
         fields: {
           selUniversity: null,
           selField: null,
@@ -44,26 +47,26 @@ export default {
         }
       })
       this.$store.dispatch('dataChange', {
-        pageId: 'pageTwo',
+        pageId: pagesList[1],
         fields: {
           selectedAreas: [],
           numYears: 1
         }
       })
       this.$store.dispatch('dataChange', {
-        pageId: 'pageThree',
+        pageId: pagesList[2],
         fields: {
           selectedRoles: []
         }
       })
       this.$store.dispatch('dataChange', {
-        pageId: 'pageFour',
+        pageId: pagesList[3],
         fields: {
           selectedIndustries: []
         }
       })
       this.$store.dispatch('dataChange', {
-        pageId: 'pageFive',
+        pageId: pagesList[4],
         fields: {
           selectedSkills: []
         }

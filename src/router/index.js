@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import PageOne from '@/components/PageOne'
-import PageTwo from '@/components/PageTwo'
-import PageThree from '@/components/PageThree'
-import PageFour from '@/components/PageFour'
-import PageFive from '@/components/PageFive'
+import Education from '@/pages/Education'
+import Experience from '@/pages/Experience'
+import Roles from '@/pages/Roles'
+import Industries from '@/pages/Industries'
+import Skills from '@/pages/Skills'
+
+import pagesList from '@/pages'
 
 Vue.use(Router)
 
@@ -17,28 +19,28 @@ export default new Router({
     },
     {
       path: '/education',
-      name: 'pageOne',
-      component: PageOne,
+      name: pagesList[0],
+      component: Education,
     },
     {
       path: '/experience',
-      name: 'pageTwo',
-      component: PageTwo
+      name: pagesList[1],
+      component: Experience
     },
     {
       path: '/roles',
-      name: 'pageThree',
-      component: PageThree
+      name: pagesList[2],
+      component: Roles
     },
     {
       path: '/industries',
-      name: 'pageFour',
-      component: PageFour
+      name: pagesList[3],
+      component: Industries
     },
     {
       path: '/skills',
-      name: 'pageFive',
-      component: PageFive
+      name: pagesList[4],
+      component: Skills
     }
   ],
   mode: 'history'

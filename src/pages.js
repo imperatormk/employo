@@ -1,0 +1,1 @@
+export default ['education', 'experience', 'roles', 'industries', 'skills']
