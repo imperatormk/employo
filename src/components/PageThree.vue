@@ -1,21 +1,19 @@
 <template>
-  <PageContainer :curPage="2">
-    <div class="flex-column">
-      <h1 class="label">What types of roles are you interested in?</h1>
-      <div class="flex-row">
-        <RoleType v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)"></RoleType>
-      </div>
+  <div class="flex-column">
+    <h1 class="label">What types of roles are you interested in?</h1>
+    <div class="flex-row">
+      <RoleType v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)"></RoleType>
     </div>
-  </PageContainer>
+  </div>
 </template>
 
 <script>
-import PageContainer from '@/components/PageContainer'
 import RoleType from '@/components/RoleType'
 
 export default {
   created() {
     this.fields = this.$store.getters.getById('pageThree')
+    this.$store.dispatch('curPageChange', 2)
   },
   data() {
     return {
@@ -66,8 +64,7 @@ export default {
     }
   },
   components: {
-    RoleType,
-    PageContainer
+    RoleType
   }
 }
 </script>

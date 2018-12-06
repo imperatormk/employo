@@ -1,5 +1,5 @@
 <template>
-  <PageContainer :curPage="1">
+  <div>
     <div>
       <h1 class="label">How many years of experience do you have?</h1>
       <div class="flex space-between align-center p10">
@@ -19,17 +19,17 @@
         <md-button v-for="area in areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)">{{ area.title }}</md-button>
       </div>
     </div>
-  </PageContainer>
+  </div>
 </template>
 
 <script>
-import PageContainer from '@/components/PageContainer'
 import RangeSlider from 'vue-range-slider'
 import 'vue-range-slider/dist/vue-range-slider.css'
 
 export default {
   created() {
     this.fields = this.$store.getters.getById('pageTwo')
+    this.$store.dispatch('curPageChange', 1)
   },
   data() {
     return {
@@ -104,8 +104,7 @@ export default {
     }
   },
   components: {
-    RangeSlider,
-    PageContainer
+    RangeSlider
   }
 }
 </script>

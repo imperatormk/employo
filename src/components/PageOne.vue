@@ -1,5 +1,5 @@
 <template>
-  <PageContainer :curPage="0">
+  <div>
     <h1 class="label">Tell us about your education.</h1>
     <br>
     <div class="md-layout md-gutter">
@@ -55,15 +55,15 @@
         </div>
       </div>
     </div>
-  </PageContainer>
+  </div>
 </template>
 
 <script>
-import PageContainer from '@/components/PageContainer'
 
 export default {
   created() {
     this.fields = this.$store.getters.getById('pageOne')
+    this.$store.dispatch('curPageChange', 0)
   },
   data() {
     return {
@@ -123,9 +123,6 @@ export default {
         this[key] = arr[0].id != null ? arr[0].id : 0
       }
     }
-  },
-  components: {
-    PageContainer
   }
 }
 </script>

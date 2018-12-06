@@ -1,24 +1,22 @@
 <template>
-  <PageContainer :curPage="3">
-    <div>
-      <h1 class="label">Industries you would like to work with?</h1>
-      <div class="desc-label">Choose as many that apply</div>
-      <md-field class="input-box text-box">
-        <md-input v-model="criteria" placeholder="Search industries"></md-input>
-      </md-field>
-      <div class="flex space-between flex-wrap p10">
-        <md-button v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)">{{ industry.title }}</md-button>
-      </div>
+  <div>
+    <h1 class="label">Industries you would like to work with?</h1>
+    <div class="desc-label">Choose as many that apply</div>
+    <md-field class="input-box text-box">
+      <md-input v-model="criteria" placeholder="Search industries"></md-input>
+    </md-field>
+    <div class="flex space-between flex-wrap p10">
+      <md-button v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)">{{ industry.title }}</md-button>
     </div>
-  </PageContainer>
+  </div>
 </template>
 
 <script>
-import PageContainer from '@/components/PageContainer'
 
 export default {
   created() {
     this.fields = this.$store.getters.getById('pageFour')
+    this.$store.dispatch('curPageChange', 3)
   },
   data() {
     return {
@@ -89,9 +87,6 @@ export default {
       if (!this.criteria.trim()) return this.industries
       return this.industries.filter(industry => industry.title.toLowerCase().includes(this.criteria.trim()))
     }
-  },
-  components: {
-    PageContainer
   }
 }
 </script>

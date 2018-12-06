@@ -1,24 +1,22 @@
 <template>
-  <PageContainer :curPage="4">
-    <div>
-      <h1 class="label">What are your strongest skills?</h1>
-      <div class="desc-label">Choose as many that apply</div>
-      <md-field class="input-box text-box">
-        <md-input v-model="criteria" placeholder="Search skills"></md-input>
-      </md-field>
-      <div class="flex space-between flex-wrap p10">
-        <md-button v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)">{{ skill.title }}</md-button>
-      </div>
+  <div>
+    <h1 class="label">What are your strongest skills?</h1>
+    <div class="desc-label">Choose as many that apply</div>
+    <md-field class="input-box text-box">
+      <md-input v-model="criteria" placeholder="Search skills"></md-input>
+    </md-field>
+    <div class="flex space-between flex-wrap p10">
+      <md-button v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)">{{ skill.title }}</md-button>
     </div>
-  </PageContainer>
+  </div>
 </template>
 
 <script>
-import PageContainer from '@/components/PageContainer'
 
 export default {
   created() {
     this.fields = this.$store.getters.getById('pageFive')
+    this.$store.dispatch('curPageChange', 4)
   },
   data() {
     return {
@@ -89,9 +87,6 @@ export default {
       if (!this.criteria.trim()) return this.skills
       return this.skills.filter(skill => skill.title.toLowerCase().includes(this.criteria.trim()))
     }
-  },
-  components: {
-    PageContainer
   }
 }
 </script>
