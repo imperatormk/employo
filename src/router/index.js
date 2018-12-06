@@ -13,30 +13,30 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/page1'
+      redirect: '/education'
     },
     {
-      path: '/page1',
+      path: '/education',
       name: 'pageOne',
       component: PageOne,
     },
     {
-      path: '/page2',
+      path: '/experience',
       name: 'pageTwo',
       component: PageTwo
     },
     {
-      path: '/page3',
+      path: '/roles',
       name: 'pageThree',
       component: PageThree
     },
     {
-      path: '/page4',
+      path: '/industries',
       name: 'pageFour',
       component: PageFour
     },
     {
-      path: '/page5',
+      path: '/skills',
       name: 'pageFive',
       component: PageFive
     }
