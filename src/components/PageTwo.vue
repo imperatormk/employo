@@ -8,9 +8,9 @@
           min="0"
           max="5"
           step="1"
-          v-model="numYears">
+          v-model="fields.numYears">
         </range-slider>
-        <md-chip class="chip">{{ numYears }} years</md-chip>
+        <md-chip class="chip">{{ fields.numYears }} years</md-chip>
       </div>
     </div>
     <div>
@@ -28,48 +28,51 @@ import RangeSlider from 'vue-range-slider'
 import 'vue-range-slider/dist/vue-range-slider.css'
 
 export default {
-  props: {
-    amount: {
-      type: Number,
-      default: 40
-    }
+  created() {
+    this.fields = this.$store.getters.getById('pageTwo')
   },
   data() {
     return {
-      numYears: 1,
+      fields: {
+        selectedAreas: [],
+        numYears: 1
+      },
       areas: [{
         id: 0,
-        title: 'Frontend',
-        isSelected: false
+        title: 'Frontend'
       }, {
         id: 1,
-        title: 'Backend',
-        isSelected: false
+        title: 'Backend'
       }, {
         id: 2,
-        title: 'Databases',
-        isSelected: false
+        title: 'Databases'
       }, {
         id: 3,
-        title: 'Mobile',
-        isSelected: false
+        title: 'Mobile'
       }, {
         id: 4,
-        title: 'Design',
-        isSelected: false
+        title: 'Design'
       }, {
         id: 5,
-        title: 'QA',
-        isSelected: false
+        title: 'QA'
       }, {
         id: 6,
-        title: 'IT',
-        isSelected: false
+        title: 'IT'
       }, {
         id: 7,
-        title: 'Full stack',
-        isSelected: false
+        title: 'Full stack'
       }]
+    }
+  },
+  watch: {
+    fields: {
+      handler: function f(val) {
+        this.$store.dispatch('dataChange', {
+          pageId: 'pageTwo',
+          fields: val
+        })
+      },
+      deep: true
     }
   },
   methods: {
@@ -82,7 +85,7 @@ export default {
       }
     },
     isAreaSelected(areaId) {
-      const isSelected = this.areas.find(area => area.id === areaId).isSelected
+      const isSelected = this.fields.selectedAreas.find(id => id === areaId) != null
       return {
         'md-raised': true,
         p10: true,
@@ -92,17 +95,11 @@ export default {
       }
     },
     toggleAreaSelected(areaId) {
-      const area = this.areas.find(areaObj => areaObj.id === areaId)
-      area.isSelected = !area.isSelected
-    },
-    getPlaceholder(arr) {
-      if (!arr.length) return ''
-      const firstItem = arr[0].title || arr[0]
-      return `eg. ${firstItem}`
-    },
-    testFn(key, arr) {
-      if (this[key] == null) {
-        this[key] = arr[0].id != null ? arr[0].id : 0
+      const isSelected = this.fields.selectedAreas.find(id => id === areaId) != null
+      if (!isSelected) {
+        this.fields.selectedAreas.push(areaId)
+      } else {
+        this.fields.selectedAreas = this.fields.selectedAreas.filter(id => id !== areaId)
       }
     }
   },

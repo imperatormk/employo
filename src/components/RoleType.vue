@@ -1,5 +1,5 @@
 <template>
-  <div class="role-container" @click="toggleSelected" :class="{ selected: selected }">
+  <div class="role-container" @click="clicked" :class="{ selected: isSelected }">
     <div class="flex-column align-center">
       <img width="100%" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350">
       <br>
@@ -13,16 +13,15 @@
 <script>
 export default {
   props: {
-    typeData: Object
-  },
-  data() {
-    return {
-      selected: false
+    typeData: Object,
+    isSelected: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
-    toggleSelected() {
-      this.selected = !this.selected
+    clicked() {
+      this.$emit('clicked')
     }
   }
 }

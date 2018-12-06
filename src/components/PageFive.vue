@@ -17,47 +17,56 @@
 import PageContainer from '@/components/PageContainer'
 
 export default {
+  created() {
+    this.fields = this.$store.getters.getById('pageFive')
+  },
   data() {
     return {
       criteria: '',
+      fields: {
+        selectedSkills: [],
+      },
       skills: [{
         id: 0,
-        title: 'Frontend',
-        isSelected: false
+        title: 'Frontend'
       }, {
         id: 1,
-        title: 'Backend',
-        isSelected: false
+        title: 'Backend'
       }, {
         id: 2,
-        title: 'Databases',
-        isSelected: false
+        title: 'Databases'
       }, {
         id: 3,
-        title: 'Mobile',
-        isSelected: false
+        title: 'Mobile'
       }, {
         id: 4,
-        title: 'Design',
-        isSelected: false
+        title: 'Design'
       }, {
         id: 5,
-        title: 'QA',
-        isSelected: false
+        title: 'QA'
       }, {
         id: 6,
-        title: 'IT',
-        isSelected: false
+        title: 'IT'
       }, {
         id: 7,
-        title: 'Full stack',
-        isSelected: false
+        title: 'Full stack'
       }]
+    }
+  },
+  watch: {
+    fields: {
+      handler: function f(val) {
+        this.$store.dispatch('dataChange', {
+          pageId: 'pageFive',
+          fields: val
+        })
+      },
+      deep: true
     }
   },
   methods: {
     isSkillSelected(skillId) {
-      const isSelected = this.skills.find(skillObj => skillObj.id === skillId).isSelected
+      const isSelected = this.fields.selectedSkills.find(id => id === skillId) != null
       return {
         'md-raised': true,
         p10: true,
@@ -67,8 +76,12 @@ export default {
       }
     },
     toggleSkillSelected(skillId) {
-      const skill = this.skills.find(skillObj => skillObj.id === skillId)
-      skill.isSelected = !skill.isSelected
+      const isSelected = this.fields.selectedSkills.find(id => id === skillId) != null
+      if (!isSelected) {
+        this.fields.selectedSkills.push(skillId)
+      } else {
+        this.fields.selectedSkills = this.fields.selectedSkills.filter(id => id !== skillId)
+      }
     }
   },
   computed: {

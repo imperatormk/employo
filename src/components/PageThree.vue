@@ -1,9 +1,9 @@
 <template>
   <PageContainer :curPage="2">
-    <div class="flex-column align-center">
+    <div class="flex-column">
       <h1 class="label">What types of roles are you interested in?</h1>
       <div class="flex-row">
-        <RoleType v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType"></RoleType>
+        <RoleType v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)"></RoleType>
       </div>
     </div>
   </PageContainer>
@@ -14,15 +14,14 @@ import PageContainer from '@/components/PageContainer'
 import RoleType from '@/components/RoleType'
 
 export default {
-  props: {
-    amount: {
-      type: Number,
-      default: 40
-    }
+  created() {
+    this.fields = this.$store.getters.getById('pageThree')
   },
   data() {
     return {
-      numYears: 1,
+      fields: {
+        selectedRoles: []
+      },
       roleTypes: [{
         id: 0,
         title: 'Technical',
@@ -34,48 +33,35 @@ export default {
       }]
     }
   },
+  watch: {
+    fields: {
+      handler: function f(val) {
+        this.$store.dispatch('dataChange', {
+          pageId: 'pageThree',
+          fields: val
+        })
+      },
+      deep: true
+    }
+  },
   methods: {
-    isButtonSelected(currentVal, expectedVal) {
-      const isSelected = currentVal === expectedVal
-      return {
-        'md-raised': true,
-        btn: true,
-        'btn-selected': isSelected
-      }
-    },
-    isAreaSelected(areaId) {
-      const isSelected = this.areas.find(area => area.id === areaId).isSelected
+    isRoleSelected(roleId) {
+      const isSelected = this.fields.selectedRoles.find(id => id === roleId) != null
       return {
         'md-raised': true,
         p10: true,
         btn: true,
         'button-chip': true,
-        'btn-selected': isSelected
+        'btn-selected': isSelected,
+        isSelected
       }
     },
-    toggleAreaSelected(areaId) {
-      const area = this.areas.find(areaObj => areaObj.id === areaId)
-      area.isSelected = !area.isSelected
-    },
-    getPlaceholder(arr) {
-      if (!arr.length) return ''
-      const firstItem = arr[0].title || arr[0]
-      return `eg. ${firstItem}`
-    },
-    goBack() {
-      this.$router.go(-1)
-    },
-    goNext() {
-      if (this.checkInputs()) {
-        // go to next page
-      }
-    },
-    checkInputs() {
-      return false
-    },
-    testFn(key, arr) {
-      if (this[key] == null) {
-        this[key] = arr[0].id != null ? arr[0].id : 0
+    toggleRoleSelected(roleId) {
+      const isSelected = this.fields.selectedRoles.find(id => id === roleId) != null
+      if (!isSelected) {
+        this.fields.selectedRoles.push(roleId)
+      } else {
+        this.fields.selectedRoles = this.fields.selectedRoles.filter(id => id !== roleId)
       }
     }
   },

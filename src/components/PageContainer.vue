@@ -6,10 +6,11 @@
           <slot></slot>
         </div>
         <div class="spacer"></div>
-        <div class="flex space-between p10">
+        <div class="flex space-between p10" keep-alive>
           <md-button @click="goBack" class="btn md-raised" :md-ripple="false">Back</md-button>
           <md-progress-bar md-mode="determinate" :md-value="progress"></md-progress-bar>
-          <md-button class="btn md-raised" :md-ripple="false" @click="goNext">Next</md-button>
+          <md-button v-if="!isLastPage" class="btn md-raised" :md-ripple="false" @click="goNext">Next</md-button>
+          <md-button v-else class="btn md-raised" :md-ripple="false" @click="submitData">Submit</md-button>
         </div>
       </div>
     </md-app-content>
@@ -45,11 +46,25 @@ export default {
           name: this.pages[nextPage]
         })
       }
+    },
+    submitData() {
+      const data = this.$store.getters.getAll
+      let reqData = {}
+
+      Object.keys(data)
+        .forEach((pageId) => {
+          reqData = Object.assign({}, reqData, data[pageId])
+        })
+
+      console.log(reqData)
     }
   },
   computed: {
     progress() {
       return this.curPage * (100 / (this.pages.length - 1))
+    },
+    isLastPage() {
+      return this.curPage === this.pages.length - 1
     }
   }
 }

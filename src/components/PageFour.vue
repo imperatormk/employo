@@ -17,47 +17,56 @@
 import PageContainer from '@/components/PageContainer'
 
 export default {
+  created() {
+    this.fields = this.$store.getters.getById('pageFour')
+  },
   data() {
     return {
       criteria: '',
+      fields: {
+        selectedIndustries: [],
+      },
       industries: [{
         id: 0,
-        title: 'Frontend',
-        isSelected: false
+        title: 'Frontend'
       }, {
         id: 1,
-        title: 'Backend',
-        isSelected: false
+        title: 'Backend'
       }, {
         id: 2,
-        title: 'Databases',
-        isSelected: false
+        title: 'Databases'
       }, {
         id: 3,
-        title: 'Mobile',
-        isSelected: false
+        title: 'Mobile'
       }, {
         id: 4,
-        title: 'Design',
-        isSelected: false
+        title: 'Design'
       }, {
         id: 5,
-        title: 'QA',
-        isSelected: false
+        title: 'QA'
       }, {
         id: 6,
-        title: 'IT',
-        isSelected: false
+        title: 'IT'
       }, {
         id: 7,
-        title: 'Full stack',
-        isSelected: false
+        title: 'Full stack'
       }]
+    }
+  },
+  watch: {
+    fields: {
+      handler: function f(val) {
+        this.$store.dispatch('dataChange', {
+          pageId: 'pageFour',
+          fields: val
+        })
+      },
+      deep: true
     }
   },
   methods: {
     isIndustrySelected(industryId) {
-      const isSelected = this.industries.find(industry => industry.id === industryId).isSelected
+      const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
       return {
         'md-raised': true,
         p10: true,
@@ -67,8 +76,12 @@ export default {
       }
     },
     toggleIndustrySelected(industryId) {
-      const industry = this.industries.find(industryObj => industryObj.id === industryId)
-      industry.isSelected = !industry.isSelected
+      const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
+      if (!isSelected) {
+        this.fields.selectedIndustries.push(industryId)
+      } else {
+        this.fields.selectedIndustries = this.fields.selectedIndustries.filter(id => id !== industryId)
+      }
     }
   },
   computed: {

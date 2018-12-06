@@ -6,7 +6,7 @@
       <div class="md-layout-item">
         <div class="field-label">University</div>
         <md-field class="input-box">
-          <md-select @md-opened="testFn('selUniversity', universities)" v-model="selUniversity" :placeholder="getPlaceholder(universities)">
+          <md-select @md-opened="selectFirstElement('selUniversity', universities)" v-model="fields.selUniversity" :placeholder="getPlaceholder(universities)">
             <md-option v-for="university in universities" :key="university.id" :value="university.id">{{ university.title }}</md-option>
           </md-select>
         </md-field>
@@ -14,8 +14,8 @@
       <div class="md-layout-item">
         <div class="field-label">Field of Study</div>
         <md-field class="input-box">
-          <md-select @md-opened="testFn('selField', fields)" v-model="selField" :placeholder="getPlaceholder(fields)">
-            <md-option v-for="field in fields" :key="field.id" :value="field.id">{{ field.title }}</md-option>
+          <md-select @md-opened="selectFirstElement('selField', studyFields)" v-model="fields.selField" :placeholder="getPlaceholder(studyFields)">
+            <md-option v-for="field in studyFields" :key="field.id" :value="field.id">{{ field.title }}</md-option>
           </md-select>
         </md-field>
       </div>
@@ -24,7 +24,7 @@
       <div class="md-layout-item">
         <div class="field-label">Expected Year of Graduation</div>
         <md-field class="input-box">
-          <md-select @md-opened="testFn('selYear', years)" v-model="selYear" :placeholder="getPlaceholder(years)">
+          <md-select @md-opened="selectFirstElement('selYear', years)" v-model="fields.selYear" :placeholder="getPlaceholder(years)">
             <md-option v-for="(year, idx) in years" :key="idx" :value="idx">{{ year }}</md-option>
           </md-select>
         </md-field>
@@ -32,7 +32,7 @@
       <div class="md-layout-item">
         <div class="field-label">Cumulative GPA</div>
         <md-field class="input-box">
-          <md-select @md-opened="testFn('selGpa', gpas)" v-model="selGpa" :placeholder="getPlaceholder(gpas)">
+          <md-select @md-opened="selectFirstElement('selGpa', gpas)" v-model="fields.selGpa" :placeholder="getPlaceholder(gpas)">
             <md-option v-for="(gpa, idx) in gpas" :key="idx" :value="idx">{{ gpa }}</md-option>
           </md-select>
         </md-field>
@@ -42,16 +42,16 @@
       <div class="md-layout-item">
         <div class="field-label">Official co-op</div>
         <div>
-          <md-button :md-ripple="false" :class="isButtonSelected(officialCoop,true)" @click="officialCoop=true">Yes</md-button>
-          <md-button :md-ripple="false" :class="isButtonSelected(officialCoop,false)" @click="officialCoop=false">No</md-button>
+          <md-button :md-ripple="false" :class="isButtonSelected(fields.officialCoop,true)" @click="fields.officialCoop=true">Yes</md-button>
+          <md-button :md-ripple="false" :class="isButtonSelected(fields.officialCoop,false)" @click="fields.officialCoop=false">No</md-button>
         </div>
       </div>
       <div class="md-layout-item">
         <div class="field-label">Availability</div>
         <div>
-          <md-button :md-ripple="false" :class="isButtonSelected(availability,0)" @click="availability=0">Summer</md-button>
-          <md-button :md-ripple="false" :class="isButtonSelected(availability,1)" @click="availability=1">Winter</md-button>
-          <md-button :md-ripple="false" :class="isButtonSelected(availability,2)" @click="availability=2">Fall</md-button>
+          <md-button :md-ripple="false" :class="isButtonSelected(fields.availability,0)" @click="fields.availability=0">Summer</md-button>
+          <md-button :md-ripple="false" :class="isButtonSelected(fields.availability,1)" @click="fields.availability=1">Winter</md-button>
+          <md-button :md-ripple="false" :class="isButtonSelected(fields.availability,2)" @click="fields.availability=2">Fall</md-button>
         </div>
       </div>
     </div>
@@ -62,20 +62,19 @@
 import PageContainer from '@/components/PageContainer'
 
 export default {
-  props: {
-    amount: {
-      type: Number,
-      default: 20
-    }
+  created() {
+    this.fields = this.$store.getters.getById('pageOne')
   },
   data() {
     return {
-      selUniversity: null,
-      selField: null,
-      selYear: null,
-      selGpa: null,
-      officialCoop: null,
-      availability: null,
+      fields: {
+        selUniversity: null,
+        selField: null,
+        selYear: null,
+        selGpa: null,
+        officialCoop: null,
+        availability: null
+      },
       universities: [{
         id: 0,
         title: 'University of Toronto'
@@ -83,7 +82,7 @@ export default {
         id: 1,
         title: 'Western University'
       }],
-      fields: [{
+      studyFields: [{
         id: 0,
         title: 'Computer Science'
       }, {
@@ -92,6 +91,17 @@ export default {
       }],
       years: [2020, 2021],
       gpas: [3.9, 4]
+    }
+  },
+  watch: {
+    fields: {
+      handler: function f(val) {
+        this.$store.dispatch('dataChange', {
+          pageId: 'pageOne',
+          fields: val
+        })
+      },
+      deep: true
     }
   },
   methods: {
@@ -108,7 +118,7 @@ export default {
       const firstItem = arr[0].title || arr[0]
       return `eg. ${firstItem}`
     },
-    testFn(key, arr) {
+    selectFirstElement(key, arr) {
       if (this[key] == null) {
         this[key] = arr[0].id != null ? arr[0].id : 0
       }
