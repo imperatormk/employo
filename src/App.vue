@@ -1,21 +1,16 @@
 <template>
   <div id="app" style="min-height: 100vh;">
-    <md-app>
-      <md-app-content style="min-height: 100vh;">
-        <div class="flex-column" style="min-height: 100%;">
-          <div class="field-container">
-            <router-view/>
-          </div>
-          <div class="spacer"></div>
+    <v-app style="min-height: 100vh;">
+      <router-view/>
+      <div class="spacer"></div>
           <div class="flex space-between p10" keep-alive>
-            <md-button @click="goBack" class="btn md-raised" :md-ripple="false">Back</md-button>
-            <md-progress-bar md-mode="determinate" :md-value="progress"></md-progress-bar>
-            <md-button v-if="!isLastPage" class="btn md-raised" :md-ripple="false" @click="goNext">Next</md-button>
-            <md-button v-else class="btn md-raised" :md-ripple="false" @click="submitData">Submit</md-button>
-          </div>
+            <v-btn class="btn md-raised" @click="goBack">Back</v-btn>
+            <v-progress-linear v-model="progress"></v-progress-linear>
+            <v-btn v-if="!isLastPage" class="btn md-raised" @click="goNext">Next</v-btn>
+            <v-btn v-else class="btn md-raised" @click="submitData">Submit</v-btn>
         </div>
-      </md-app-content>
-    </md-app>
+
+    </v-app>
   </div>
 </template>
 

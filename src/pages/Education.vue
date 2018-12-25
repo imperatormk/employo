@@ -1,61 +1,65 @@
 <template>
-  <div>
-    <h1 class="label">Tell us about your education.</h1>
-    <br>
-    <div class="md-layout md-gutter">
-      <div class="md-layout-item">
+  <v-container grid-list-xl>
+    <v-layout wrap align-center>
+      <v-flex xs12 sm12 d-flex>
+        <h1 class="label">Tell us about your education.</h1>
+      </v-flex>
+      <v-flex xs12 sm6 d-block>
         <div class="field-label">University</div>
-        <md-field class="input-box">
-          <md-select @md-opened="selectFirstElement('selUniversity', universities)" v-model="fields.selUniversity" :placeholder="getPlaceholder(universities)">
-            <md-option v-for="university in universities" :key="university.id" :value="university.id">{{ university.title }}</md-option>
-          </md-select>
-        </md-field>
-      </div>
-      <div class="md-layout-item">
+        <v-select
+          :items="universities"
+          v-model="fields.selUniversity"
+          item-text="title"
+          :label="`eg. ${universities[0].title}`"
+          solo
+          append-icon
+        ></v-select>
+      </v-flex>
+      <v-flex xs12 sm6 d-block>
         <div class="field-label">Field of Study</div>
-        <md-field class="input-box">
-          <md-select @md-opened="selectFirstElement('selField', studyFields)" v-model="fields.selField" :placeholder="getPlaceholder(studyFields)">
-            <md-option v-for="field in studyFields" :key="field.id" :value="field.id">{{ field.title }}</md-option>
-          </md-select>
-        </md-field>
-      </div>
-    </div>
-    <div class="md-layout md-gutter">
-      <div class="md-layout-item">
+        <v-select
+          :items="studyFields"
+          v-model="fields.selField"
+          item-text="title"
+          :label="`eg. ${studyFields[0].title}`"
+          solo
+        ></v-select>
+      </v-flex>
+      <v-flex xs12 sm6 d-block>
         <div class="field-label">Expected Year of Graduation</div>
-        <md-field class="input-box">
-          <md-select @md-opened="selectFirstElement('selYear', years)" v-model="fields.selYear" :placeholder="getPlaceholder(years)">
-            <md-option v-for="(year, idx) in years" :key="idx" :value="idx">{{ year }}</md-option>
-          </md-select>
-        </md-field>
-      </div>
-      <div class="md-layout-item">
+        <v-select
+          :items="years"
+          v-model="fields.selYear"
+          :label="`eg. ${years[0]}`"
+          solo
+        ></v-select>
+      </v-flex>
+      <v-flex xs12 sm6 d-block>
         <div class="field-label">Cumulative GPA</div>
-        <md-field class="input-box">
-          <md-select @md-opened="selectFirstElement('selGpa', gpas)" v-model="fields.selGpa" :placeholder="getPlaceholder(gpas)">
-            <md-option v-for="(gpa, idx) in gpas" :key="idx" :value="idx">{{ gpa }}</md-option>
-          </md-select>
-        </md-field>
-      </div>
-    </div>
-    <div class="md-layout md-gutter">
-      <div class="md-layout-item">
+        <v-select
+          :items="gpas"
+          v-model="fields.selGpa"
+          :label="`eg. ${gpas[0]}`"
+          solo
+        ></v-select>
+      </v-flex>
+      <v-flex xs12 sm6 d-block>
         <div class="field-label">Official co-op</div>
-        <div>
-          <md-button :md-ripple="false" :class="isButtonSelected(fields.officialCoop,true)" @click="fields.officialCoop=true">Yes</md-button>
-          <md-button :md-ripple="false" :class="isButtonSelected(fields.officialCoop,false)" @click="fields.officialCoop=false">No</md-button>
+        <div d-flex>
+          <v-btn :class="isButtonSelected(fields.officialCoop,true)" @click="fields.officialCoop=true">Yes</v-btn>
+          <v-btn :class="isButtonSelected(fields.officialCoop,false)" @click="fields.officialCoop=false">No</v-btn>
         </div>
-      </div>
-      <div class="md-layout-item">
+      </v-flex>
+      <v-flex xs12 sm6 d-block>
         <div class="field-label">Availability</div>
-        <div>
-          <md-button :md-ripple="false" :class="isButtonSelected(fields.availability,0)" @click="fields.availability=0">Summer</md-button>
-          <md-button :md-ripple="false" :class="isButtonSelected(fields.availability,1)" @click="fields.availability=1">Winter</md-button>
-          <md-button :md-ripple="false" :class="isButtonSelected(fields.availability,2)" @click="fields.availability=2">Fall</md-button>
+        <div d-flex>
+          <v-btn :class="isButtonSelected(fields.availability,0)" @click="fields.availability=0">Summer</v-btn>
+          <v-btn :class="isButtonSelected(fields.availability,1)" @click="fields.availability=1">Winter</v-btn>
+          <v-btn :class="isButtonSelected(fields.availability,2)" @click="fields.availability=2">Fall</v-btn>
         </div>
-      </div>
-    </div>
-  </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

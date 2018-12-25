@@ -104,3 +104,20 @@
   padding: 10px 5px;
   font-size: 20px;
 }
+
+$round-border: 25px;
+
+.blue-background {
+  background-color: #3164e3;
+}
+
+.right-border-round {
+  border-top-right-radius: $round-border;
+  border-bottom-right-radius: $round-border;
+}
+
+.border-round {
+  border-radius: $round-border;
+}
+
+

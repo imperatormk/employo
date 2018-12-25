@@ -6,6 +6,7 @@ import Experience from '@/pages/Experience'
 import Roles from '@/pages/Roles'
 import Industries from '@/pages/Industries'
 import Skills from '@/pages/Skills'
+import JobBoard from '@/pages/students/JobBoard'
 
 import pagesList from '@/pages'
 
@@ -41,6 +42,10 @@ export default new Router({
       path: '/skills',
       name: pagesList[4],
       component: Skills
+    },
+    {
+      path: '/student',
+      component: JobBoard
     }
   ],
   mode: 'history'
