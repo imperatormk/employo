@@ -1,13 +1,11 @@
-<template>
-  <div class="role-container" @click="clicked" :class="{ selected: isSelected }">
-    <div class="flex-column align-center">
-      <img width="100%" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350">
-      <br>
-      <h1 class="label">{{ typeData.title }}</h1>
-      <span class="label">{{ typeData.desc }}</span>
-      <br>
-    </div>
-  </div>
+<template lang="pug">
+  .role-container(@click="clicked" :class="{ selected: isSelected }")
+    .flex-column.align-center
+      img(width="100%" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350")
+      br
+      h1.label {{ typeData.title }}
+      span.label {{ typeData.desc }}
+      br
 </template>
 
 <script>

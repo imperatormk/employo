@@ -1,14 +1,10 @@
-<template>
-  <div>
-    <h1 class="label">What are your strongest skills?</h1>
-    <div class="desc-label">Choose as many that apply</div>
-    <md-field class="input-box text-box">
-      <md-input v-model="criteria" placeholder="Search skills"></md-input>
-    </md-field>
-    <div class="flex space-between flex-wrap p10">
-      <md-button v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)">{{ skill.title }}</md-button>
-    </div>
-  </div>
+<template lang="pug">
+  v-container(grid-list-xl)
+    h1.label What are your strongest skills?
+    .desc-label Choose as many that apply
+    v-input(v-model="criteria" placeholder="Search skills")
+    .flex.space-between.flex-wrap.p10
+      v-btn(v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)") {{ skill.title }}
 </template>
 
 <script>
@@ -17,7 +13,6 @@ import pagesList from '@/pages'
 export default {
   created() {
     this.fields = this.$store.getters.getById(pagesList[4])
-    this.$store.dispatch('curPageChange', 4)
   },
   data() {
     return {

@@ -1,10 +1,9 @@
-<template>
-  <div class="flex-column">
-    <h1 class="label">What types of roles are you interested in?</h1>
-    <div class="flex-row">
-      <RoleType v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)"></RoleType>
-    </div>
-  </div>
+<template lang="pug">
+  v-container(grid-list-xl)
+    .flex-column
+      h1.label What types of roles are you interested in?
+      .flex-row.justify-center
+        RoleType(v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)")
 </template>
 
 <script>
@@ -14,7 +13,6 @@ import pagesList from '@/pages'
 export default {
   created() {
     this.fields = this.$store.getters.getById(pagesList[2])
-    this.$store.dispatch('curPageChange', 2)
   },
   data() {
     return {
