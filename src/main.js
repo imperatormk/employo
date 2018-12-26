@@ -1,10 +1,11 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+
 import Vue from 'vue'
 
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 import '@/style/main.scss'
 
 import App from './App'
@@ -13,7 +14,9 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-Vue.use(VueMaterial)
+Vue.use(Vuetify, {
+  iconfont: 'mdi'
+})
 
 /* eslint-disable no-new */
 new Vue({

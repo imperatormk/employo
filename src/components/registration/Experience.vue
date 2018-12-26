@@ -1,25 +1,14 @@
-<template>
-  <div>
-    <div>
-      <h1 class="label">How many years of experience do you have?</h1>
-      <div class="flex space-between align-center p10">
-        <range-slider
-          class="yearSlider"
-          min="0"
-          max="5"
-          step="1"
-          v-model="fields.numYears">
-        </range-slider>
-        <md-chip class="chip">{{ fields.numYears }} years</md-chip>
-      </div>
-    </div>
-    <div>
-      <h1 class="label">What areas have you had most experience with?</h1>
-      <div class="flex space-between flex-wrap p10">
-        <md-button v-for="area in areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)">{{ area.title }}</md-button>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  v-container(grid-list-xl)
+    div
+      h1.label How many years of experience do you have?
+      .flex.space-between.align-center.p10
+        range-slider(class="yearSlider" min="0" max="5" step="1" v-model="fields.numYears")
+        v-chip.chip {{ fields.numYears }} years
+    div
+      h1.label What areas have you had most experience with?
+      .flex.space-between.align-center.p10
+        v-btn(v-for="area in areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
 </template>
 
 <script>
@@ -30,7 +19,6 @@ import pagesList from '@/pages'
 export default {
   created() {
     this.fields = this.$store.getters.getById(pagesList[1])
-    this.$store.dispatch('curPageChange', 1)
   },
   data() {
     return {

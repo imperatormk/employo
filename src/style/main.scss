@@ -43,6 +43,59 @@
   }
 }
 
+// .p5-side, .p10-side...
+@for $i from 1 through 20 {
+  .p#{$i * 5}#{-side} {
+    padding: 0 $i * 5px
+  }
+}
+// .p5-left, .p10-left...
+@for $i from 1 through 20 {
+  .p#{$i * 5}#{-left} {
+    padding-left: $i * 5px
+  }
+}
+// .p5-right, .p10-right...
+@for $i from 1 through 20 {
+  .p#{$i * 5}#{-right} {
+    padding-right: $i * 5px
+  }
+}
+// .p5-top, .p10-top...
+@for $i from 1 through 20 {
+  .p#{$i * 5}#{-top} {
+    padding: $i * 5px 0 0 0
+  }
+}
+// .p5-bot, .p10-bot...
+@for $i from 1 through 20 {
+  .p#{$i * 5}#{-bot} {
+    padding: 0 0 $i * 5px 0
+  }
+}
+
+// .h5, .h10...
+@for $i from 1 through 100 {
+  .h#{$i * 1} {
+    height: $i * 1% !important
+  }
+}
+
+// .w5, .w10...
+@for $i from 1 through 100 {
+  .w#{$i * 1} {
+    width: $i * 1%
+  }
+}
+
+// .br5, .br10...
+@for $i from 1 through 100 {
+  .br#{$i * 1} {
+    border-radius: $i * 1%
+  }
+}
+
+
 .range-slider-fill {
   background-color: #448aff !important;
 }
@@ -104,3 +157,50 @@
   padding: 10px 5px;
   font-size: 20px;
 }
+
+$round-border: 25px;
+
+.blue-background {
+  background-color: #3164e3;
+}
+
+.right-border-round {
+  border-top-right-radius: $round-border;
+  border-bottom-right-radius: $round-border;
+}
+
+.border-round {
+  border-radius: $round-border;
+}
+
+.chips-container p {
+  color: #8c8c8c;
+}
+
+.chips-container {
+  padding-bottom: 30px;
+}
+
+.v-card-jobs {
+  flex-basis:100%;
+}
+
+.v-card-holder {
+  display: block;
+}
+
+@media(min-width:960px) {
+  .v-card-holder {
+    margin-bottom:20px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+  }
+
+  .v-card-jobs {
+    flex-basis:18%;
+    margin-bottom: 30px;
+  }
+}
+
+

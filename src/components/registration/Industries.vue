@@ -1,14 +1,10 @@
-<template>
-  <div>
-    <h1 class="label">Industries you would like to work with?</h1>
-    <div class="desc-label">Choose as many that apply</div>
-    <md-field class="input-box text-box">
-      <md-input v-model="criteria" placeholder="Search industries"></md-input>
-    </md-field>
-    <div class="flex space-between flex-wrap p10">
-      <md-button v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)">{{ industry.title }}</md-button>
-    </div>
-  </div>
+<template lang="pug">
+  v-container(grid-list-xl)
+    h1.label Industries you would like to work with?
+    .desc-label Choose as many that apply
+    v-input(v-model="criteria" placeholder="Search industries")
+    .flex.space-between.flex-wrap.p10
+      v-btn(v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)") {{ industry.title }}
 </template>
 
 <script>
@@ -17,7 +13,6 @@ import pagesList from '@/pages'
 export default {
   created() {
     this.fields = this.$store.getters.getById(pagesList[3])
-    this.$store.dispatch('curPageChange', 3)
   },
   data() {
     return {
