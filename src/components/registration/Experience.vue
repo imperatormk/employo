@@ -7,7 +7,7 @@
         v-chip.chip {{ fields.numYears }} years
     div
       h1.label What areas have you had most experience with?
-      .flex.space-between.align-center.p10
+      .flex.space-between.align-center.p10.flex-wrap
         v-btn(v-for="area in areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
 </template>
 

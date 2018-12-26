@@ -173,6 +173,12 @@ $round-border: 25px;
   border-radius: $round-border;
 }
 
+.dialog-round {
+  border-top-left-radius: $round-border;
+  border-bottom-left-radius: $round-border;
+  border-bottom-right-radius: $round-border;
+}
+
 .chips-container p {
   color: #8c8c8c;
 }
@@ -193,13 +199,14 @@ $round-border: 25px;
   .v-card-holder {
     margin-bottom:20px;
     display:flex;
-    justify-content:space-between;
+    justify-content:space-around;
     flex-wrap: wrap;
   }
 
   .v-card-jobs {
     flex-basis:18%;
     margin-bottom: 30px;
+    flex-grow:1;
   }
 }
 
