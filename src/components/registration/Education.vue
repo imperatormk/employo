@@ -29,11 +29,11 @@
 </template>
 
 <script>
-import pagesList from '@/pages'
+import pagesList from '@/components/registration/page_list'
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[0])
+    this.fields = this.$store.getters.getById(pagesList[1])
   },
   data() {
     return {
@@ -67,7 +67,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[0],
+          pageId: pagesList[1],
           fields: val
         })
       },
@@ -78,7 +78,6 @@ export default {
     isButtonSelected(currentVal, expectedVal) {
       const isSelected = currentVal === expectedVal
       return {
-        'md-raised': true,
         btn: true,
         'btn-selected': isSelected
       }

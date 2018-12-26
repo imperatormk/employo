@@ -8,11 +8,11 @@
 
 <script>
 import RoleType from '@/components/RoleType'
-import pagesList from '@/pages'
+import pagesList from '@/components/registration/page_list'
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[2])
+    this.fields = this.$store.getters.getById(pagesList[3])
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[2],
+          pageId: pagesList[3],
           fields: val
         })
       },
@@ -45,7 +45,6 @@ export default {
     isRoleSelected(roleId) {
       const isSelected = this.fields.selectedRoles.find(id => id === roleId) != null
       return {
-        'md-raised': true,
         p10: true,
         btn: true,
         'button-chip': true,

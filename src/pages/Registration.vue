@@ -1,11 +1,12 @@
 <template lang="pug">
   .flex.flex-column.space-between-p10
     .flex
-      Education(v-if="curPageTemp == 0")
-      Experience(v-if="curPageTemp == 1")
-      Industries(v-if="curPageTemp == 2")
-      Roles(v-if="curPageTemp == 3")
-      Skills(v-if="curPageTemp == 4")
+      Account(v-if="curPage == 0")
+      Education(v-else-if="curPage == 1")
+      Experience(v-else-if="curPage == 2")
+      Industries(v-else-if="curPage == 3")
+      Roles(v-else-if="curPage == 4")
+      Skills(v-else-if="curPage == 5")
     .spacer
     .flex.align-end.p30
       .flex.align-center
@@ -17,8 +18,8 @@
 </template>
 
 <script>
-import pagesList from '@/pages'
-import { Education, Experience, Industries, Roles, Skills } from '@/components/registration'
+import pagesList from '@/components/registration/page_list'
+import { Account, Education, Experience, Industries, Roles, Skills } from '@/components/registration'
 
 export default {
   created() {
@@ -28,13 +29,23 @@ export default {
   data() {
     return {
       pages: [],
-      curPageTemp: 0 // fix this
+      curPage: 0
     }
   },
   methods: {
     initStore() {
       this.$store.dispatch('dataChange', {
         pageId: pagesList[0],
+        fields: {
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: '',
+          city: ''
+        }
+      })
+      this.$store.dispatch('dataChange', {
+        pageId: pagesList[1],
         fields: {
           selUniversity: null,
           selField: null,
@@ -45,41 +56,41 @@ export default {
         }
       })
       this.$store.dispatch('dataChange', {
-        pageId: pagesList[1],
+        pageId: pagesList[2],
         fields: {
           selectedAreas: [],
           numYears: 1
         }
       })
       this.$store.dispatch('dataChange', {
-        pageId: pagesList[2],
+        pageId: pagesList[3],
         fields: {
           selectedRoles: []
         }
       })
       this.$store.dispatch('dataChange', {
-        pageId: pagesList[3],
+        pageId: pagesList[4],
         fields: {
           selectedIndustries: []
         }
       })
       this.$store.dispatch('dataChange', {
-        pageId: pagesList[4],
+        pageId: pagesList[5],
         fields: {
           selectedSkills: []
         }
       })
     },
     goBack() {
-      const prevPage = this.curPageTemp - 1
+      const prevPage = this.curPage - 1
       if (this.pages[prevPage]) {
-        this.curPageTemp = prevPage
+        this.curPage = prevPage
       }
     },
     goNext() {
-      const nextPage = this.curPageTemp + 1
+      const nextPage = this.curPage + 1
       if (this.pages[nextPage]) {
-        this.curPageTemp = nextPage
+        this.curPage = nextPage
       }
     },
     submitData() {
@@ -96,17 +107,14 @@ export default {
   },
   computed: {
     progress() {
-      return this.curPageTemp * (100 / (this.pages.length - 1))
+      return this.curPage * (100 / (this.pages.length - 1))
     },
     isLastPage() {
-      return this.curPageTemp === this.pages.length - 1
-    },
-    curPage() {
-      return this.$store.getters.curPage
+      return this.curPage === this.pages.length - 1
     }
   },
   components: {
-    Education, Experience, Industries, Roles, Skills
+    Account, Education, Experience, Industries, Roles, Skills
   }
 }
 </script>

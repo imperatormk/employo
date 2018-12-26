@@ -1,13 +1,15 @@
+import Account from './Account'
 import Education from './Education'
 import Experience from './Experience'
-import Industries from './Industries'
 import Roles from './Roles'
+import Industries from './Industries'
 import Skills from './Skills'
 
 export {
+  Account,
   Education,
   Experience,
-  Industries,
   Roles,
+  Industries,
   Skills
 }
