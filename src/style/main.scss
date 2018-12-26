@@ -120,4 +120,34 @@ $round-border: 25px;
   border-radius: $round-border;
 }
 
+.chips-container p {
+  color: #8c8c8c;
+}
+
+.chips-container {
+  padding-bottom: 30px;
+}
+
+.v-card-jobs {
+  flex-basis:100%;
+}
+
+.v-card-holder {
+  display: block;
+}
+
+@media(min-width:960px) {
+  .v-card-holder {
+    margin-bottom:20px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+  }
+
+  .v-card-jobs {
+    flex-basis:18%;
+    margin-bottom: 30px;
+  }
+}
+
 
