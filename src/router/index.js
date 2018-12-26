@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Registration from '@/pages/Registration'
 import JobBoard from '@/pages/students/JobBoard'
+import SavedJobs from '@/pages/students/SavedJobs'
 
 Vue.use(Router)
 
@@ -20,6 +21,10 @@ export default new Router({
     {
       path: '/student',
       component: JobBoard
+    },
+    {
+      path: '/student/jobs',
+      component: SavedJobs
     }
   ],
   mode: 'history'

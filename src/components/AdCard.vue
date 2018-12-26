@@ -15,8 +15,13 @@
     <div style="padding:10px;">
       <p>{{cardInfo.shortDescription}}</p>
     </div>
-    <div style="text-align:center;padding-bottom:10px;">
-      <v-btn @click="jobInfo.visible = !jobInfo.visible" dark round color="#448aff">Save</v-btn>
+    <div style="text-align:center;padding-bottom:10px;display:flex;">
+      <div  v-if="jobInfo.saved">
+        <v-btn @click="jobInfo.visible = !jobInfo.visible" dark round color="#448aff">Remove</v-btn>
+      </div>
+      <div v-else>
+        <v-btn @click="jobInfo.visible = !jobInfo.visible" dark round color="#448aff">Save</v-btn>
+      </div>
        <Dialog :id="jobInfo.id" :data="jobInfo">
         <v-btn slot="act" dark round color="#448aff">Apply</v-btn>
       </Dialog>
