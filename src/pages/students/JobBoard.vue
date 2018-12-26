@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header :navigationBtns="menu" :userName="userName"></Header>
-    <v-flex style="margin-bottom:20px;">
+    <v-flex style="margin-bottom:20px;width:100%;">
       <v-card style="width: 90%;" class="blue--text right-border-round">
         <v-card-title primary-title >
           <div>
@@ -44,46 +44,58 @@ export default {
       menu: ['Explore Jobs', 'Saved Jobs'],
       userName: 'John',
       jobsInfo: [{
+        id: 1,
         img: null,
         title: 'IBM',
         location: 'Ottawa, ON',
         shortDescription: 'UX/UI Designer Internship',
-        description: 'Lorem Ipsum Suma cum lade'
+        description: 'Lorem Ipsum Suma cum lade',
+        visible: true
       },
       {
+        id: 2,
         img: null,
         title: 'IBM',
         location: 'Ottawa, ON',
         shortDescription: 'UX/UI Designer Internship',
-        description: 'Lorem Ipsum Suma cum lade'
+        description: 'Lorem Ipsum Suma cum lade',
+        visible: true
       },
       {
+        id: 3,
         img: null,
         title: 'IBM',
         location: 'Ottawa, ON',
         shortDescription: 'UX/UI Designer Internship',
-        description: 'Lorem Ipsum Suma cum lade'
+        description: 'Lorem Ipsum Suma cum lade',
+        visible: true
       },
       {
+        id: 4,
         img: null,
         title: 'IBM',
         location: 'Ottawa, ON',
         shortDescription: 'UX/UI Designer Internship',
-        description: 'Lorem Ipsum Suma cum lade'
+        description: 'Lorem Ipsum Suma cum lade',
+        visible: true
       },
       {
+        id: 5,
         img: null,
         title: 'IBM',
         location: 'Ottawa, ON',
         shortDescription: 'UX/UI Designer Internship',
-        description: 'Lorem Ipsum Suma cum lade'
+        description: 'Lorem Ipsum Suma cum lade',
+        visible: true
       },
       {
+        id: 6,
         img: null,
         title: 'IBM',
         location: 'Ottawa, ON',
         shortDescription: 'UX/UI Designer Internship',
-        description: 'Lorem Ipsum Suma cum lade'
+        description: 'Lorem Ipsum Suma cum lade',
+        visible: true
       }]
     }
   },

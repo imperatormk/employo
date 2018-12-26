@@ -1,4 +1,5 @@
 <template>
+<div v-if="jobInfo.visible">
   <v-card class="v-card-jobs border-round">
     <div style="display:flex;padding:10px;">
         <v-avatar
@@ -15,24 +16,40 @@
       <p>{{cardInfo.shortDescription}}</p>
     </div>
     <div style="text-align:center;padding-bottom:10px;">
-      <v-btn dark round color="#448aff">Save</v-btn>
-      <v-btn dark round color="#448aff">Apply</v-btn>
+      <v-btn @click="jobInfo.visible = !jobInfo.visible" dark round color="#448aff">Save</v-btn>
+       <Dialog :id="jobInfo.id" :data="jobInfo">
+        <v-btn slot="act" dark round color="#448aff">Apply</v-btn>
+      </Dialog>
     </div>
 
   </v-card>
+ </div>
+ <div v-else style="display:none;">
+ </div>
 </template>
 
 <script>
 import image from '@/assets/logo.png'
+import Dialog from '@/components/Dialog'
 
 export default {
+  created() {
+    this.jobInfo = this.cardInfo
+  },
   props: {
     cardInfo: Object
   },
   data() {
     return {
-      image
+      image,
+      jobInfo: null,
     }
+  },
+  methods: {
+
+  },
+  components: {
+    Dialog
   }
 }
 </script>
