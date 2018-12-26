@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import pagesList from '@/pages'
+import pagesList from '@/components/registration/page_list'
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[3])
+    this.fields = this.$store.getters.getById(pagesList[4])
   },
   data() {
     return {
@@ -51,7 +51,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[3],
+          pageId: pagesList[4],
           fields: val
         })
       },
@@ -62,7 +62,6 @@ export default {
     isIndustrySelected(industryId) {
       const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
       return {
-        'md-raised': true,
         p10: true,
         btn: true,
         'button-chip': true,

@@ -14,11 +14,11 @@
 <script>
 import RangeSlider from 'vue-range-slider'
 import 'vue-range-slider/dist/vue-range-slider.css'
-import pagesList from '@/pages'
+import pagesList from '@/components/registration/page_list'
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[1])
+    this.fields = this.$store.getters.getById(pagesList[2])
   },
   data() {
     return {
@@ -57,7 +57,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[1],
+          pageId: pagesList[2],
           fields: val
         })
       },
@@ -68,7 +68,6 @@ export default {
     isButtonSelected(currentVal, expectedVal) {
       const isSelected = currentVal === expectedVal
       return {
-        'md-raised': true,
         btn: true,
         'btn-selected': isSelected
       }
@@ -76,7 +75,6 @@ export default {
     isAreaSelected(areaId) {
       const isSelected = this.fields.selectedAreas.find(id => id === areaId) != null
       return {
-        'md-raised': true,
         p10: true,
         btn: true,
         'button-chip': true,
