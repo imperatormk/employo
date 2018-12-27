@@ -199,14 +199,15 @@ $round-border: 25px;
   .v-card-holder {
     margin-bottom:20px;
     display:flex;
-    justify-content:space-around;
+    justify-content:space-evenly;
     flex-wrap: wrap;
   }
 
   .v-card-jobs {
     flex-basis:18%;
     margin-bottom: 30px;
-    flex-grow:1;
+    padding: 16px;
+    
   }
 }
 

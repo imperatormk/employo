@@ -12,18 +12,22 @@
             <div style="flex:1;">
               <p>Location</p>
               <v-chip disabled small color="#3164e3" text-color="white">Example</v-chip>
+              <v-btn icon dark small color="#3164e3"><i class="material-icons">add</i></v-btn>
             </div>
             <div style="flex:1;">
               <p>Job Type</p>
               <v-chip disabled small color="#3164e3" text-color="white">Example</v-chip>
+              <v-btn icon dark small color="#3164e3"><i class="material-icons">add</i></v-btn>
             </div>
             <div style="flex:1;">
               <p>Industry</p>
               <v-chip disabled small color="#3164e3" text-color="white">Example</v-chip>
+              <v-btn icon dark small color="#3164e3"><i class="material-icons">add</i></v-btn>
             </div>
             <div style="flex:1;">
               <p>Availability</p>
               <v-chip disabled small color="#3164e3" text-color="white">Example</v-chip>
+              <v-btn icon dark small color="#3164e3"><i class="material-icons">add</i></v-btn>
             </div>
           </div>
       </v-card>
@@ -50,7 +54,7 @@ export default {
         location: 'Ottawa, ON',
         shortDescription: 'UX/UI Designer Internship',
         description: 'Lorem Ipsum Suma cum lade',
-        visible: true
+        visible: true,
       },
       {
         id: 2,

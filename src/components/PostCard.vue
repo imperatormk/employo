@@ -1,6 +1,6 @@
 <template>
-<div v-if="jobInfo.visible" class="v-card-jobs">
-  <v-card class=" border-round">
+<div class="v-card-jobs">
+  <v-card class="border-round" style="margin-bottom:30px;">
     <div style="display:flex;padding:10px;">
         <v-avatar
           color="grey lighten-4"
@@ -15,21 +15,16 @@
     <div style="padding:10px;">
       <p>{{cardInfo.shortDescription}}</p>
     </div>
-    <div style="text-align:center;padding-bottom:10px;display:flex;justify-content: space-evenly;">
-      <div  v-if="jobInfo.saved">
-        <v-btn @click="removeJob" dark round color="#448aff">Remove</v-btn>
-      </div>
-      <div v-else>
-        <v-btn @click="saveJob" dark round color="#448aff">Save</v-btn>
+  </v-card>
+   <div style="text-align:center;padding-bottom:10px;">
+      <div >
+        <v-btn @click="jobInfo.visible = !jobInfo.visible" dark round color="#448aff">Remove</v-btn>
+        <v-btn @click="jobInfo.visible = !jobInfo.visible" dark round color="#448aff">Save</v-btn>
       </div>
        <Dialog :id="jobInfo.id" :data="jobInfo">
         <v-btn slot="act" dark round color="#448aff">Apply</v-btn>
       </Dialog>
     </div>
-
-  </v-card>
- </div>
- <div v-else style="display:none;">
  </div>
 </template>
 
@@ -51,12 +46,7 @@ export default {
     }
   },
   methods: {
-    saveJob() {
-      this.jobInfo.visible = !this.jobInfo.visible
-    },
-    removeJob() {
-      this.jobInfo.visible = !this.jobInfo.visible
-    }
+
   },
   components: {
     Dialog
