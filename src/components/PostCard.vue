@@ -17,12 +17,12 @@
     </div>
   </v-card>
    <div style="text-align:center;padding-bottom:10px;">
-      <div >
-        <v-btn @click="jobInfo.visible = !jobInfo.visible" dark round color="#448aff">Remove</v-btn>
-        <v-btn @click="jobInfo.visible = !jobInfo.visible" dark round color="#448aff">Save</v-btn>
+      <div style="display:flex;">
+        <v-btn @click="jobInfo.visible = !jobInfo.visible" light round color="transparent">Edit Job</v-btn>
+        <v-btn @click="jobInfo.visible = !jobInfo.visible" light round color="transparent">Repost Job</v-btn>
       </div>
        <Dialog :id="jobInfo.id" :data="jobInfo">
-        <v-btn slot="act" dark round color="#448aff">Apply</v-btn>
+        <v-btn slot="act" dark round color="#efb1b1">Delete Job</v-btn>
       </Dialog>
     </div>
  </div>

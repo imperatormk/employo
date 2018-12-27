@@ -1,5 +1,23 @@
+@font-face {
+  font-family: "AvenirNext";
+  src: url("../assets/typo/AvenirNextRegular.ttf") format("truetype");
+}
+
 .body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'AvenirNext','Lato','Helvetica', sans-serif;
+}
+
+.application {
+  font-family: 'AvenirNext' !important;
+}
+
+p h1 h2 h3 h4 {
+  font-family: 'AvenirNext';
+}
+
+p {
+  font-size: 1.1em;
+  font-weight: 500 !important;
 }
 
 .label {
@@ -177,6 +195,48 @@ h1 {
 }
 
 $round-border: 25px;
+$light-blue: #47AFE6;
+$darker-blue: #477EE6;
+
+.light-text-blue {
+  color: $light-blue !important;
+}
+
+.light-bck-blue {
+  background-color: $light-blue !important;
+}
+
+.dark-bck-blue {
+  background-color: $darker-blue !important;
+}
+
+.f1-8m {
+  font-size: 1.8em;
+  text-transform: unset;
+}
+
+.f1-2m {
+  font-size: 1.2em;
+}
+
+.f3em {
+  font-size: 3em;
+}
+
+.h-img {
+  width: 150px;
+  margin-top: -95px !important;
+}
+
+.bold-weight {
+  font-weight: 900 !important;
+}
+
+.dark-text-blue {
+  color: $darker-blue !important;
+}
+
+
 
 .blue-background {
   background-color: #3164e3;
