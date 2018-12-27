@@ -7,6 +7,7 @@
       Industries(v-else-if="curPage == 3")
       Roles(v-else-if="curPage == 4")
       Skills(v-else-if="curPage == 5")
+      UploadTranscript(v-else-if="curPage == 6")
     .spacer
     .flex.align-end.p30
       .flex.align-center
@@ -19,7 +20,7 @@
 
 <script>
 import pagesList from '@/components/registration/page_list'
-import { Account, Education, Experience, Industries, Roles, Skills } from '@/components/registration'
+import { Account, Education, Experience, Industries, Roles, Skills, UploadTranscript } from '@/components/registration'
 
 export default {
   created() {
@@ -114,7 +115,7 @@ export default {
     }
   },
   components: {
-    Account, Education, Experience, Industries, Roles, Skills
+    Account, Education, Experience, Industries, Roles, Skills, UploadTranscript
   }
 }
 </script>

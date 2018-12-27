@@ -6,6 +6,13 @@
   color: #8c8c8c;
 }
 
+h1 {
+  &.label {
+    font-size: 40px;
+    color: #8c8c8c;
+  }
+}
+
 .flex {
   display: flex;
 }
@@ -95,6 +102,12 @@
   }
 }
 
+// .fs5, fs10 ....
+@for $i from 1 through 100 {
+  .fs#{$i * 1} {
+    font-size: $i * 1px;
+  }
+}
 
 .range-slider-fill {
   background-color: #448aff !important;
@@ -127,14 +140,6 @@
   padding: 20px 10%;
 }
 
-.md-field.md-theme-default:before {
-  background-color: transparent;
-}
-
-.md-field.md-theme-default:after {
-  background-color: transparent;
-}
-
 .input-box {
   padding: 10px;
   border-radius: 10px;
@@ -152,6 +157,11 @@
   padding: 5px 5px 10px 5px;
 }
 
+.header-text {
+  font-size: 25px;
+  color: #3164e3;
+}
+
 .desc-label {
   color: #3164e3;
   padding: 10px 5px;
@@ -162,6 +172,10 @@ $round-border: 25px;
 
 .blue-background {
   background-color: #3164e3;
+}
+
+.blue-color {
+  color: #3164e3;
 }
 
 .right-border-round {
@@ -211,4 +225,14 @@ $round-border: 25px;
   }
 }
 
+.hidden {
+  display: none;
+}
 
+// vuetify tweaks start
+
+.v-input__slot {
+  border-radius: 15px !important;
+}
+
+// vuetify tweaks end
