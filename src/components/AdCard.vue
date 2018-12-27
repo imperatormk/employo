@@ -17,13 +17,13 @@
     </div>
     <div style="text-align:center;padding-bottom:10px;display:flex;justify-content: space-evenly;">
       <div  v-if="jobInfo.saved">
-        <v-btn @click="removeJob" dark round color="#448aff">Remove</v-btn>
+        <v-btn @click="removeJob" dark round class="light-bck-blue">Remove</v-btn>
       </div>
       <div v-else>
-        <v-btn @click="saveJob" dark round color="#448aff">Save</v-btn>
+        <v-btn @click="saveJob" dark round class="light-bck-blue">Save</v-btn>
       </div>
        <Dialog :id="jobInfo.id" :data="jobInfo">
-        <v-btn slot="act" dark round color="#448aff">Apply</v-btn>
+        <v-btn slot="act" dark round class="light-bck-blue">Apply</v-btn>
       </Dialog>
     </div>
 

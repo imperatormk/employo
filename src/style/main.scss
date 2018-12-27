@@ -16,8 +16,8 @@ p h1 h2 h3 h4 {
 }
 
 p {
-  font-size: 1.2em;
-  font-weight: 100;
+  font-size: 1.1em;
+  font-weight: 500 !important;
 }
 
 .label {
@@ -202,9 +202,21 @@ $darker-blue: #477EE6;
   color: $light-blue !important;
 }
 
+.light-bck-blue {
+  background-color: $light-blue !important;
+}
+
+.dark-bck-blue {
+  background-color: $darker-blue !important;
+}
+
 .f1-8m {
   font-size: 1.8em;
   text-transform: unset;
+}
+
+.f1-2m {
+  font-size: 1.2em;
 }
 
 .f3em {
@@ -213,16 +225,18 @@ $darker-blue: #477EE6;
 
 .h-img {
   width: 150px;
-  margin-top: -95px;
+  margin-top: -95px !important;
 }
 
 .bold-weight {
-  font-weight: 600;
+  font-weight: 900 !important;
 }
 
 .dark-text-blue {
   color: $darker-blue !important;
 }
+
+
 
 .blue-background {
   background-color: #3164e3;

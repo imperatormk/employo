@@ -5,29 +5,29 @@
       <v-card style="width: 90%;" class="blue--text right-border-round">
         <v-card-title primary-title >
           <div>
-            <div class="headline">From what you've told us...</div>
+            <div class="headline light-text-blue">From what you've told us...</div>
           </div>
         </v-card-title>
           <div class="chips-container" style="display:flex; justify-content: center;text-align: center;">
             <div style="flex:1;">
-              <p>Location</p>
-              <v-chip disabled small color="#3164e3" text-color="white">Example</v-chip>
-              <v-btn icon dark small color="#3164e3"><i class="material-icons">add</i></v-btn>
+              <p class="f1-2m">Location</p>
+              <v-chip disabled small class="dark-bck-blue f1-2m" text-color="white">Example</v-chip>
+              <v-btn icon dark small class="dark-bck-blue f1-2m"><i class="material-icons">add</i></v-btn>
             </div>
             <div style="flex:1;">
-              <p>Job Type</p>
-              <v-chip disabled small color="#3164e3" text-color="white">Example</v-chip>
-              <v-btn icon dark small color="#3164e3"><i class="material-icons">add</i></v-btn>
+              <p class="f1-2m">Job Type</p>
+              <v-chip disabled small class="dark-bck-blue f1-2m" text-color="white">Example</v-chip>
+              <v-btn icon dark small class="dark-bck-blue f1-2m"><i class="material-icons">add</i></v-btn>
             </div>
             <div style="flex:1;">
-              <p>Industry</p>
-              <v-chip disabled small color="#3164e3" text-color="white">Example</v-chip>
-              <v-btn icon dark small color="#3164e3"><i class="material-icons">add</i></v-btn>
+              <p class="f1-2m">Industry</p>
+              <v-chip disabled small class="dark-bck-blue f1-2m" text-color="white">Example</v-chip>
+              <v-btn icon dark small class="dark-bck-blue f1-2m"><i class="material-icons">add</i></v-btn>
             </div>
             <div style="flex:1;">
-              <p>Availability</p>
-              <v-chip disabled small color="#3164e3" text-color="white">Example</v-chip>
-              <v-btn icon dark small color="#3164e3"><i class="material-icons">add</i></v-btn>
+              <p class="f1-2m">Availability</p>
+              <v-chip disabled small class="dark-bck-blue f1-2m" text-color="white">Example</v-chip>
+              <v-btn icon dark small class="dark-bck-blue f1-2m"><i class="material-icons">add</i></v-btn>
             </div>
           </div>
       </v-card>

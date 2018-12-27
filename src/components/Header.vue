@@ -4,8 +4,8 @@
       <v-toolbar-title class="dark-text-blue f3em bold-weight">employo</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn class="dark-text-blue f1-8m" v-for="(btn, index) in navigationBtns" @click="getRoute(btn)" :key="index" flat>{{btn}}</v-btn>
-      <v-btn class="dark-text-blue f1-8m" flat>{{userName}}</v-btn>
+      <v-btn class="dark-text-blue bold-weight f1-8m" v-for="(btn, index) in navigationBtns" @click="getRoute(btn)" :key="index" flat>{{btn}}</v-btn>
+      <v-btn class="dark-text-blue bold-weight f1-8m" flat>{{userName}}</v-btn>
       </v-toolbar-items>
   </v-toolbar>
 </template>
