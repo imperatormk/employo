@@ -17,7 +17,7 @@
     </div>
   </v-card>
    <div style="text-align:center;padding-bottom:10px;">
-      <div style="display:flex;">
+      <div class="flex flex-row space-around">
         <v-btn @click="jobInfo.visible = !jobInfo.visible" light round color="transparent">Edit Job</v-btn>
         <v-btn @click="jobInfo.visible = !jobInfo.visible" light round color="transparent">Repost Job</v-btn>
       </div>
