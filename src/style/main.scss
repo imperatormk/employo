@@ -109,6 +109,14 @@ h1 {
   }
 }
 
+// .flex-1
+@for $i from 1 through 100 {
+  .flex-#{$i * 1} {
+    flex-basis: 0;
+    flex-grow: $i;
+  }
+}
+
 .range-slider-fill {
   background-color: #448aff !important;
 }
@@ -175,7 +183,11 @@ $round-border: 25px;
 }
 
 .blue-color {
-  color: #3164e3;
+  color: #3164e3 !important;
+}
+
+.text-muted {
+  color: gray;
 }
 
 .right-border-round {
@@ -227,6 +239,10 @@ $round-border: 25px;
 
 .hidden {
   display: none;
+}
+
+.text-right {
+  text-align: right;
 }
 
 // vuetify tweaks start
