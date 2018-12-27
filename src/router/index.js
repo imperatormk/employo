@@ -5,7 +5,7 @@ import StudentLanding from '@/components/landing/StudentLanding' // change this
 import Registration from '@/pages/Registration'
 import JobBoard from '@/pages/students/JobBoard'
 import SavedJobs from '@/pages/students/SavedJobs'
-import Postings from '@/pages/employe/Postings'
+import Postings from '@/pages/employee/Postings'
 
 Vue.use(Router)
 
@@ -29,7 +29,7 @@ export default new Router({
       component: SavedJobs
     },
     {
-      path: '/employe/postings',
+      path: '/employee/postings',
       component: Postings
     }
   ],

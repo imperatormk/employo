@@ -117,7 +117,7 @@ export default {
     display: block;
     height: 500px;
     border: 5px solid #3164e3;
-    border-radius: 10%;
+    border-radius: 50px;
     border-style: dashed;
     margin: auto;
     margin-top: 40px;
