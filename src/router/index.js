@@ -25,11 +25,11 @@ export default new Router({
       component: JobBoard
     },
     {
-      path: '/student/jobs',
+      path: '/savedjobs',
       component: SavedJobs
     },
     {
-      path: '/employee/postings',
+      path: '/mypostings',
       component: Postings
     }
   ],
