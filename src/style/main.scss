@@ -24,6 +24,13 @@ p {
   color: #8c8c8c;
 }
 
+h1 {
+  &.label {
+    font-size: 40px;
+    color: #8c8c8c;
+  }
+}
+
 .flex {
   display: flex;
 }
@@ -113,6 +120,20 @@ p {
   }
 }
 
+// .fs5, fs10 ....
+@for $i from 1 through 100 {
+  .fs#{$i * 1} {
+    font-size: $i * 1px;
+  }
+}
+
+// .flex-1
+@for $i from 1 through 100 {
+  .flex-#{$i * 1} {
+    flex-basis: 0;
+    flex-grow: $i;
+  }
+}
 
 .range-slider-fill {
   background-color: #448aff !important;
@@ -145,14 +166,6 @@ p {
   padding: 20px 10%;
 }
 
-.md-field.md-theme-default:before {
-  background-color: transparent;
-}
-
-.md-field.md-theme-default:after {
-  background-color: transparent;
-}
-
 .input-box {
   padding: 10px;
   border-radius: 10px;
@@ -168,6 +181,11 @@ p {
   text-transform: uppercase;
   color: #3164e3;
   padding: 5px 5px 10px 5px;
+}
+
+.header-text {
+  font-size: 25px;
+  color: #3164e3;
 }
 
 .desc-label {
@@ -208,6 +226,14 @@ $darker-blue: #477EE6;
 
 .blue-background {
   background-color: #3164e3;
+}
+
+.blue-color {
+  color: #3164e3 !important;
+}
+
+.text-muted {
+  color: gray;
 }
 
 .right-border-round {
@@ -257,4 +283,18 @@ $darker-blue: #477EE6;
   }
 }
 
+.hidden {
+  display: none;
+}
 
+.text-right {
+  text-align: right;
+}
+
+// vuetify tweaks start
+
+.v-input__slot {
+  border-radius: 15px !important;
+}
+
+// vuetify tweaks end

@@ -3,7 +3,7 @@
     .flex-column.align-center
       img(width="100%" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350")
       br
-      h1.label {{ typeData.title }}
+      h2.label {{ typeData.title }}
       span.label {{ typeData.desc }}
       br
 </template>
