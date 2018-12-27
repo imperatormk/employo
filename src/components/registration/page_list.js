@@ -1,1 +1,1 @@
-export default ['account', 'education', 'experience', 'roles', 'industries', 'skills']
+export default ['account', 'education', 'experience', 'roles', 'industries', 'skills', 'transcript']
