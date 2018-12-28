@@ -269,6 +269,10 @@ $darker-blue: #477EE6;
   border-bottom-right-radius: $round-border;
 }
 
+.display-none {
+  display: none;
+}
+
 .chips-container p {
   color: #8c8c8c;
 }
@@ -296,13 +300,21 @@ $darker-blue: #477EE6;
   justify-content: inherit;
 }
 
+
 .flex-basis-20 {
-  flex-basis: 20%;
-  flex-grow: 0;
+  flex-basis: 1;
+  flex-grow: 1;
 }
 .align-center {
   align-items: baseline;
 }
+@media(min-width:1200px) {
+  .flex-basis-20 {
+    flex-basis: 20%;
+    flex-grow: 0;
+  }
+}
+
 
 @media(min-width:960px) {
   .v-card-holder {
