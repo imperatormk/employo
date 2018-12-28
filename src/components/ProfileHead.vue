@@ -17,16 +17,18 @@
                   v-flex(xs12='', sm6='', d-block='')
                     .field-label Last Name
                     v-text-field.br5(:label="fields.lastName" v-model="fields.lastName" solo="")
-                  v-flex(xs12='', sm6='', d-block='')
+                  v-flex(xs12='', sm6='', d-block='' v-if="student")
                     .field-label Employment Type
                     v-select(:items='employmentType', background-color='#f5f5f5', v-model='userBase.employmentType', :label='userBase.employmentType',item-text='title', solo='')
+                  v-flex(v-else).display-none
                   v-flex(xs12='', sm6='', d-block='')
                     .field-label City Of Residence
                     div(d-flex='')
                       v-select(:items='city', background-color='#f5f5f5', v-model='fields.city', :label='fields.city', item-text='title', solo='')
-                  v-flex(xs12='', sm6='', d-block='')
+                  v-flex(xs12='', sm6='', d-block='' v-if="student")
                     .field-label Stage Of Job Search
                     v-select(:items='stageOfSearch', background-color='#f5f5f5', v-model='userBase.stageOfSearch', :label='userBase.stageOfSearch',item-text='title', solo='')
+                  v-flex(v-else).display-none
                 v-layout(wrap='', align-center='')
                   div.flex.space-around.xl12
                     v-btn.flat.border-round(@click="cancel") Cancel
@@ -36,16 +38,18 @@
           h1 Seeking {{userBase.employmentType}} Co/Op internship
           h1 {{userBase.stageOfSearch}}
         div(v-else)
-          h1 Test
+          h1
 </template>
 
 <script>
 export default {
   props: {
-    user: Object
+    user: Object,
+    role: Boolean
   },
   created() {
-    this.fields = this.user;
+    this.fields = this.user
+    this.student = this.role
   },
   data() {
     return {
