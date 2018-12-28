@@ -5,7 +5,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
       <v-btn class="dark-text-blue bold-weight f1-8m" v-for="(btn, index) in navigationBtns" @click="getRoute(btn)" :key="index" flat>{{btn}}</v-btn>
-      <v-btn class="dark-text-blue bold-weight f1-8m" flat>{{userName}}</v-btn>
+      <v-btn class="dark-text-blue bold-weight f1-8m" flat>{{user}}</v-btn>
       </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -15,13 +15,17 @@ import image from '@/assets/EmployoLogo.svg'
 import router from '@/router'
 
 export default {
+  created() {
+    this.user = this.userName
+  },
   props: {
     navigationBtns: Array,
     userName: String
   },
   data() {
     return {
-      image
+      image,
+      user: null,
     }
   },
   methods: {

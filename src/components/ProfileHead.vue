@@ -29,8 +29,8 @@
                     v-select(:items='stageOfSearch', background-color='#f5f5f5', v-model='userBase.stageOfSearch', :label='userBase.stageOfSearch',item-text='title', solo='')
                 v-layout(wrap='', align-center='')
                   div.flex.space-around.xl12
-                    v-btn.flat(@click="cancel") Cancel
-                    v-btn.flat(@click="save") Save
+                    v-btn.flat.border-round(@click="cancel") Cancel
+                    v-btn.flat.border-round(@click="save") Save
         h1 {{fields.city}}
         div(v-if="student")
           h1 Seeking {{userBase.employmentType}} Co/Op internship
@@ -95,12 +95,20 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.cachedFields = Object.assign({}, this.fields);
+    this.cachedBaseFields = Object.assign({}, this.userBase);
+  },
   methods: {
     save() {
-
+      this.dialog = false;
+      this.cachedFields = Object.assign({}, this.fields);
+      this.cachedBaseFields = Object.assign({}, this.userBase);
     },
     cancel() {
-
+      this.dialog = false;
+      this.fields = Object.assign({}, this.cachedFields);
+      this.userBase = Object.assign({}, this.cachedBaseFields);
     }
   }
 }
