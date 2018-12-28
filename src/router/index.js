@@ -5,6 +5,7 @@ import StudentLanding from '@/components/landing/StudentLanding' // change this
 import Registration from '@/pages/Registration'
 import JobBoard from '@/pages/students/JobBoard'
 import SavedJobs from '@/pages/students/SavedJobs'
+import StudentProfile from '@/pages/students/Profile'
 import Postings from '@/pages/employee/Postings'
 
 Vue.use(Router)
@@ -31,6 +32,10 @@ export default new Router({
     {
       path: '/mypostings',
       component: Postings
+    },
+    {
+      path: '/student/profile',
+      component: StudentProfile
     }
   ],
   mode: 'history'
