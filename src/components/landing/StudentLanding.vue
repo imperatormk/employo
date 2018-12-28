@@ -46,7 +46,7 @@
         .desc-label Frequently asked questions
         span.text-muted There is no such thing as a dumb question
         br
-        v-btn-toggle.btn-toggle(v-model="faq")
+        v-btn-toggle.btn-toggle.of-hidden(v-model="faq")
           v-btn(active-class="v-btn--active blue-color" flat fab value="students") Students
           v-btn(active-class="v-btn--active blue-color" flat fab value="employees") Employees
         br

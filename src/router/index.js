@@ -5,8 +5,8 @@ import StudentLanding from '@/components/landing/StudentLanding' // change this
 import Registration from '@/pages/Registration'
 import JobBoard from '@/pages/students/JobBoard'
 import SavedJobs from '@/pages/students/SavedJobs'
-import Postings from '@/pages/employe/Postings'
 import StudentProfile from '@/pages/students/Profile'
+import Postings from '@/pages/employee/Postings'
 
 Vue.use(Router)
 
