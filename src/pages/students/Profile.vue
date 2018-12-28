@@ -1,13 +1,17 @@
 <template lang="pug">
   div
     Header(:navigationBtns="menu" :userName="userName")
-    .flex
+    .flex.space-around
       Education
+      Skills
+      Career
 </template>
 
 <script>
 import Header from '@/components/Header'
 import Education from '@/components/profile/Education'
+import Skills from '@/components/profile/Skills'
+import Career from '@/components/profile/Career'
 
 export default {
   data() {
@@ -18,7 +22,9 @@ export default {
   },
   components: {
     Header,
-    Education
+    Education,
+    Skills,
+    Career
   }
 }
 </script>

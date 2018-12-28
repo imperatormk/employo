@@ -3,7 +3,7 @@
     v-card.border-round
       v-toolbar
         v-toolbar-title.dark-text-blue.f1-8m Education
-        v-dialog(v-model="dialog", width="600", persistent="true")
+        v-dialog(v-model="dialog", width="600", persistent=true)
           v-btn.flat.noShadow(slot="activator")
             v-icon create
           v-card.border-round
