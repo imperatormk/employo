@@ -1,10 +1,10 @@
 <template lang="pug">
-  div
-    v-card.border-round
+    v-card.border-round.content-inherit.flex-basis-20
       v-toolbar
         v-toolbar-title.dark-text-blue.f1-8m Education
+        v-spacer
         v-dialog(v-model="dialog", width="600", persistent=true)
-          v-btn.flat.noShadow(slot="activator")
+          v-btn.noShadow(slot="activator", fab=true small=true)
             v-icon create
           v-card.border-round
             v-container(grid-list-xl='')
@@ -28,7 +28,7 @@
                   v-btn.flat(@click="cancel") Cancel
                   v-btn.flat(@click="save") Save
       div.p10
-        div.flex
+        div.flex.align-center
           p.dark-text-blue University:
           p {{fields.University}}
         div.flex
