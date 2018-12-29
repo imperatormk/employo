@@ -139,6 +139,13 @@ h1 {
   }
 }
 
+// .fw1, fw9
+@for $i from 1 through 900 {
+  .fw-#{$i} {
+    font-weight: $i * 100;
+  }
+}
+
 .range-slider-fill {
   background-color: #448aff !important;
 }
