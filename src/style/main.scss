@@ -140,8 +140,8 @@ h1 {
 }
 
 // .fw1, fw9
-@for $i from 1 through 900 {
-  .fw-#{$i} {
+@for $i from 1 through 9 {
+  .fw#{$i} {
     font-weight: $i * 100;
   }
 }
