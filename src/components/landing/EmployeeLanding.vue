@@ -5,8 +5,8 @@
       .flex-row.justify-center
         .flex-column.flex-1.justify-center
           div
-            span.fs65.fw-9 Find your next
-            span.fs65.blue-color.fw-9
+            span.fs65.fw9 Find your next
+            span.fs65.blue-color.fw9
               |  intern
           span.fs20 Employo helps recruit Canadian students with the qualifications you're looking for
           br
@@ -20,7 +20,7 @@
         .flex-column.flex-1.justify-center
           .w60
             .desc-label
-              span.fs30.fw-8 How Employo works
+              span.fs30.fw8 How Employo works
             span.fs20 Upon putting a post on Employo, a job candidate will see your posting if they meet your job's criteria.
         .flex-column.flex-1.justify-center
           .p60-left.text-right
@@ -30,7 +30,7 @@
         .flex-column.flex-1.justify-center
           .w60
             .desc-label
-              span.fs30.fw-8 Browse applicants
+              span.fs30.fw8 Browse applicants
             span.p5.fs20 Easily look through applicants that already meet your job's criteria
         .flex-column.flex-1.justify-center
           .p60-left.text-right
@@ -40,8 +40,8 @@
       .flex-column.flex-1.justify-center
       .flex-column.flex-1.justify-center
         .p60-left.p100
-          span.fs65.fw-9 Get started and find next
-          span.fs65.blue-color.fw-9
+          span.fs65.fw9 Get started and find next
+          span.fs65.blue-color.fw9
             |  intern
     v-container
       .flex-column.align-center
