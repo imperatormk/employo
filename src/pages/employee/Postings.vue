@@ -1,20 +1,19 @@
 <template>
   <div>
     <Header :navigationBtns="menu" :userName="userName"></Header>
-    <v-flex class="v-card-holder" style="padding:10px;max-widt:100%;">
-    <PostCard v-for="(job, index) in jobsInfo" :key="index" :cardInfo="job"></PostCard>
-    <div class="v-card-jobs" >
-  <v-card class="border-round">
-    <div style="display:flex;padding:10px;justify-content: space-around;">
-      <div style="display:block;text-align:center;padding-bottom:10px;">
-         <img :src="image" alt="avatar">
-         <h3>Post a New Job </h3>
-      </div>
-    </div>
-  </v-card>
-   <div style="text-align:center;padding-bottom:10px;">
-    </div>
- </div>
+    <v-flex class="v-card-holder" style="padding:10px;max-width:100%;">
+        <PostCard v-for="(job, index) in jobsInfo" :key="index" :cardInfo="job"></PostCard>
+        <div class="v-card-jobs" >
+          <v-card class="border-round">
+              <div style="display:flex;padding:10px;justify-content: space-around;">
+                <div style="display:block;text-align:center;padding-bottom:10px;">
+                    <img :src="image" alt="avatar">
+                    <h3>Post a New Job </h3>
+                </div>
+              </div>
+          </v-card>
+          <div style="text-align:center;padding-bottom:10px;"></div>
+        </div>
     </v-flex>
   </div>
 </template>
