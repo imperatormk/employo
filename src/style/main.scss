@@ -20,6 +20,10 @@ p {
   font-weight: 500 !important;
 }
 
+.light-black {
+  color: #464646;
+}
+
 .label {
   color: #8c8c8c;
 }
@@ -47,6 +51,10 @@ h1 {
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .align-center {
@@ -91,13 +99,13 @@ h1 {
   }
 }
 // .p5-top, .p10-top...
-@for $i from 1 through 20 {
+@for $i from 1 through 300 {
   .p#{$i * 5}#{-top} {
-    padding: $i * 5px 0 0 0
+    padding-top: $i * 5px
   }
 }
 // .p5-bot, .p10-bot...
-@for $i from 1 through 20 {
+@for $i from 1 through 40 {
   .p#{$i * 5}#{-bot} {
     padding: 0 0 $i * 5px 0
   }
@@ -125,7 +133,7 @@ h1 {
 }
 
 // .fs5, fs10 ....
-@for $i from 1 through 100 {
+@for $i from 1 through 200 {
   .fs#{$i * 1} {
     font-size: $i * 1px;
   }
@@ -143,6 +151,12 @@ h1 {
 @for $i from 1 through 9 {
   .fw#{$i} {
     font-weight: $i * 100;
+  }
+}
+
+@for $i from 1 through 200 {
+  .lh#{$i} {
+    line-height: $i * 1px;
   }
 }
 
@@ -199,10 +213,13 @@ h1 {
   color: #3164e3;
 }
 
+.light-p {
+  color: #707070;
+}
+
 .desc-label {
   color: #3164e3;
   padding: 10px 5px;
-  font-size: 20px;
 }
 
 $round-border: 25px;
@@ -312,9 +329,7 @@ $darker-blue: #477EE6;
   flex-basis: 1;
   flex-grow: 1;
 }
-.align-center {
-  align-items: baseline;
-}
+
 @media(min-width:1200px) {
   .flex-basis-20 {
     flex-basis: 20%;
