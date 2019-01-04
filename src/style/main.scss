@@ -111,6 +111,11 @@ h1 {
   }
 }
 
+@for $i from 1 through 300 {
+  .p#{$i}#{-btm} {
+    padding-bottom: $i * 1px
+  }
+}
 // .h5, .h10...
 @for $i from 1 through 100 {
   .h#{$i * 1} {
@@ -238,6 +243,10 @@ $darker-blue: #477EE6;
   background-color: $darker-blue !important;
 }
 
+.right-borders {
+  border-right: 5px solid $darker-blue;
+}
+
 .f1-8m {
   font-size: 1.8em;
   text-transform: unset;
@@ -264,8 +273,6 @@ $darker-blue: #477EE6;
   color: $darker-blue !important;
 }
 
-
-
 .blue-background {
   background-color: #3164e3;
 }
@@ -284,7 +291,7 @@ $darker-blue: #477EE6;
 }
 
 .border-round {
-  border-radius: $round-border;
+  border-radius: $round-border !important;
 }
 
 .dialog-round {

@@ -9,6 +9,7 @@ import StudentProfile from '@/pages/students/Profile'
 import Postings from '@/pages/employee/Postings'
 import EmployeeProfile from '@/pages/employee/Profile'
 import EmployeeLanding from '@/components/landing/EmployeeLanding'
+import Applicants from '@/pages/employee/Applicants'
 
 Vue.use(Router)
 
@@ -46,6 +47,10 @@ export default new Router({
     {
       path: '/employee',
       component: EmployeeLanding
+    },
+    {
+      path: '/employee/applicants',
+      component: Applicants
     }
   ],
   mode: 'history'
