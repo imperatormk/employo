@@ -1,7 +1,5 @@
 <template lang="pug">
   v-container(grid-list-xl)
-    h1.label Almost done...
-    .desc-label Upload your Transcript
     .flex-column.align-center
       .w70
         label
@@ -120,7 +118,6 @@ export default {
     border-radius: 50px;
     border-style: dashed;
     margin: auto;
-    margin-top: 40px;
     text-align: center;
     line-height: 100px;
   }

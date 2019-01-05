@@ -7,11 +7,11 @@
           v-btn.noShadow(slot="activator", fab=true small=true)
             v-icon create
           v-card.border-round
-            v-container(grid-list-xl='')
-              v-layout(wrap='', align-center='')
-                v-flex(xs12='', sm12='', d-flex='')
+            v-container(grid-list-xl)
+              v-layout(wrap, align-center)
+                v-flex(xs12, sm12, d-flex)
                   h1.label Tehnical Skills
-                v-flex(xs12='', sm12='', d-block='')
+                v-flex(xs12, sm12, d-block)
                   v-chip(disabled=true, small=true, text-color="black", v-for="skill in fields.selectedSkills", :key="skill").f1-2m {{skill}}
                   v-dialog(v-model="dialog2", width="600")
                     v-btn(slot="activator", icon=true, small=true).f1-2m

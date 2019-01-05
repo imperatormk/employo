@@ -7,14 +7,14 @@
           v-btn.noShadow(slot="activator", fab=true small=true)
             v-icon create
           v-card.border-round
-            v-container(grid-list-xl='')
-              v-layout(wrap='', align-center='')
-                v-flex(xs12='', sm12='', d-flex='')
+            v-container(grid-list-xl)
+              v-layout(wrap, align-center)
+                v-flex(xs12, sm12, d-flex)
                   h1.label Edit Account info
-                v-flex(xs12='', sm6='', d-block='')
+                v-flex(xs12, sm6, d-block)
                   .field-label Email
                   v-text-field.br5(:label="fields.email" v-model="fields.email" solo="")
-                v-flex(xs12='', sm6='', d-block='')
+                v-flex(xs12, sm6, d-block)
                   .field-label Phone Number
                   v-text-field.br5(:label="fields.phoneNumber" v-model="fields.phoneNumber" solo="")
                 div.flex.space-around
