@@ -1,3 +1,5 @@
+import ChooseRole from './ChooseRole'
+
 import Account from './Account'
 import Education from './Education'
 import Experience from './Experience'
@@ -7,6 +9,7 @@ import Skills from './Skills'
 import UploadTranscript from './UploadTranscript'
 
 export {
+  ChooseRole,
   Account,
   Education,
   Experience,

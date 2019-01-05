@@ -1,26 +1,31 @@
 <template lang="pug">
-  .flex.flex-column.space-between-p10
-    .flex
-      Account(v-if="curPage == 0")
-      Education(v-else-if="curPage == 1")
-      Experience(v-else-if="curPage == 2")
-      Industries(v-else-if="curPage == 3")
-      Roles(v-else-if="curPage == 4")
-      Skills(v-else-if="curPage == 5")
-      UploadTranscript(v-else-if="curPage == 6")
-    .spacer
-    .flex.align-end.p30
-      .flex.align-center
-        v-btn.btn(@click="goBack") Back
-        .p40-side.w100
-          v-progress-linear(v-model="progress")
-        v-btn.btn(v-if="!isLastPage" @click="goNext") Next
-        v-btn.btn(v-else @click="submitData") Submit
+  .h100
+    .flex.flex-column.space-between-p10.h100(v-if="selectedRole == 'student'")
+      .flex
+        Account(v-if="curPage == 0")
+        Education(v-else-if="curPage == 1")
+        Experience(v-else-if="curPage == 2")
+        Industries(v-else-if="curPage == 3")
+        Roles(v-else-if="curPage == 4")
+        Skills(v-else-if="curPage == 5")
+        UploadTranscript(v-else-if="curPage == 6")
+      .spacer
+      .flex.align-end.p30
+        .flex.align-center
+          v-btn.btn(@click="goBack") Back
+          .p40-side.w100
+            v-progress-linear(v-model="progress")
+          v-btn.btn(v-if="!isLastPage" @click="goNext") Next
+          v-btn.btn(v-else @click="submitData") Submit
+    .flex.flex-column.space-between-p10.h100(v-else-if="selectedRole == 'employee'")
+      .flex
+        span Employee
+    ChooseRole(v-else @roleSelected="selectedRole = $event")
 </template>
 
 <script>
 import pagesList from '@/components/registration/page_list'
-import { Account, Education, Experience, Industries, Roles, Skills, UploadTranscript } from '@/components/registration'
+import { ChooseRole, Account, Education, Experience, Industries, Roles, Skills, UploadTranscript } from '@/components/registration'
 
 export default {
   created() {
@@ -29,6 +34,7 @@ export default {
   },
   data() {
     return {
+      selectedRole: null,
       pages: [],
       curPage: 0
     }
@@ -53,7 +59,8 @@ export default {
           selYear: null,
           selGpa: null,
           officialCoop: null,
-          availability: null
+          availability: null,
+          degree: null,
         }
       })
       this.$store.dispatch('dataChange', {
@@ -115,7 +122,7 @@ export default {
     }
   },
   components: {
-    Account, Education, Experience, Industries, Roles, Skills, UploadTranscript
+    ChooseRole, Account, Education, Experience, Industries, Roles, Skills, UploadTranscript
   }
 }
 </script>
