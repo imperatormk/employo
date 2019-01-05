@@ -12,7 +12,7 @@ import pagesList from '@/components/registration/page_list'
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[5])
+    this.fields = this.$store.getters.getById(pagesList[6])
   },
   data() {
     return {
@@ -51,7 +51,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[5],
+          pageId: pagesList[6],
           fields: val
         })
       },

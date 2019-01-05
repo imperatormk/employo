@@ -7,17 +7,17 @@
           v-btn.noShadow(slot="activator", fab=true small=true)
             v-icon create
           v-card.border-round
-            v-container(grid-list-xl='')
-              v-layout(wrap='', align-center='')
-                v-flex(xs12='', sm12='', d-flex='')
+            v-container(grid-list-xl)
+              v-layout(wrap, align-center)
+                v-flex(xs12, sm12, d-flex)
                   h1.label Edit Company info
-                v-flex(xs12='', sm6='', d-block='')
+                v-flex(xs12, sm6, d-block)
                   .field-label Company name
                   v-text-field.br5(:label="fields.name" v-model="fields.name" solo="")
-                v-flex(xs12='', sm6='', d-block='')
+                v-flex(xs12, sm6, d-block)
                   .field-label Company size
-                  v-select(:items='companySize', background-color='#f5f5f5', v-model='fields.size', :label='fields.size',item-text='title', solo='')
-                v-flex(xs12='', sm6='', d-block='')
+                  v-select(:items='companySize', background-color='#f5f5f5', v-model='fields.size', :label='fields.size',item-text='title', solo)
+                v-flex(xs12, sm6, d-block)
                   .field-label Office Location
                   v-text-field.br5(:label="fields.location" v-model="fields.location" solo="")
                 div.flex.space-around

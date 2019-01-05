@@ -7,23 +7,23 @@
           v-btn.noShadow(slot="activator", fab=true small=true)
             v-icon create
           v-card.border-round
-            v-container(grid-list-xl='')
-              v-layout(wrap='', align-center='')
-                v-flex(xs12='', sm12='', d-flex='')
+            v-container(grid-list-xl)
+              v-layout(wrap, align-center)
+                v-flex(xs12, sm12, d-flex)
                   h1.label Education
-                v-flex(xs12='', sm6='', d-block='')
+                v-flex(xs12, sm6, d-block)
                   .field-label University
-                  v-select.br5(:items='universities', background-color='#f5f5f5', v-model="fields.University", item-text='title', :label='fields.University', solo='', append-icon='')
-                v-flex(xs12='', sm6='', d-block='')
+                  v-select.br5(:items='universities', background-color='#f5f5f5', v-model="fields.University", item-text='title', :label='fields.University', solo, append-icon)
+                v-flex(xs12, sm6, d-block)
                   .field-label Field of Study
-                  v-select(:items='studyFields', background-color='#f5f5f5', v-model="fields.Field", item-text='title', :label='fields.Field', solo='')
-                v-flex(xs12='', sm6='', d-block='')
+                  v-select(:items='studyFields', background-color='#f5f5f5', v-model="fields.Field", item-text='title', :label='fields.Field', solo)
+                v-flex(xs12, sm6, d-block)
                   .field-label Expected Year of Graduation
-                  v-select(:items='years', background-color='#f5f5f5', v-model='fields.Graduation',item-value="years", ref="Graduation", :label='fields.Graduation', solo='')
-                v-flex(xs12='', sm6='', d-block='')
+                  v-select(:items='years', background-color='#f5f5f5', v-model='fields.Graduation',item-value="years", ref="Graduation", :label='fields.Graduation', solo)
+                v-flex(xs12, sm6, d-block)
                   .field-label Official co-op
-                  div(d-flex='')
-                    v-select(:items='officialCoop', background-color='#f5f5f5', v-model='fields.CoOp',item-value="officialCoop", ref="CoOp" :label='fields.CoOp', solo='')
+                  div(d-flex)
+                    v-select(:items='officialCoop', background-color='#f5f5f5', v-model='fields.CoOp',item-value="officialCoop", ref="CoOp" :label='fields.CoOp', solo)
                 div.flex.space-around
                   v-btn.flat(@click="cancel") Cancel
                   v-btn.flat(@click="save") Save

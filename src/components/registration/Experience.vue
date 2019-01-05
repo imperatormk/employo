@@ -18,7 +18,7 @@ import pagesList from '@/components/registration/page_list'
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[2])
+    this.fields = this.$store.getters.getById(pagesList[3])
   },
   data() {
     return {
@@ -57,7 +57,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[2],
+          pageId: pagesList[3],
           fields: val
         })
       },
@@ -65,13 +65,6 @@ export default {
     }
   },
   methods: {
-    isButtonSelected(currentVal, expectedVal) {
-      const isSelected = currentVal === expectedVal
-      return {
-        btn: true,
-        'btn-selected': isSelected
-      }
-    },
     isAreaSelected(areaId) {
       const isSelected = this.fields.selectedAreas.find(id => id === areaId) != null
       return {

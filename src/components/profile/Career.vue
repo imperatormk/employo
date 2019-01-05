@@ -7,11 +7,11 @@
           v-btn.noShadow(slot="activator", fab=true small=true)
             v-icon create
           v-card.border-round
-            v-container(grid-list-xl='')
-              v-layout(wrap='', align-center='')
-                v-flex(xs12='', sm12='', d-flex='')
+            v-container(grid-list-xl)
+              v-layout(wrap, align-center)
+                v-flex(xs12, sm12, d-flex)
                   h1.label Career Interests
-                v-flex(xs12='', sm12='', d-block='')
+                v-flex(xs12, sm12, d-block)
                   p.dark-text-blue Roles:
                   v-chip(disabled=true, small=true, text-color="black", v-for="role in selectedFields.roles", :key="role.id").f1-2m {{role}}
                   v-dialog(v-model="dialog2", width="600")
@@ -24,7 +24,7 @@
                           v-input(v-model="criteria2" placeholder="Search skills")
                           .flex.space-between.flex-wrap.p10
                             v-chip(small=true, text-color="black", v-for="role in roles", :key="role.id" :class="isSkillSelected('role', role.title)" @click="toggleSkillSelected('role',role.title)").f1-2m {{role.title}}
-                v-flex(xs12='', sm12='', d-block='')
+                v-flex(xs12, sm12, d-block)
                   p.dark-text-blue Industry:
                   v-chip(disabled=true, small=true, text-color="black", v-for="ind in fields.industry", :key="ind.id").f1-2m {{ind}}
                   v-dialog(v-model="dialog4", width="600")
@@ -38,7 +38,7 @@
                           .flex.space-between.flex-wrap.p10
                             v-chip(small=true, text-color="black", v-for="industry in industry", :key="industry.id" :class="isSkillSelected('industry', industry.title)" @click="toggleSkillSelected('industry',industry.title)").f1-2m {{industry.title}}
 
-                v-flex(xs12='', sm12='', d-block='')
+                v-flex(xs12, sm12, d-block)
                   p.dark-text-blue Company Size:
                   v-chip(disabled=true, small=true, text-color="black", v-for="skill in fields.companySize", :key="skill.id").f1-2m {{skill}}
                   v-dialog(v-model="dialog4", width="600")
