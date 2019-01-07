@@ -3,8 +3,8 @@
     .flex-column.align-center
       img(width="100%" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350")
       br
-      h2.label {{ typeData.title }}
-      span.label {{ typeData.desc }}
+      h2.demiBold.employe(:class="{ student: isStudent(typeData.id) }") {{ typeData.title }}
+      span.demiBold {{ typeData.desc }}
       br
 </template>
 
@@ -20,6 +20,12 @@ export default {
   methods: {
     clicked() {
       this.$emit('clicked')
+    },
+    isStudent(id) {
+      if (id === 'student') {
+        return true
+      }
+      return false
     }
   }
 }

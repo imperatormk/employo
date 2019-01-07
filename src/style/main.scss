@@ -1,6 +1,16 @@
 @font-face {
   font-family: "AvenirNext";
-  src: url("../assets/typo/AvenirNextRegular.ttf") format("truetype");
+  src: url("../assets/typo/avenirnext.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("../assets/typo/avenir.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "AvenirCondensed";
+  src: url("../assets/typo/avenirnextcondensed.ttf") format("truetype");
 }
 
 .body {
@@ -31,9 +41,24 @@ p {
 h1 {
   &.label {
     font-size: 40px;
-    color: #8c8c8c;
+    font-family: Avenir;
+    font-weight: bold;
+    color: #000000;
   }
 }
+
+.demiBold {
+  font-family: AvenirNext;
+  font-weight: 600;
+  &.employe {
+    color: #69BDF2;
+  }
+  &.student {
+    color: #477EE6;
+  }
+}
+
+
 
 .flex {
   display: flex;
@@ -181,6 +206,10 @@ h1 {
 
 .btn {
   border-radius: 5px;
+  &.back {
+    background-color: #477EE6 !important;
+    color: #fff !important;
+  }
 }
 
 .btn-selected {

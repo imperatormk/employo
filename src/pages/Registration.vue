@@ -13,7 +13,7 @@
       .spacer
       .flex.align-end.p30
         .flex.align-center
-          v-btn.btn(@click="goBack") Back
+          v-btn.btn.back(@click="goBack") Back
           .p40-side.w100
             v-progress-linear(v-model="progress")
           v-btn.btn(v-if="!isLastPage" @click="goNext") Next
@@ -66,8 +66,8 @@ export default {
         pageId: pagesList[2],
         fields: {
           officialCoop: null,
-          availability: null,
-          termLength: null,
+          availability: [],
+          termLength: [],
           locationPref: [],
         }
       })
