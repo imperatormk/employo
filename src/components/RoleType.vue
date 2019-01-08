@@ -1,8 +1,8 @@
 <template lang="pug">
   .of-hidden.m20.role-container(@click="clicked" :class="{ selected: isSelected }")
-    .p15.h100.flex-column.space-between.align-center
+    .p15-bot.h100.flex-column.space-between.align-center
       img(width="100%" :src="typeData.image")
-      .flex-column
+      .flex-column.p15-top
         h2.demiBold.employe(:class="{ student: isStudent(typeData.id), technical: isTechnical(typeData.title) }") {{ typeData.title }}
         span.demiBold {{ typeData.desc }}
 </template>
@@ -35,7 +35,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
   .role-container {
