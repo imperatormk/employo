@@ -11,7 +11,7 @@
           span.fs20 Employo helps recruit Canadian students with the qualifications you're looking for
           br
           .flex-row
-            v-text-field.br5(solo background-color="#f5f5f5")
+            v-text-field.br5(solo background-color="#f5f5f5" label="Your email address")
         .flex-column.flex-1.justify-center
           .p60-left.text-right
             img.w90(:src="laptop")

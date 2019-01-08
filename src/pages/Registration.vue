@@ -2,14 +2,14 @@
   .h100
     .flex.flex-column.space-between-p10.h100(v-if="selectedRole == 'student'")
       .flex.h100
-        Account(v-if="curPage == 0" @success='allowContinue($event)')
-        Education(v-else-if="curPage == 1" @success='allowContinue($event)')
-        Work(v-else-if="curPage == 2" @success='allowContinue($event)')
-        Experience(v-else-if="curPage == 3" @success='allowContinue($event)')
-        Roles(v-else-if="curPage == 4" @success='allowContinue($event)')
-        Industries(v-else-if="curPage == 5" @success='allowContinue($event)')
-        Skills(v-else-if="curPage == 6" @success='allowContinue($event)')
-        UploadTranscript(v-else-if="curPage == 7")
+        Account(v-if="curPageId === pagesList.account" @success='allowContinue($event)')
+        Education(v-else-if="curPageId === pagesList.education" @success='allowContinue($event)')
+        Work(v-else-if="curPageId === pagesList.work" @success='allowContinue($event)')
+        Experience(v-else-if="curPageId === pagesList.experience" @success='allowContinue($event)')
+        Roles(v-else-if="curPageId === pagesList.roles" @success='allowContinue($event)')
+        Industries(v-else-if="curPageId === pagesList.industries" @success='allowContinue($event)')
+        Skills(v-else-if="curPageId === pagesList.skills" @success='allowContinue($event)')
+        UploadTranscript(v-else-if="curPageId === pagesList.transcript")
       .spacer
       .flex.align-end.p30
         .flex.align-center
@@ -28,12 +28,13 @@
     .flex.flex-column.space-between-p10.h100(v-else-if="selectedRole == 'employee'")
       .flex
         span Employee
-    ChooseRole(v-else @roleSelected="selectedRole = $event")
+    AccountType(v-else @roleSelected="selectedRole = $event")
 </template>
 
 <script>
-import pagesList from '@/components/registration/page_list'
-import { ChooseRole, Account, Education, Work, Experience, Industries, Roles, Skills, UploadTranscript } from '@/components/registration'
+import pagesList, { studentPages } from '@/components/registration/page_list'
+
+import { AccountType, Account, Education, Work, Experience, Industries, Roles, Skills, UploadTranscript } from '@/components/registration'
 
 export default {
   created() {
@@ -54,70 +55,21 @@ export default {
       this.canContinue = e
     },
     initStore() {
-      this.$store.dispatch('dataChange', { // account info
-        pageId: pagesList[0],
-        fields: {
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
-          city: ''
-        }
-      })
-      this.$store.dispatch('dataChange', { // education
-        pageId: pagesList[1],
-        fields: {
-          selUniversity: null,
-          selField: null,
-          selYear: null,
-          selGpa: null,
-          degree: null,
-        }
-      })
-      this.$store.dispatch('dataChange', { // work
-        pageId: pagesList[2],
-        fields: {
-          officialCoop: null,
-          availability: [],
-          termLength: [],
-          locationPref: [],
-        }
-      })
-      this.$store.dispatch('dataChange', { // experience
-        pageId: pagesList[3],
-        fields: {
-          selectedAreas: [],
-          numYears: 1
-        }
-      })
-      this.$store.dispatch('dataChange', { // roles
-        pageId: pagesList[4],
-        fields: {
-          selectedRoles: []
-        }
-      })
-      this.$store.dispatch('dataChange', { // industries
-        pageId: pagesList[5],
-        fields: {
-          selectedIndustries: []
-        }
-      })
-      this.$store.dispatch('dataChange', { // skills
-        pageId: pagesList[6],
-        fields: {
-          selectedSkills: []
-        }
+      studentPages.forEach((studentPage) => {
+        this.$store.dispatch('dataChange', studentPage)
       })
     },
     goBack() {
       const prevPage = this.curPage - 1
-      if (this.pages[prevPage]) {
+      const prevPageId = this.getPageIdByIndex(prevPage)
+      if (this.pages[prevPageId]) {
         this.curPage = prevPage
       }
     },
     goNext() {
       const nextPage = this.curPage + 1
-      if (this.pages[nextPage] && this.canContinue) {
+      const nextPageId = this.getPageIdByIndex(nextPage)
+      if (this.pages[nextPageId] && this.canContinue) {
         this.curPage = nextPage
       }
     },
@@ -131,6 +83,10 @@ export default {
         })
 
       console.log(reqData)
+    },
+    getPageIdByIndex(index) {
+      const key = Object.keys(this.pages)[index]
+      return this.pages[key]
     }
   },
   computed: {
@@ -139,10 +95,16 @@ export default {
     },
     isLastPage() {
       return this.curPage === this.pages.length - 1
+    },
+    curPageId() {
+      return this.getPageIdByIndex(this.curPage)
+    },
+    pagesList() {
+      return pagesList
     }
   },
   components: {
-    ChooseRole, Account, Education, Work, Experience, Industries, Roles, Skills, UploadTranscript
+    AccountType, Account, Education, Work, Experience, Industries, Roles, Skills, UploadTranscript
   }
 }
 </script>

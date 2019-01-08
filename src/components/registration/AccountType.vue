@@ -3,13 +3,15 @@
     h1.label Are you a student or an employeer?
     .flex-column.justify-center(style="height:85%;")
       .flex-row.justify-center
-        RoleType(v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" @clicked="selection(roleType.id)")
+        RoleType(v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="selection(roleType.id)")
     v-btn.btn(style="float:right;" v-if="selected" @click="roleSelected(selected)") Next
     v-btn.btn(style="float:right;" v-else) Next
 </template>
 
 <script>
 import RoleType from '@/components/RoleType'
+
+// const PAGE_ID = 'acctype'
 
 export default {
   data() {
@@ -23,10 +25,20 @@ export default {
         title: 'Employeer',
         desc: ''
       }],
-      selected: false
+      selected: null
     }
   },
   methods: {
+    isRoleSelected(roleId) {
+      const isSelected = this.selected === roleId && roleId != null
+      return {
+        p10: true,
+        btn: true,
+        'button-chip': true,
+        'btn-selected': isSelected,
+        isSelected
+      }
+    },
     roleSelected(e) {
       this.$emit('roleSelected', e)
     },

@@ -16,9 +16,11 @@ import RangeSlider from 'vue-range-slider'
 import 'vue-range-slider/dist/vue-range-slider.css'
 import pagesList from '@/components/registration/page_list'
 
+const PAGE_ID = pagesList.experience
+
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[3])
+    this.fields = this.$store.getters.getById(pagesList[PAGE_ID])
   },
   data() {
     return {
@@ -78,7 +80,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[3],
+          pageId: pagesList[PAGE_ID],
           fields: val
         })
       },

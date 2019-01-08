@@ -11,7 +11,7 @@
           span.light-black.fs32.lh40.fw9.p5-top We match Canada’s top students with internship opportunities at our partner companies according to their career interests and qualifications.
           br
           .flex-row.p6-top
-            v-text-field.br5.fs20(solo background-color="#f5f5f5" label="Your email addres")
+            v-text-field.br5.fs20(solo background-color="#f5f5f5" label="Your email address")
         .flex-column.flex-2.justify-end
           .p60-left.text-right
             img.w100(:src="laptop")
