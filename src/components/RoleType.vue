@@ -1,11 +1,10 @@
 <template lang="pug">
-  .role-container(@click="clicked" :class="{ selected: isSelected }")
-    .flex-column.align-center
-      img(width="100%" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350")
-      br
-      h2.demiBold.employe(:class="{ student: isStudent(typeData.id), tehnical: isTehnical(typeData.title) }") {{ typeData.title }}
-      span.demiBold {{ typeData.desc }}
-      br
+  .of-hidden.m20.role-container(@click="clicked" :class="{ selected: isSelected }")
+    .p15-bot.h100.flex-column.space-between.align-center
+      img(width="100%" :src="typeData.image")
+      .flex-column.p15-top
+        h2.demiBold.employe(:class="{ student: isStudent(typeData.id), technical: isTechnical(typeData.title) }") {{ typeData.title }}
+        span.demiBold {{ typeData.desc }}
 </template>
 
 <script>
@@ -27,7 +26,7 @@ export default {
       }
       return false
     },
-    isTehnical(title) {
+    isTechnical(title) {
       if (title === 'Technical' || title === 'Non-Technical') {
         return true
       }
@@ -37,19 +36,16 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
   .role-container {
     border-radius: 10%;
-    margin: 20px;
-    overflow: hidden;
     box-shadow: 0 3px 1px -2px rgba(100, 100, 100, 0.1), 0 2px 2px 0 rgba(100, 100, 100, 0.1), 0 1px 5px 0 rgba(100, 100, 100, 0.1);
   }
   .selected {
     background-color: #ececec;
   }
 
-  .tehnical {
+  .technical {
     color: #477EE6 !important;
   }
 </style>

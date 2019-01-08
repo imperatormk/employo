@@ -10,6 +10,9 @@
 import RoleType from '@/components/RoleType'
 import pagesList from '@/components/registration/page_list'
 
+import technical from '@/assets/role_types/technical.png'
+import nontechnical from '@/assets/role_types/nontechnical.png'
+
 const PAGE_ID = pagesList.roles
 
 export default {
@@ -24,11 +27,13 @@ export default {
       roleTypes: [{
         id: 0,
         title: 'Technical',
-        desc: 'Software Engineers...'
+        desc: 'Software Engineers...',
+        image: technical
       }, {
         id: 1,
         title: 'Non-Technical',
-        desc: 'Business Development...'
+        desc: 'Business Development...',
+        image: nontechnical
       }]
     }
   },
