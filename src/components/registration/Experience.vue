@@ -53,7 +53,28 @@ export default {
       }]
     }
   },
+  computed: {
+    checkForSuccess() {
+      const items = Object.values(this.fields)
+      function checkEmpty(prop) {
+        if (prop instanceof Array) {
+          return prop.length >= 1;
+        } else if (prop) {
+          return prop.toString().length >= 0;
+        }
+
+        return false
+      }
+      return items.every(checkEmpty)
+    }
+  },
   watch: {
+    checkForSuccess: {
+      handler: function f(val) {
+        this.$emit('success', val)
+      },
+      deep: true
+    },
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {

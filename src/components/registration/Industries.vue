@@ -48,6 +48,12 @@ export default {
     }
   },
   watch: {
+    checkForSuccess: {
+      handler: function f(val) {
+        this.$emit('success', val)
+      },
+      deep: true
+    },
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
@@ -78,6 +84,19 @@ export default {
     }
   },
   computed: {
+    checkForSuccess() {
+      const items = Object.values(this.fields)
+      function checkEmpty(prop) {
+        if (prop instanceof Array) {
+          return prop.length >= 1;
+        } else if (prop) {
+          return prop.toString().length >= 0;
+        }
+
+        return false
+      }
+      return items.every(checkEmpty)
+    },
     getVisibleIndustries() {
       if (!this.criteria.trim()) return this.industries
       return this.industries.filter(industry => industry.title.toLowerCase().includes(this.criteria.trim()))

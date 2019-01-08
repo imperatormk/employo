@@ -6,8 +6,8 @@
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold Official co-op
         div(d-flex)
-          v-btn.demiBold(:class='isButtonSelected(fields.officialCoop,true)', @click='fields.officialCoop=true') Yes
-          v-btn.demiBold(:class='isButtonSelected(fields.officialCoop,false)', @click='fields.officialCoop=false') No
+          v-btn.demiBold(:class='isButtonSelected(fields.officialCoop,"true")', @click='fields.officialCoop="true"') Yes
+          v-btn.demiBold(:class='isButtonSelected(fields.officialCoop,"false")', @click='fields.officialCoop="false"') No
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold Availability
         div(d-flex)
@@ -72,7 +72,28 @@ export default {
       }]
     }
   },
+  computed: {
+    checkForSuccess() {
+      const items = Object.values(this.fields)
+      function checkEmpty(prop) {
+        if (prop instanceof Array) {
+          return prop.length >= 1;
+        } else if (prop) {
+          return prop.toString().length >= 0;
+        }
+
+        return false
+      }
+      return items.every(checkEmpty)
+    }
+  },
   watch: {
+    checkForSuccess: {
+      handler: function f(val) {
+        this.$emit('success', val)
+      },
+      deep: true
+    },
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {

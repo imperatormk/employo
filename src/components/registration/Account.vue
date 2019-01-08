@@ -18,6 +18,7 @@
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold City of residence
         v-text-field.br5.demiBold(v-model="fields.city" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
+        v-btn.btn(@click="checkForSuccess") Next
 </template>
 
 <script>
@@ -38,7 +39,28 @@ export default {
       }
     }
   },
+  computed: {
+    checkForSuccess() {
+      const items = Object.values(this.fields)
+      function checkEmpty(prop) {
+        if (prop instanceof Array) {
+          return prop.length >= 1;
+        } else if (prop) {
+          return prop.toString().length >= 0;
+        }
+
+        return false
+      }
+      return items.every(checkEmpty)
+    }
+  },
   watch: {
+    checkForSuccess: {
+      handler: function f(val) {
+        this.$emit('success', val)
+      },
+      deep: true
+    },
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {

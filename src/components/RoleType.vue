@@ -3,7 +3,7 @@
     .flex-column.align-center
       img(width="100%" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=350")
       br
-      h2.demiBold.employe(:class="{ student: isStudent(typeData.id) }") {{ typeData.title }}
+      h2.demiBold.employe(:class="{ student: isStudent(typeData.id), tehnical: isTehnical(typeData.title) }") {{ typeData.title }}
       span.demiBold {{ typeData.desc }}
       br
 </template>
@@ -26,6 +26,12 @@ export default {
         return true
       }
       return false
+    },
+    isTehnical(title) {
+      if (title === 'Technical' || title === 'Non-Technical') {
+        return true
+      }
+      return false
     }
   }
 }
@@ -41,5 +47,9 @@ export default {
   }
   .selected {
     background-color: #ececec;
+  }
+
+  .tehnical {
+    color: #477EE6 !important;
   }
 </style>
