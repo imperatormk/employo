@@ -16,7 +16,7 @@
           v-btn.btn.back(@click="goBack") Back
           .p40-side.w100
             v-progress-linear(v-model="progress")
-          v-btn.btn(v-if="!isLastPage" @click="goNext") Next
+          v-btn.btn(v-if="!isLastPage" @click="goNext" :disabled="!canContinue") Next
           v-dialog(v-else v-model="dialog" width="500")
             v-btn.btn(@click="submitData" slot="activator") Submit
             v-card.border-round.p50-top.p30-side
@@ -45,13 +45,13 @@ export default {
       selectedRole: null,
       pages: [],
       curPage: 0,
-      continue: false,
+      canContinue: false,
       dialog: false
     }
   },
   methods: {
     allowContinue(e) {
-      this.continue = e;
+      this.canContinue = e
     },
     initStore() {
       this.$store.dispatch('dataChange', { // account info
@@ -117,7 +117,7 @@ export default {
     },
     goNext() {
       const nextPage = this.curPage + 1
-      if (this.pages[nextPage] && this.continue) {
+      if (this.pages[nextPage] && this.canContinue) {
         this.curPage = nextPage
       }
     },
