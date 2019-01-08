@@ -1,4 +1,4 @@
-import ChooseRole from './ChooseRole'
+import AccountType from './AccountType'
 
 import Account from './Account'
 import Education from './Education'
@@ -10,7 +10,7 @@ import Skills from './Skills'
 import UploadTranscript from './UploadTranscript'
 
 export {
-  ChooseRole,
+  AccountType,
   Account,
   Education,
   Work,

@@ -10,9 +10,11 @@
 import RoleType from '@/components/RoleType'
 import pagesList from '@/components/registration/page_list'
 
+const PAGE_ID = pagesList.roles
+
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[4])
+    this.fields = this.$store.getters.getById(pagesList[PAGE_ID])
   },
   data() {
     return {
@@ -55,7 +57,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[4],
+          pageId: pagesList[PAGE_ID],
           fields: val
         })
       },

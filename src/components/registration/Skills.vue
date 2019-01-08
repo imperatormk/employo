@@ -10,9 +10,11 @@
 <script>
 import pagesList from '@/components/registration/page_list'
 
+const PAGE_ID = pagesList.skills
+
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[6])
+    this.fields = this.$store.getters.getById(pagesList[PAGE_ID])
   },
   data() {
     return {
@@ -57,7 +59,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[6],
+          pageId: pagesList[PAGE_ID],
           fields: val
         })
       },

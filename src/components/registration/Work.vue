@@ -25,9 +25,11 @@
 <script>
 import pagesList from '@/components/registration/page_list'
 
+const PAGE_ID = pagesList.work
+
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[2])
+    this.fields = this.$store.getters.getById(pagesList[PAGE_ID])
   },
   data() {
     return {
@@ -77,9 +79,9 @@ export default {
       const items = Object.values(this.fields)
       function checkEmpty(prop) {
         if (prop instanceof Array) {
-          return prop.length >= 1;
+          return prop.length >= 1
         } else if (prop) {
-          return prop.toString().length >= 0;
+          return prop.toString().length >= 0
         }
 
         return false
@@ -97,7 +99,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[2],
+          pageId: pagesList[PAGE_ID],
           fields: val
         })
       },
