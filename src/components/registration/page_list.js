@@ -1,3 +1,7 @@
+const initialPageList = {
+  acctype: 'acctype'
+}
+
 const studentPagesList = {
   acctype: 'acctype',
   account: 'account',
@@ -10,7 +14,16 @@ const studentPagesList = {
   transcript: 'transcript',
 }
 
-export default studentPagesList
+const employeerPagesList = {
+  acctype: 'acctype',
+  account: 'account'
+}
+
+export default {
+  initialPageList,
+  studentPagesList,
+  employeerPagesList
+}
 
 const studentPages = [{
   pageId: studentPagesList.account,

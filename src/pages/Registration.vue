@@ -1,16 +1,16 @@
 <template lang="pug">
   .flex.flex-column.space-between-p10.h100
-    AccountType(v-if="curPageId === pagesList.acctype" @roleSelected="selAccountType = $event" @success='allowContinue($event)' :currentType="selAccountType")
+    AccountType(v-if="curPageId === pages.acctype" @roleSelected="selAccountType = $event" @success='allowContinue($event)' :currentType="selAccountType")
     .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'student'")
       .flex.h100
-        Account(v-if="curPageId === pagesList.account" @success='allowContinue($event)')
-        Education(v-else-if="curPageId === pagesList.education" @success='allowContinue($event)')
-        Work(v-else-if="curPageId === pagesList.work" @success='allowContinue($event)')
-        Experience(v-else-if="curPageId === pagesList.experience" @success='allowContinue($event)')
-        Roles(v-else-if="curPageId === pagesList.roles" @success='allowContinue($event)')
-        Industries(v-else-if="curPageId === pagesList.industries" @success='allowContinue($event)')
-        Skills(v-else-if="curPageId === pagesList.skills" @success='allowContinue($event)')
-        UploadTranscript(v-else-if="curPageId === pagesList.transcript")
+        Account(v-if="curPageId === pages.account" @success='allowContinue($event)')
+        Education(v-else-if="curPageId === pages.education" @success='allowContinue($event)')
+        Work(v-else-if="curPageId === pages.work" @success='allowContinue($event)')
+        Experience(v-else-if="curPageId === pages.experience" @success='allowContinue($event)')
+        Roles(v-else-if="curPageId === pages.roles" @success='allowContinue($event)')
+        Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
+        Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
+        UploadTranscript(v-else-if="curPageId === pages.transcript")
     .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employee'")
       .flex
         span Employee
@@ -38,7 +38,7 @@ import { AccountType, Account, Education, Work, Experience, Industries, Roles, S
 
 export default {
   created() {
-    this.initStore()
+    this.pages = pagesList.initialPageList
   },
   watch: {
     selAccountType: function f(val) {
@@ -50,7 +50,8 @@ export default {
       selAccountType: null,
       curPage: 0,
       canContinue: false,
-      dialog: false
+      dialog: false,
+      pages: {}
     }
   },
   methods: {
@@ -60,6 +61,7 @@ export default {
     initStore(accType) {
       this.$store.dispatch('clearAllData')
       if (accType === 'student') {
+        this.pages = pagesList.studentPagesList
         studentPages.forEach((studentPage) => {
           const cloneObj = JSON.parse(JSON.stringify(studentPage)) // doing this deep clone just to be sure
           this.$store.dispatch('dataChange', cloneObj)
@@ -69,14 +71,14 @@ export default {
     goBack() {
       const prevPage = this.curPage - 1
       const prevPageId = this.getPageIdByIndex(prevPage)
-      if (this.pagesList[prevPageId]) {
+      if (this.pages[prevPageId]) {
         this.curPage = prevPage
       }
     },
     goNext() {
       const nextPage = this.curPage + 1
       const nextPageId = this.getPageIdByIndex(nextPage)
-      if (this.pagesList[nextPageId] && this.canContinue) {
+      if (this.pages[nextPageId] && this.canContinue) {
         this.curPage = nextPage
       }
     },
@@ -92,8 +94,8 @@ export default {
       console.log(reqData)
     },
     getPageIdByIndex(index) {
-      const key = Object.keys(this.pagesList)[index]
-      return this.pagesList[key]
+      const key = Object.keys(this.pages)[index]
+      return this.pages[key]
     }
   },
   computed: {
@@ -101,16 +103,14 @@ export default {
       return this.curPage * (100 / (this.pagesCount - 1))
     },
     isLastPage() {
-      return this.curPage === this.pagesCount - 1
+      const lastPage = this.curPage === this.pagesCount - 1
+      return lastPage && this.curPageId !== this.pages.acctype // review
     },
     curPageId() {
       return this.getPageIdByIndex(this.curPage)
     },
-    pagesList() {
-      return pagesList
-    },
     pagesCount() {
-      return Object.keys(this.pagesList).length
+      return Object.keys(this.pages).length
     }
   },
   components: {

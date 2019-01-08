@@ -13,11 +13,11 @@ import pagesList from '@/components/registration/page_list'
 import technical from '@/assets/role_types/technical.png'
 import nontechnical from '@/assets/role_types/nontechnical.png'
 
-const PAGE_ID = pagesList.roles
+const PAGE_ID = pagesList.studentPagesList.roles
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[PAGE_ID])
+    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
   },
   data() {
     return {
@@ -62,7 +62,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[PAGE_ID],
+          pageId: pagesList.studentPagesList[PAGE_ID],
           fields: val
         })
       },
