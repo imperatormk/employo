@@ -24,11 +24,11 @@
 <script>
 import pagesList from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.education
+const PAGE_ID = pagesList.studentPagesList.education
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList[PAGE_ID])
+    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
   },
   data() {
     return {
@@ -106,7 +106,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList[PAGE_ID],
+          pageId: pagesList.studentPagesList[PAGE_ID],
           fields: val
         })
       },
