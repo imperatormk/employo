@@ -42,7 +42,6 @@ export default {
   },
   watch: {
     selAccountType: function f(val) {
-      console.log('changed')
       this.initStore(val)
     }
   },
