@@ -1,14 +1,14 @@
 <template lang="pug">
   .h100
     .flex.flex-column.space-between-p10.h100(v-if="selectedRole == 'student'")
-      .flex
-        Account(v-if="curPage == 0")
-        Education(v-else-if="curPage == 1")
-        Work(v-else-if="curPage == 2")
-        Experience(v-else-if="curPage == 3")
-        Roles(v-else-if="curPage == 4")
-        Industries(v-else-if="curPage == 5")
-        Skills(v-else-if="curPage == 6")
+      .flex.h100
+        Account(v-if="curPage == 0" @success='allowContinue($event)')
+        Education(v-else-if="curPage == 1" @success='allowContinue($event)')
+        Work(v-else-if="curPage == 2" @success='allowContinue($event)')
+        Experience(v-else-if="curPage == 3" @success='allowContinue($event)')
+        Roles(v-else-if="curPage == 4" @success='allowContinue($event)')
+        Industries(v-else-if="curPage == 5" @success='allowContinue($event)')
+        Skills(v-else-if="curPage == 6" @success='allowContinue($event)')
         UploadTranscript(v-else-if="curPage == 7")
       .spacer
       .flex.align-end.p30
@@ -17,7 +17,14 @@
           .p40-side.w100
             v-progress-linear(v-model="progress")
           v-btn.btn(v-if="!isLastPage" @click="goNext") Next
-          v-btn.btn(v-else @click="submitData") Submit
+          v-dialog(v-else v-model="dialog" width="500")
+            v-btn.btn(@click="submitData" slot="activator") Submit
+            v-card.border-round.p50-top.p30-side
+              v-card-text.fs20.demiBold Thank you for signing up! Make sure to check your email for updates
+              v-divider
+              v-card-actions
+                v-spacer
+                v-btn.fs20.demiBold(@click="dialog = false" flat) Done
     .flex.flex-column.space-between-p10.h100(v-else-if="selectedRole == 'employee'")
       .flex
         span Employee
@@ -37,10 +44,15 @@ export default {
     return {
       selectedRole: null,
       pages: [],
-      curPage: 0
+      curPage: 0,
+      continue: false,
+      dialog: false
     }
   },
   methods: {
+    allowContinue(e) {
+      this.continue = e;
+    },
     initStore() {
       this.$store.dispatch('dataChange', { // account info
         pageId: pagesList[0],
@@ -105,7 +117,7 @@ export default {
     },
     goNext() {
       const nextPage = this.curPage + 1
-      if (this.pages[nextPage]) {
+      if (this.pages[nextPage] && this.continue) {
         this.curPage = nextPage
       }
     },

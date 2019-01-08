@@ -1,7 +1,7 @@
 <template lang="pug">
-  v-container(grid-list-xl)
-    .flex-column
-      h1.label What types of roles are you interested in?
+  v-container(grid-list-xl style="height:100%;")
+    h1.label What types of roles are you interested in?
+    .flex-column.justify-center(style="height:100%;")
       .flex-row.justify-center
         RoleType(v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)")
 </template>
@@ -30,7 +30,28 @@ export default {
       }]
     }
   },
+  computed: {
+    checkForSuccess() {
+      const items = Object.values(this.fields)
+      function checkEmpty(prop) {
+        if (prop instanceof Array) {
+          return prop.length >= 1;
+        } else if (prop) {
+          return prop.toString().length >= 0;
+        }
+
+        return false
+      }
+      return items.every(checkEmpty)
+    }
+  },
   watch: {
+    checkForSuccess: {
+      handler: function f(val) {
+        this.$emit('success', val)
+      },
+      deep: true
+    },
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
