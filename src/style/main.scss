@@ -247,6 +247,9 @@ h1 {
   text-transform: uppercase;
   color: #3164e3;
   padding: 5px 5px 10px 5px;
+  &.alternate {
+    color: #47afe6;
+  }
 }
 
 .header-text {

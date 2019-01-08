@@ -81,3 +81,16 @@ const studentPages = [{
 }]
 
 export { studentPages }
+
+const employeerPages = [{
+  pageId: employeerPagesList.account,
+  fields: {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    city: ''
+  }
+}]
+
+export { employeerPages }

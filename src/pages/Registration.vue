@@ -3,7 +3,7 @@
     AccountType(v-if="curPageId === pages.acctype" @roleSelected="selAccountType = $event" @success='allowContinue($event)' :currentType="selAccountType")
     .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'student'")
       .flex.h100
-        Account(v-if="curPageId === pages.account" @success='allowContinue($event)')
+        StudentAccount(v-if="curPageId === pages.account" @success='allowContinue($event)')
         Education(v-else-if="curPageId === pages.education" @success='allowContinue($event)')
         Work(v-else-if="curPageId === pages.work" @success='allowContinue($event)')
         Experience(v-else-if="curPageId === pages.experience" @success='allowContinue($event)')
@@ -11,9 +11,9 @@
         Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
         Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
         UploadTranscript(v-else-if="curPageId === pages.transcript")
-    .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employee'")
+    .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employeer'")
       .flex
-        span Employee
+        EmployeerAccount(v-if="curPageId === pages.account" @success='allowContinue($event)')
     .spacer
     .flex.align-end.p30
       .flex.align-center
@@ -32,9 +32,9 @@
 </template>
 
 <script>
-import pagesList, { studentPages } from '@/components/registration/page_list'
+import pagesList, { studentPages, employeerPages } from '@/components/registration/page_list'
 
-import { AccountType, Account, Education, Work, Experience, Industries, Roles, Skills, UploadTranscript } from '@/components/registration'
+import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, UploadTranscript, EmployeerAccount } from '@/components/registration'
 
 export default {
   created() {
@@ -64,6 +64,12 @@ export default {
         this.pages = pagesList.studentPagesList
         studentPages.forEach((studentPage) => {
           const cloneObj = JSON.parse(JSON.stringify(studentPage)) // doing this deep clone just to be sure
+          this.$store.dispatch('dataChange', cloneObj)
+        })
+      } else if (accType === 'employeer') {
+        this.pages = pagesList.employeerPagesList
+        employeerPages.forEach((employeerPage) => {
+          const cloneObj = JSON.parse(JSON.stringify(employeerPage)) // doing this deep clone just to be sure
           this.$store.dispatch('dataChange', cloneObj)
         })
       }
@@ -117,7 +123,7 @@ export default {
     }
   },
   components: {
-    AccountType, Account, Education, Work, Experience, Industries, Roles, Skills, UploadTranscript
+    AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, UploadTranscript, EmployeerAccount
   }
 }
 </script>
