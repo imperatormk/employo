@@ -1,4 +1,5 @@
 const studentPagesList = {
+  acctype: 'acctype',
   account: 'account',
   education: 'education',
   work: 'work',
