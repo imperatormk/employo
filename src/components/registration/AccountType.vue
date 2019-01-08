@@ -19,6 +19,7 @@ export default {
   created() {
     if (this.currentType) {
       this.selected = this.currentType
+      this.$emit('success', true)
     }
   },
   data() {
