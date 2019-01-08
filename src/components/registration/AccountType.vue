@@ -1,11 +1,9 @@
 <template lang="pug">
-  v-container(grid-list-xl style="height:100%;")
+  v-container(grid-list-xl)
     h1.label Are you a student or an employeer?
     .flex-column.justify-center(style="height:85%;")
       .flex-row.justify-center
-        RoleType(v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="selection(roleType.id)")
-    v-btn.btn(style="float:right;" v-if="selected" @click="roleSelected(selected)") Next
-    v-btn.btn(style="float:right;" v-else) Next
+        RoleType(v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="roleSelected(roleType.id)")
 </template>
 
 <script>
@@ -40,10 +38,9 @@ export default {
       }
     },
     roleSelected(e) {
-      this.$emit('roleSelected', e)
-    },
-    selection(e) {
       this.selected = e
+      this.$emit('roleSelected', e)
+      this.$emit('success', true)
     }
   },
   components: {
