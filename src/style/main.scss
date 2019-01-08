@@ -217,7 +217,7 @@ h1 {
   color: white !important;
 }
 
-.btn:not(.btn-selected) {
+.btn:not(.btn-selected):not(.back) {
   color: #8c8c8c !important;
 }
 

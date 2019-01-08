@@ -14,7 +14,7 @@
         v-select.demiBold(:items='years', background-color='#f5f5f5', v-model='fields.selYear', :label='`eg. ${years[0]}`', solo)
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold Cumulative GPA
-        v-text-field.br5.demiBold(v-model="fields.selGpa" solo background-color="#f5f5f5" suffix='/4.0' type="number")
+        v-text-field.br5.demiBold(v-model="fields.selGpa" solo background-color="#f5f5f5" max="4" min="0" suffix='/4.0' type="number")
       v-flex(flex-column)
         .field-label.demiBold Degree
         .flex.flex-wrap.p10(style="height:130px;overflow:scroll;")

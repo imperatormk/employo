@@ -18,7 +18,6 @@
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold City of residence
         v-text-field.br5.demiBold(v-model="fields.city" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
-        v-btn.btn(@click="checkForSuccess") Next
 </template>
 
 <script>
