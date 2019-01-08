@@ -1,7 +1,7 @@
 <template lang="pug">
     v-card.border-round.content-inherit.flex-basis-20
       v-toolbar
-        v-toolbar-title.dark-text-blue.f1-8m Tehnical Skills
+        v-toolbar-title.dark-text-blue.f1-8m Technical Skills
         v-spacer
         v-dialog(v-model="dialog", width="600" persistent=true)
           v-btn.noShadow(slot="activator", fab=true small=true)
@@ -10,7 +10,7 @@
             v-container(grid-list-xl)
               v-layout(wrap, align-center)
                 v-flex(xs12, sm12, d-flex)
-                  h1.label Tehnical Skills
+                  h1.label Technical Skills
                 v-flex(xs12, sm12, d-block)
                   v-chip(disabled=true, small=true, text-color="black", v-for="skill in fields.selectedSkills", :key="skill").f1-2m {{skill}}
                   v-dialog(v-model="dialog2", width="600")

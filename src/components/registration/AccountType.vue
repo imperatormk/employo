@@ -9,6 +9,9 @@
 <script>
 import RoleType from '@/components/RoleType'
 
+import student from '@/assets/acc_types/student.png'
+import employer from '@/assets/acc_types/employer.png'
+
 export default {
   props: {
     currentType: {
@@ -27,11 +30,13 @@ export default {
       roleTypes: [{
         id: 'student',
         title: 'Student',
-        desc: ''
+        desc: '',
+        image: student
       }, {
         id: 'employee',
         title: 'Employeer',
-        desc: ''
+        desc: '',
+        image: employer
       }],
       selected: null
     }

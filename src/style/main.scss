@@ -98,6 +98,13 @@ h1 {
   flex-wrap: wrap;
 }
 
+// .m5, m10 ....
+@for $i from 1 through 20 {
+  .m#{$i * 5} {
+    margin: $i * 5px;
+  }
+}
+
 // .p5, p10 ....
 @for $i from 1 through 20 {
   .p#{$i * 5} {
@@ -400,6 +407,10 @@ $darker-blue: #477EE6;
 
 .of-hidden {
   overflow: hidden;
+}
+
+.spacer {
+  flex-grow: 1;
 }
 
 // vuetify tweaks start
