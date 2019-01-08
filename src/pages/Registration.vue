@@ -99,12 +99,15 @@ export default {
     }
   },
   computed: {
+    isInitialPage() {
+      return this.curPageId === this.pages.acctype
+    },
     progress() {
-      return this.curPage * (100 / (this.pagesCount - 1))
+      return !this.isInitialPage ? this.curPage * (100 / (this.pagesCount - 1)) : 0 // review
     },
     isLastPage() {
       const lastPage = this.curPage === this.pagesCount - 1
-      return lastPage && this.curPageId !== this.pages.acctype // review
+      return lastPage && !this.isInitialPage // review
     },
     curPageId() {
       return this.getPageIdByIndex(this.curPage)
