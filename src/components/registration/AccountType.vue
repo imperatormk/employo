@@ -9,9 +9,18 @@
 <script>
 import RoleType from '@/components/RoleType'
 
-// const PAGE_ID = 'acctype'
-
 export default {
+  props: {
+    currentType: {
+      type: String,
+      default: null
+    }
+  },
+  created() {
+    if (this.currentType) {
+      this.selected = this.currentType
+    }
+  },
   data() {
     return {
       roleTypes: [{

@@ -1,7 +1,7 @@
 <template lang="pug">
   .flex.flex-column.space-between-p10.h100
-    AccountType(v-if="curPageId === pagesList.acctype" @roleSelected="selectedRole = $event" @success='allowContinue($event)')
-    .flex.flex-column.space-between-p10.h100(v-else-if="selectedRole == 'student'")
+    AccountType(v-if="curPageId === pagesList.acctype" @roleSelected="selAccountType = $event" @success='allowContinue($event)' :currentType="selAccountType")
+    .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'student'")
       .flex.h100
         Account(v-if="curPageId === pagesList.account" @success='allowContinue($event)')
         Education(v-else-if="curPageId === pagesList.education" @success='allowContinue($event)')
@@ -11,7 +11,7 @@
         Industries(v-else-if="curPageId === pagesList.industries" @success='allowContinue($event)')
         Skills(v-else-if="curPageId === pagesList.skills" @success='allowContinue($event)')
         UploadTranscript(v-else-if="curPageId === pagesList.transcript")
-    .flex.flex-column.space-between-p10.h100(v-else-if="selectedRole == 'employee'")
+    .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employee'")
       .flex
         span Employee
     .spacer
@@ -40,9 +40,15 @@ export default {
   created() {
     this.initStore()
   },
+  watch: {
+    selAccountType: function f(val) {
+      console.log('changed')
+      this.initStore(val)
+    }
+  },
   data() {
     return {
-      selectedRole: null,
+      selAccountType: null,
       curPage: 0,
       canContinue: false,
       dialog: false
@@ -52,10 +58,14 @@ export default {
     allowContinue(e) {
       this.canContinue = e
     },
-    initStore() {
-      studentPages.forEach((studentPage) => {
-        this.$store.dispatch('dataChange', studentPage)
-      })
+    initStore(accType) {
+      this.$store.dispatch('clearAllData')
+      if (accType === 'student') {
+        studentPages.forEach((studentPage) => {
+          const cloneObj = JSON.parse(JSON.stringify(studentPage)) // doing this deep clone just to be sure
+          this.$store.dispatch('dataChange', cloneObj)
+        })
+      }
     },
     goBack() {
       const prevPage = this.curPage - 1
