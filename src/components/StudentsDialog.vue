@@ -3,7 +3,6 @@
     div(slot="activator")
       slot(name="act")
     v-card.dialog-round
-
 </template>
 
 <script>

@@ -64,7 +64,7 @@ const studentPages = [{
 {
   pageId: studentPagesList.roles,
   fields: {
-    selectedRoles: []
+    selectedRole: null
   }
 },
 {
@@ -81,3 +81,19 @@ const studentPages = [{
 }]
 
 export { studentPages }
+
+const employeerPages = [{
+  pageId: employeerPagesList.account,
+  fields: {
+    firstName: '',
+    lastName: '',
+    companyName: '',
+    companyWebsite: '',
+    email: '',
+    password: '',
+    city: '',
+    phoneNumber: '',
+  }
+}]
+
+export { employeerPages }

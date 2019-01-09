@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       fields: {
-        selectedRoles: []
+        selectedRole: null
       },
       roleTypes: [{
         id: 0,
@@ -33,23 +33,14 @@ export default {
         id: 1,
         title: 'Non-Technical',
         desc: 'Business Development...',
-        image: nontechnical
+        image: nontechnical,
+        alternate: true
       }]
     }
   },
   computed: {
     checkForSuccess() {
-      const items = Object.values(this.fields)
-      function checkEmpty(prop) {
-        if (prop instanceof Array) {
-          return prop.length >= 1;
-        } else if (prop) {
-          return prop.toString().length >= 0;
-        }
-
-        return false
-      }
-      return items.every(checkEmpty)
+      return !!this.fields.selectedRole != null
     }
   },
   watch: {
@@ -65,13 +56,14 @@ export default {
           pageId: pagesList.studentPagesList[PAGE_ID],
           fields: val
         })
+        if (val) this.$emit('roleChanged', this.fields.selectedRole)
       },
       deep: true
     }
   },
   methods: {
     isRoleSelected(roleId) {
-      const isSelected = this.fields.selectedRoles.find(id => id === roleId) != null
+      const isSelected = !!(this.fields.selectedRole != null && this.fields.selectedRole === roleId)
       return {
         p10: true,
         btn: true,
@@ -81,12 +73,7 @@ export default {
       }
     },
     toggleRoleSelected(roleId) {
-      const isSelected = this.fields.selectedRoles.find(id => id === roleId) != null
-      if (!isSelected) {
-        this.fields.selectedRoles.push(roleId)
-      } else {
-        this.fields.selectedRoles = this.fields.selectedRoles.filter(id => id !== roleId)
-      }
+      this.fields.selectedRole = roleId
     }
   },
   components: {

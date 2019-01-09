@@ -247,11 +247,18 @@ h1 {
   text-transform: uppercase;
   color: #3164e3;
   padding: 5px 5px 10px 5px;
+  font-size: 1.2em;
+  &.alternate {
+    color: #47afe6;
+  }
 }
 
 .header-text {
   font-size: 25px;
   color: #3164e3;
+  &.alternate {
+    color: #47afe6;
+  }
 }
 
 .light-p {
@@ -261,6 +268,10 @@ h1 {
 .desc-label {
   color: #3164e3;
   padding: 10px 5px;
+  font-size: 1.2em;
+  &.alternate {
+    color: #47afe6;
+  }
 }
 
 $round-border: 25px;
@@ -315,6 +326,9 @@ $darker-blue: #477EE6;
 
 .blue-color {
   color: #3164e3 !important;
+  &.alternate {
+    color: #47afe6 !important;
+  }
 }
 
 .text-muted {
@@ -380,7 +394,6 @@ $darker-blue: #477EE6;
   }
 }
 
-
 @media(min-width:960px) {
   .v-card-holder {
     margin-bottom:20px;
@@ -407,6 +420,10 @@ $darker-blue: #477EE6;
 
 .of-hidden {
   overflow: hidden;
+}
+
+.of-scroll {
+  overflow-y: scroll;
 }
 
 .spacer {

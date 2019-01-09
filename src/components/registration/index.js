@@ -1,22 +1,25 @@
 import AccountType from './AccountType'
 
-import Account from './Account'
-import Education from './Education'
-import Work from './Work'
-import Experience from './Experience'
-import Roles from './Roles'
-import Industries from './Industries'
-import Skills from './Skills'
-import UploadTranscript from './UploadTranscript'
+import StudentAccount from './student/Account'
+import Education from './student/Education'
+import Work from './student/Work'
+import Experience from './student/Experience'
+import Roles from './student/Roles'
+import Industries from './student/Industries'
+import Skills from './student/Skills'
+import UploadTranscript from './student/UploadTranscript'
+
+import EmployeerAccount from './employeer/Account'
 
 export {
   AccountType,
-  Account,
+  StudentAccount,
   Education,
   Work,
   Experience,
   Roles,
   Industries,
   Skills,
-  UploadTranscript
+  UploadTranscript,
+  EmployeerAccount
 }

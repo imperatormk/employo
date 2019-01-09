@@ -8,6 +8,9 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import '@/style/main.scss'
+import '@/style/scrollbar.scss'
+
+import Vuebar from 'vuebar'
 
 import App from './App'
 import router from './router'
@@ -18,6 +21,8 @@ Vue.config.productionTip = false
 Vue.use(Vuetify, {
   iconfont: 'md'
 })
+
+Vue.use(Vuebar)
 
 /* eslint-disable no-new */
 new Vue({

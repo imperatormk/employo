@@ -33,10 +33,11 @@ export default {
         desc: '',
         image: student
       }, {
-        id: 'employee',
+        id: 'employeer',
         title: 'Employeer',
         desc: '',
-        image: employer
+        image: employer,
+        alternate: true
       }],
       selected: null
     }

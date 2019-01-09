@@ -1,12 +1,13 @@
 <template lang="pug">
   v-container(grid-list-xl)
+    h1.label Tell us about your experience
     div
-      h1.label How many years of experience do you have?
+      .desc-label How many years of experience do you have?
       .flex.space-between.align-center.p10
         range-slider(class="yearSlider" min="0" max="5" step="1" v-model="fields.numYears")
         v-chip.chip {{ fields.numYears }} years
     div
-      h1.label What areas have you had most experience with?
+      .desc-label What areas have you had most experience with?
       .flex.space-between.align-center.p10.flex-wrap
         v-btn(v-for="area in areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
 </template>
@@ -60,9 +61,9 @@ export default {
       const items = Object.values(this.fields)
       function checkEmpty(prop) {
         if (prop instanceof Array) {
-          return prop.length >= 1;
+          return prop.length >= 1
         } else if (prop) {
-          return prop.toString().length >= 0;
+          return prop.toString().trim().length >= 0
         }
 
         return false

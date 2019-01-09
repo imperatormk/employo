@@ -1,9 +1,9 @@
 <template lang="pug">
-  .of-hidden.m20.role-container(@click="clicked" :class="{ selected: isSelected }")
+  .of-hidden.m20.role-container(@click="clicked" :class="{ selected: isSelected, alternate: typeData.alternate }")
     .p15-bot.h100.flex-column.space-between.align-center
       img(width="100%" :src="typeData.image")
       .flex-column.p15-top
-        h2.demiBold.employe(:class="{ student: isStudent(typeData.id), technical: isTechnical(typeData.title) }") {{ typeData.title }}
+        h1.demiBold(:class="{ 'blue-color': true, alternate: typeData.alternate }") {{ typeData.title }}
         span.demiBold {{ typeData.desc }}
 </template>
 
@@ -42,10 +42,9 @@ export default {
     box-shadow: 0 3px 1px -2px rgba(100, 100, 100, 0.1), 0 2px 2px 0 rgba(100, 100, 100, 0.1), 0 1px 5px 0 rgba(100, 100, 100, 0.1);
   }
   .selected {
-    background-color: #ececec;
-  }
-
-  .technical {
-    color: #477EE6 !important;
+    background-color: #6895ea;
+    &.alternate {
+      background-color: #a9deff;
+    }
   }
 </style>
