@@ -92,7 +92,7 @@ export default {
         if (prop instanceof Array) {
           return prop.length >= 1;
         } else if (prop) {
-          return prop.toString().length >= 0;
+          return prop.toString().trim().length >= 0;
         }
 
         return false

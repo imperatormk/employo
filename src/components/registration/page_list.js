@@ -87,9 +87,12 @@ const employeerPages = [{
   fields: {
     firstName: '',
     lastName: '',
+    companyName: '',
+    companyWebsite: '',
     email: '',
     password: '',
-    city: ''
+    city: '',
+    phoneNumber: '',
   }
 }]
 

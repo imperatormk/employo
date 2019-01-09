@@ -11,6 +11,12 @@
         .field-label.alternate.demiBold Last name
         v-text-field.br5.demiBold(v-model="fields.lastName" solo background-color="#f5f5f5" placeholder="Last name")
       v-flex(xs12, sm6, d-block)
+        .field-label.alternate.demiBold Company name
+        v-text-field.br5.demiBold(v-model="fields.companyName" solo background-color="#f5f5f5" placeholder="Company name")
+      v-flex(xs12, sm6, d-block)
+        .field-label.alternate.demiBold Company website
+        v-text-field.br5.demiBold(v-model="fields.companyWebsite" solo background-color="#f5f5f5" placeholder="Company website")
+      v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Email
         v-text-field.br5.demiBold(v-model="fields.email" solo background-color="#f5f5f5" placeholder="Email")
       v-flex(xs12, sm6, d-block)
@@ -19,6 +25,9 @@
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold City of residence
         v-text-field.br5.demiBold(v-model="fields.city" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
+      v-flex(xs12, sm6, d-block)
+        .field-label.alternate.demiBold Phone number
+        v-text-field.br5.demiBold(v-model="fields.phoneNumber" solo background-color="#f5f5f5" placeholder="Phone number")
 </template>
 
 <script>
@@ -35,9 +44,12 @@ export default {
       fields: {
         firstName: '',
         lastName: '',
+        companyName: '',
+        companyWebsite: '',
         email: '',
         password: '',
-        city: ''
+        city: '',
+        phoneNumber: '',
       }
     }
   },
@@ -48,7 +60,7 @@ export default {
         if (prop instanceof Array) {
           return prop.length >= 1
         } else if (prop) {
-          return prop.toString().length >= 0
+          return prop.toString().trim().length >= 0
         }
 
         return false
