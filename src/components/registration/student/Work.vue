@@ -18,8 +18,9 @@
           v-btn.demiBold(v-for="termLength in termLengths" :key="termLength.id" :class="isLocationSelected(termLength.id, 'termLength')" @click="toggleLocationSelected(termLength.id, 'termLength')") {{ termLength.title }} Months
       v-flex(flex-column)
         .field-label.demiBold Work location preference (choose all that apply)
-        .flex.flex-wrap.p10(style="height:130px;overflow:scroll;")
-          v-btn.demiBold(v-for="workLocation in workLocations" :key="workLocation.id" :class="isLocationSelected(workLocation.id, 'locationPref')" @click="toggleLocationSelected(workLocation.id, 'locationPref')") {{ workLocation.title }}
+        .of-scroll(v-bar style="height:150px;")
+          .flex.flex-wrap.m10
+            v-btn.demiBold(v-for="workLocation in workLocations" :key="workLocation.id" :class="isLocationSelected(workLocation.id, 'locationPref')" @click="toggleLocationSelected(workLocation.id, 'locationPref')") {{ workLocation.title }}
 </template>
 
 <script>

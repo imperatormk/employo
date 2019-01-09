@@ -7,10 +7,17 @@
         Education(v-else-if="curPageId === pages.education" @success='allowContinue($event)')
         Work(v-else-if="curPageId === pages.work" @success='allowContinue($event)')
         Experience(v-else-if="curPageId === pages.experience" @success='allowContinue($event)')
-        Roles(v-else-if="curPageId === pages.roles" @success='allowContinue($event)')
-        Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
-        Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
-        UploadTranscript(v-else-if="curPageId === pages.transcript")
+        Roles(v-else-if="curPageId === pages.roles" @success='allowContinue($event)' @roleChanged="selStudentRole = $event")
+        .flex.h100(v-else-if="selStudentRole == 0")
+          //- technical
+          Industries(v-if="curPageId === pages.industries" @success='allowContinue($event)')
+          Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
+          UploadTranscript(v-else-if="curPageId === pages.transcript")
+        .flex.h100(v-else-if="selStudentRole == 1")
+          //- non-technical
+          Industries(v-if="curPageId === pages.industries" @success='allowContinue($event)')
+          Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
+          UploadTranscript(v-else-if="curPageId === pages.transcript")
     .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employeer'")
       .flex
         EmployeerAccount(v-if="curPageId === pages.account" @success='allowContinue($event)')
@@ -48,6 +55,7 @@ export default {
   data() {
     return {
       selAccountType: null,
+      selStudentRole: null,
       curPage: 0,
       canContinue: false,
       dialog: false,

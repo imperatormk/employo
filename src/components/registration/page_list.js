@@ -64,7 +64,7 @@ const studentPages = [{
 {
   pageId: studentPagesList.roles,
   fields: {
-    selectedRoles: []
+    selectedRole: null
   }
 },
 {

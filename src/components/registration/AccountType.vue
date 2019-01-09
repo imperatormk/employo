@@ -36,7 +36,8 @@ export default {
         id: 'employeer',
         title: 'Employeer',
         desc: '',
-        image: employer
+        image: employer,
+        alternate: true
       }],
       selected: null
     }

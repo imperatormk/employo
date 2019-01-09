@@ -90,9 +90,9 @@ export default {
       const items = Object.values(this.fields)
       function checkEmpty(prop) {
         if (prop instanceof Array) {
-          return prop.length >= 1;
+          return prop.length >= 1
         } else if (prop) {
-          return prop.toString().trim().length >= 0;
+          return prop.toString().trim().length >= 0
         }
 
         return false
