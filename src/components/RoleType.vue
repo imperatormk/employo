@@ -1,5 +1,5 @@
 <template lang="pug">
-  .of-hidden.m20.role-container(@click="clicked" :class="{ selected: isSelected }")
+  .of-hidden.m20.role-container(@click="clicked" :class="findSelection(typeData.id)")
     .p15-bot.h100.flex-column.space-between.align-center
       img(width="100%" :src="typeData.image")
       .flex-column.p15-top
@@ -19,6 +19,18 @@ export default {
   methods: {
     clicked() {
       this.$emit('clicked')
+    },
+    findSelection(id) {
+      if (this.isSelected && id === 'student') {
+        return {
+          studentSelected: true
+        }
+      } else if (this.isSelected && id === 'employee') {
+        return {
+          employerSelected: true
+        }
+      }
+      return false
     },
     isStudent(id) {
       if (id === 'student') {
@@ -43,6 +55,14 @@ export default {
   }
   .selected {
     background-color: #ececec;
+  }
+
+  .studentSelected {
+    background-color: #E3EBFA;
+  }
+
+  .employerSelected {
+    background-color: #DEEFFA;
   }
 
   .technical {

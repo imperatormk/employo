@@ -17,6 +17,20 @@
   font-family: 'AvenirNext','Lato','Helvetica', sans-serif;
 }
 
+.style-1::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+} 
+
+.style-1::-webkit-scrollbar-thumb {
+  background-color: #c41717;
+}
+
+.style-1::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
 .application {
   font-family: 'AvenirNext' !important;
 }
@@ -38,10 +52,22 @@ p {
   color: #8c8c8c;
 }
 
+.avenirNext {
+  font-family: 'AvenirNext' !important;
+}
+
+.avenir {
+  font-family: 'Avenir' !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 h1 {
   &.label {
     font-size: 40px;
-    font-family: Avenir;
+    font-family: 'AvenirNext';
     font-weight: bold;
     color: #000000;
   }

@@ -16,7 +16,9 @@
         span Employee
     .spacer
     .flex.align-end.p30
-      .flex.align-center
+      .flex.justify-end(v-if="curPageId === pages.acctype")
+        v-btn.btn(v-if="!isLastPage" @click="goNext" :disabled="!canContinue") Next
+      .flex.align-center(v-else)
         v-btn.btn.back(@click="goBack") Back
         .p40-side.w100
           v-progress-linear(v-model="progress")
