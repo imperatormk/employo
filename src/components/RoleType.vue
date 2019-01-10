@@ -1,7 +1,7 @@
 <template lang="pug">
   .of-hidden.m20.role-container(@click="clicked" :class="{ selected: isSelected, alternate: typeData.alternate }")
     .p15-bot.h100.flex-column.space-between.align-center
-      img(width="100%" :src="typeData.image" style="max-width:500px;height:332px;")
+      img(width="100%" :src="typeData.image" style="max-width:380px;height:332px;")
       .flex-column.p15-top
         h1.demiBold(:class="{ 'blue-color': true, alternate: typeData.alternate }") {{ typeData.title }}
         span.demiBold {{ typeData.desc }}
