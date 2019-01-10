@@ -14,13 +14,15 @@
           Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
           Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
           JobSearchProgress(v-else-if="curPageId === pages.almostDone" @success='allowContinue($event)')
-          UploadTranscript(v-else-if="curPageId === pages.transcript")
+          UploadTranscript(v-else-if="curPageId === pages.transcript" @success='allowContinue($event)')
         .flex.h100(v-else-if="selStudentRole == 1")
           //- non-technical
           Experience(v-if="curPageId === pages.experience" @success='allowContinue($event)')
+          TechnicalRoles(v-else-if="curPageId === pages.technicalRoles" @success='allowContinue($event)')
           Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
           Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
-          UploadTranscript(v-else-if="curPageId === pages.transcript")
+          JobSearchProgress(v-else-if="curPageId === pages.almostDone" @success='allowContinue($event)')
+          UploadTranscript(v-else-if="curPageId === pages.transcript" @success='allowContinue($event)')
     .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employeer'")
       .flex
         EmployeerAccount(v-if="curPageId === pages.account" @success='allowContinue($event)')
@@ -33,8 +35,9 @@
         .p40-side.w100
           v-progress-linear(v-model="progress")
         v-btn.btn(v-if="!isLastPage" @click="goNext" :disabled="!canContinue") Next
+        v-btn.btn(v-else-if="!canContinue" v-model="dialog" width="500") Submit
         v-dialog(v-else v-model="dialog" width="500")
-          v-btn.btn(@click="submitData" slot="activator") Submit
+          v-btn.btn(@click="submitData" slot="activator" :disabled="!canContinue") Submit
           v-card.border-round.p50-top.p30-side
             v-card-text.fs20.demiBold Thank you for signing up! Make sure to check your email for updates
             v-divider
