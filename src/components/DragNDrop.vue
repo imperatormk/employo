@@ -9,8 +9,6 @@
               span.header-text Drag and drop
               span.far.fa-copy.blue-color.fs80
               span.header-text Click to browse
-          .p20-top
-            v-progress-linear(max="100" :value="uploadPercentage")
       div.file-listing(v-for="(file, key) in files" :key="key")
         img.preview(v-bind:ref="`preview${parseInt(key, 10)}`")
         span {{ file.name }}
@@ -32,20 +30,20 @@ export default {
     }
   },
   mounted() {
-    this.dragAndDropCapable = this.determineDragAndDropCapable();
+    this.dragAndDropCapable = this.determineDragAndDropCapable()
     if (this.dragAndDropCapable) {
       ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop']
         .forEach((evt) => {
           this.$refs.fileform.addEventListener(evt, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault()
+            e.stopPropagation()
           })
         })
 
       this.$refs.fileform.addEventListener('drop', (e) => {
         for (let i = 0; i < e.dataTransfer.files.length; i += 1) {
-          this.files.push(e.dataTransfer.files[i]);
-          this.getImagePreviews();
+          this.files.push(e.dataTransfer.files[i])
+          this.getImagePreviews()
         }
       })
     }
@@ -58,7 +56,7 @@ export default {
       }
     },
     determineDragAndDropCapable() {
-      const div = document.createElement('div');
+      const div = document.createElement('div')
       return (('draggable' in div)
               || ('ondragstart' in div && 'ondrop' in div))
               && 'FormData' in window
@@ -67,14 +65,14 @@ export default {
     getImagePreviews() {
       for (let i = 0; i < this.files.length; i += 1) {
         if (/\.(jpe?g|png|gif)$/i.test(this.files[i].name)) {
-          const reader = new FileReader();
+          const reader = new FileReader()
           reader.addEventListener('load', () => {
             this.$refs[`preview'${parseInt(i, 10)}`][0].src = reader.result
           })
-          reader.readAsDataURL(this.files[i]);
+          reader.readAsDataURL(this.files[i])
         } else {
           this.$nextTick(() => {
-            this.$refs[`preview'${parseInt(i, 10)}`][0].src = '/images/file.png';
+            this.$refs[`preview'${parseInt(i, 10)}`][0].src = '/images/file.png'
           })
         }
       }
@@ -83,25 +81,18 @@ export default {
       const formData = new FormData()
       for (let i = 0; i < this.files.length; i += 1) {
         const file = this.files[i]
-        formData.append(`files[${i}]`, file);
+        formData.append(`files[${i}]`, file)
       }
 
       /* axios.post('/file-drag-drop',
-        formData,
-        {
+        formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           },
           onUploadProgress: (progressEvent) => {
             this.uploadPercentage = parseInt(Math.round((progressEvent.loaded * 100) / progressEvent.total), 10)
           }
-        })
-        .then(() => {
-          console.log('SUCCESS!!');
-        })
-        .catch(() => {
-          console.log('FAILURE!!');
-        }); */
+        }) */
     },
     removeFile(key) {
       this.files.splice(key, 1)
@@ -113,9 +104,8 @@ export default {
 <style>
   form{
     display: block;
-    height: 500px;
+    height: 300px;
     border: 5px solid #3164e3;
-    border-radius: 50px;
     border-style: dashed;
     margin: auto;
     text-align: center;

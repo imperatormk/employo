@@ -7,10 +7,12 @@ const studentPagesList = {
   account: 'account',
   education: 'education',
   work: 'work',
-  experience: 'experience',
   roles: 'roles',
+  experience: 'experience',
+  technicalRoles: 'technicalRoles',
   industries: 'industries',
   skills: 'skills',
+  almostDone: 'almostDone',
   transcript: 'transcript',
 }
 
@@ -55,6 +57,12 @@ const studentPages = [{
   }
 },
 {
+  pageId: studentPagesList.roles,
+  fields: {
+    selectedRole: null
+  }
+},
+{
   pageId: studentPagesList.experience,
   fields: {
     selectedAreas: [],
@@ -62,9 +70,9 @@ const studentPages = [{
   }
 },
 {
-  pageId: studentPagesList.roles,
+  pageId: studentPagesList.technicalRoles,
   fields: {
-    selectedRoles: []
+    rolePref: [],
   }
 },
 {
@@ -78,6 +86,29 @@ const studentPages = [{
   fields: {
     selectedSkills: []
   }
+},
+{
+  pageId: studentPagesList.almostDone,
+  fields: {
+    jobSearch: '',
+    companySize: [],
+  }
 }]
 
 export { studentPages }
+
+const employeerPages = [{
+  pageId: employeerPagesList.account,
+  fields: {
+    firstName: '',
+    lastName: '',
+    companyName: '',
+    companyWebsite: '',
+    email: '',
+    password: '',
+    city: '',
+    phoneNumber: '',
+  }
+}]
+
+export { employeerPages }

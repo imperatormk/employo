@@ -1,16 +1,19 @@
 <template lang="pug">
   v-container(grid-list-xl)
-    h1.label What are your strongest skills?
-    .desc-label Choose as many that apply
-    v-input(v-model="criteria" placeholder="Search skills")
-    .flex.space-between.flex-wrap.p10
-      v-btn(v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)") {{ skill.title }}
+    v-flex(xs12, sm12, d-flex).p70-bot
+            h1.label Industries you would like to work with?
+    v-layout(wrap align-center)
+      v-flex(flex-column)
+        .field-label.demiBold Choose as many that apply
+        v-input(v-model="criteria" placeholder="Search industries")
+        .flex-wrap.p10.p-left-0.style-1(style="height:130px;overflow-y: scroll;")
+          v-btn(v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)") {{ industry.title }}
 </template>
 
 <script>
 import pagesList from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.studentPagesList.skills
+const PAGE_ID = pagesList.studentPagesList.industries
 
 export default {
   created() {
@@ -20,9 +23,9 @@ export default {
     return {
       criteria: '',
       fields: {
-        selectedSkills: [],
+        selectedIndustries: [],
       },
-      skills: [{
+      industries: [{
         id: 0,
         title: 'Frontend'
       }, {
@@ -67,8 +70,8 @@ export default {
     }
   },
   methods: {
-    isSkillSelected(skillId) {
-      const isSelected = this.fields.selectedSkills.find(id => id === skillId) != null
+    isIndustrySelected(industryId) {
+      const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
       return {
         p10: true,
         btn: true,
@@ -76,12 +79,12 @@ export default {
         'btn-selected': isSelected
       }
     },
-    toggleSkillSelected(skillId) {
-      const isSelected = this.fields.selectedSkills.find(id => id === skillId) != null
+    toggleIndustrySelected(industryId) {
+      const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
       if (!isSelected) {
-        this.fields.selectedSkills.push(skillId)
+        this.fields.selectedIndustries.push(industryId)
       } else {
-        this.fields.selectedSkills = this.fields.selectedSkills.filter(id => id !== skillId)
+        this.fields.selectedIndustries = this.fields.selectedIndustries.filter(id => id !== industryId)
       }
     }
   },
@@ -90,18 +93,18 @@ export default {
       const items = Object.values(this.fields)
       function checkEmpty(prop) {
         if (prop instanceof Array) {
-          return prop.length >= 1;
+          return prop.length >= 1
         } else if (prop) {
-          return prop.toString().length >= 0;
+          return prop.toString().trim().length >= 0
         }
 
         return false
       }
       return items.every(checkEmpty)
     },
-    getVisibleSkills() {
-      if (!this.criteria.trim()) return this.skills
-      return this.skills.filter(skill => skill.title.toLowerCase().includes(this.criteria.trim()))
+    getVisibleIndustries() {
+      if (!this.criteria.trim()) return this.industries
+      return this.industries.filter(industry => industry.title.toLowerCase().includes(this.criteria.trim()))
     }
   }
 }

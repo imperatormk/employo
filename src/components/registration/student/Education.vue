@@ -17,8 +17,8 @@
         v-text-field.br5.demiBold(v-model="fields.selGpa" solo background-color="#f5f5f5" max="4" min="0" suffix='/4.0' type="number")
       v-flex(flex-column)
         .field-label.demiBold Degree
-        .flex.flex-wrap.p10.style-1(style="height:130px;overflow-y: scroll;")
-          v-btn.demiBold(v-for="degree in degrees" :key="degree.id" :class="isDegreeSelected(degree)" @click="setDegree(degree)") {{ degree.title }}
+          .flex.flex-wrap.p10.style-1(style="height:130px;overflow-y: scroll;")
+            v-btn.demiBold(v-for="degree in degrees" :key="degree.id" :class="isDegreeSelected(degree)" @click="setDegree(degree)") {{ degree.title }}
 </template>
 
 <script>
@@ -37,8 +37,6 @@ export default {
         selField: null,
         selYear: null,
         selGpa: null,
-        // officialCoop: null,
-        // availability: null,
         degree: null,
       },
       universities: [{
@@ -86,9 +84,9 @@ export default {
       const items = Object.values(this.fields)
       function checkEmpty(prop) {
         if (prop instanceof Array) {
-          return prop.length >= 1;
+          return prop.length >= 1
         } else if (prop) {
-          return prop.toString().length >= 0;
+          return prop.toString().trim().length >= 0
         }
 
         return false

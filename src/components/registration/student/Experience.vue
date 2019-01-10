@@ -1,19 +1,23 @@
 <template lang="pug">
-  v-container(grid-list-xl style="height:100%;")
-    h1.label What types of roles are you interested in?
-    .flex-column.justify-center(style="height:100%;")
-      .flex-row.justify-center
-        RoleType(v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)")
+  v-container(grid-list-xl)
+    h1.label Tell us about your experience
+    div
+      .desc-label How many years of experience do you have?
+      .flex.space-between.align-center.p10
+        range-slider(class="yearSlider" min="0" max="5" step="1" v-model="fields.numYears")
+        v-chip.chip {{ fields.numYears }} years
+    div
+      .desc-label What areas have you had most experience with?
+      .flex.space-between.align-center.p10.flex-wrap.style-1(style="height:130px;overflow-y: scroll;")
+        v-btn(v-for="area in areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
 </template>
 
 <script>
-import RoleType from '@/components/RoleType'
+import RangeSlider from 'vue-range-slider'
+import 'vue-range-slider/dist/vue-range-slider.css'
 import pagesList from '@/components/registration/page_list'
 
-import technical from '@/assets/role_types/technical.png'
-import nontechnical from '@/assets/role_types/nontechnical.png'
-
-const PAGE_ID = pagesList.studentPagesList.roles
+const PAGE_ID = pagesList.studentPagesList.experience
 
 export default {
   created() {
@@ -22,18 +26,33 @@ export default {
   data() {
     return {
       fields: {
-        selectedRoles: []
+        selectedAreas: [],
+        numYears: 1
       },
-      roleTypes: [{
+      areas: [{
         id: 0,
-        title: 'Technical',
-        desc: 'Software Engineers...',
-        image: technical
+        title: 'Frontend'
       }, {
         id: 1,
-        title: 'Non-Technical',
-        desc: 'Business Development...',
-        image: nontechnical
+        title: 'Backend'
+      }, {
+        id: 2,
+        title: 'Databases'
+      }, {
+        id: 3,
+        title: 'Mobile'
+      }, {
+        id: 4,
+        title: 'Design'
+      }, {
+        id: 5,
+        title: 'QA'
+      }, {
+        id: 6,
+        title: 'IT'
+      }, {
+        id: 7,
+        title: 'Full stack'
       }]
     }
   },
@@ -42,9 +61,9 @@ export default {
       const items = Object.values(this.fields)
       function checkEmpty(prop) {
         if (prop instanceof Array) {
-          return prop.length >= 1;
+          return prop.length >= 1
         } else if (prop) {
-          return prop.toString().length >= 0;
+          return prop.toString().trim().length >= 0
         }
 
         return false
@@ -70,27 +89,26 @@ export default {
     }
   },
   methods: {
-    isRoleSelected(roleId) {
-      const isSelected = this.fields.selectedRoles.find(id => id === roleId) != null
+    isAreaSelected(areaId) {
+      const isSelected = this.fields.selectedAreas.find(id => id === areaId) != null
       return {
         p10: true,
         btn: true,
         'button-chip': true,
-        'btn-selected': isSelected,
-        isSelected
+        'btn-selected': isSelected
       }
     },
-    toggleRoleSelected(roleId) {
-      const isSelected = this.fields.selectedRoles.find(id => id === roleId) != null
+    toggleAreaSelected(areaId) {
+      const isSelected = this.fields.selectedAreas.find(id => id === areaId) != null
       if (!isSelected) {
-        this.fields.selectedRoles.push(roleId)
+        this.fields.selectedAreas.push(areaId)
       } else {
-        this.fields.selectedRoles = this.fields.selectedRoles.filter(id => id !== roleId)
+        this.fields.selectedAreas = this.fields.selectedAreas.filter(id => id !== areaId)
       }
     }
   },
   components: {
-    RoleType
+    RangeSlider
   }
 }
 </script>

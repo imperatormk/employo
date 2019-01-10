@@ -13,22 +13,31 @@
   src: url("../assets/typo/avenirnextcondensed.ttf") format("truetype");
 }
 
+.style-1::-webkit-scrollbar {
+  width: 2px;
+  background-color: #707070;
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
 .body {
   font-family: 'AvenirNext','Lato','Helvetica', sans-serif;
 }
 
 .style-1::-webkit-scrollbar {
   width: 6px;
-  background-color: #F5F5F5;
+  background-color: #707070;
 } 
 
 .style-1::-webkit-scrollbar-thumb {
-  background-color: #c41717;
+  background-color: #477ee6;
 }
 
 .style-1::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  background-color: #F5F5F5;
+  background-color: #707070;
 }
 
 .application {
@@ -124,6 +133,10 @@ h1 {
   flex-wrap: wrap;
 }
 
+.p-left-0 {
+  padding-left: 0px !important;
+}
+
 // .m5, m10 ....
 @for $i from 1 through 20 {
   .m#{$i * 5} {
@@ -147,7 +160,7 @@ h1 {
 // .p5-left, .p10-left...
 @for $i from 1 through 20 {
   .p#{$i * 5}#{-left} {
-    padding-left: $i * 5px
+    padding-left: $i * 5px !important
   }
 }
 // .p5-right, .p10-right...
@@ -272,12 +285,28 @@ h1 {
 .field-label {
   text-transform: uppercase;
   color: #3164e3;
-  padding: 5px 5px 10px 5px;
+  padding: 5px 5px 10px 10px;
+  font-size: 1.2em;
+  &.alternate {
+    color: #47afe6;
+  }
+}
+
+.small-label {
+  color: #3164e3;
+  padding: 5px 5px 10px 10px;
+  font-size: 0.9em;
+  &.alternate {
+    color: #47afe6;
+  }
 }
 
 .header-text {
   font-size: 25px;
   color: #3164e3;
+  &.alternate {
+    color: #47afe6;
+  }
 }
 
 .light-p {
@@ -287,6 +316,10 @@ h1 {
 .desc-label {
   color: #3164e3;
   padding: 10px 5px;
+  font-size: 1.2em;
+  &.alternate {
+    color: #47afe6;
+  }
 }
 
 $round-border: 25px;
@@ -341,6 +374,9 @@ $darker-blue: #477EE6;
 
 .blue-color {
   color: #3164e3 !important;
+  &.alternate {
+    color: #47afe6 !important;
+  }
 }
 
 .text-muted {
@@ -406,7 +442,6 @@ $darker-blue: #477EE6;
   }
 }
 
-
 @media(min-width:960px) {
   .v-card-holder {
     margin-bottom:20px;
@@ -433,6 +468,10 @@ $darker-blue: #477EE6;
 
 .of-hidden {
   overflow: hidden;
+}
+
+.of-scroll {
+  overflow-y: scroll;
 }
 
 .spacer {

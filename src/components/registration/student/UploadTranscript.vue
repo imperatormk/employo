@@ -2,10 +2,10 @@
   v-container
     h1.label Last step...
     .flex.row
-      .flex-column.w100.align-center
+      .flex-column.w50.align-center
         h1.desc-label Upload your Resumé
         DragNDrop
-      .flex-column.w100.align-center
+      .flex-column.w50.align-center
         h1.desc-label Upload your Resumé
         DragNDrop
     .flex-row.flex-wrap
