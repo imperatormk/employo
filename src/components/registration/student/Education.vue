@@ -17,8 +17,7 @@
         v-text-field.br5.demiBold(v-model="fields.selGpa" solo background-color="#f5f5f5" max="4" min="0" suffix='/4.0' type="number")
       v-flex(flex-column)
         .field-label.demiBold Degree
-        .of-scroll(v-bar style="height:150px;")
-          .flex.flex-wrap.m10
+          .flex.flex-wrap.p10.style-1(style="height:130px;overflow-y: scroll;")
             v-btn.demiBold(v-for="degree in degrees" :key="degree.id" :class="isDegreeSelected(degree)" @click="setDegree(degree)") {{ degree.title }}
 </template>
 

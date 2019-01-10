@@ -6,16 +6,19 @@
         StudentAccount(v-if="curPageId === pages.account" @success='allowContinue($event)')
         Education(v-else-if="curPageId === pages.education" @success='allowContinue($event)')
         Work(v-else-if="curPageId === pages.work" @success='allowContinue($event)')
-        Experience(v-else-if="curPageId === pages.experience" @success='allowContinue($event)')
         Roles(v-else-if="curPageId === pages.roles" @success='allowContinue($event)' @roleChanged="selStudentRole = $event")
         .flex.h100(v-else-if="selStudentRole == 0")
           //- technical
-          Industries(v-if="curPageId === pages.industries" @success='allowContinue($event)')
+          Experience(v-if="curPageId === pages.experience" @success='allowContinue($event)')
+          TechnicalRoles(v-else-if="curPageId === pages.technicalRoles" @success='allowContinue($event)')
+          Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
           Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
+          AlmostDone(v-else-if="curPageId === pages.almostDone" @success='allowContinue($event)')
           UploadTranscript(v-else-if="curPageId === pages.transcript")
         .flex.h100(v-else-if="selStudentRole == 1")
           //- non-technical
-          Industries(v-if="curPageId === pages.industries" @success='allowContinue($event)')
+          Experience(v-if="curPageId === pages.experience" @success='allowContinue($event)')
+          Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
           Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
           UploadTranscript(v-else-if="curPageId === pages.transcript")
     .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employeer'")
@@ -23,7 +26,9 @@
         EmployeerAccount(v-if="curPageId === pages.account" @success='allowContinue($event)')
     .spacer
     .flex.align-end.p30
-      .flex.align-center
+      .flex.justify-end(v-if="curPageId === pages.acctype")
+        v-btn.btn(v-if="!isLastPage" @click="goNext" :disabled="!canContinue") Next
+      .flex.align-center(v-else)
         v-btn.btn.back(@click="goBack") Back
         .p40-side.w100
           v-progress-linear(v-model="progress")
@@ -41,7 +46,7 @@
 <script>
 import pagesList, { studentPages, employeerPages } from '@/components/registration/page_list'
 
-import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, UploadTranscript, EmployeerAccount } from '@/components/registration'
+import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, TechnicalRoles, AlmostDone, UploadTranscript, EmployeerAccount } from '@/components/registration'
 
 export default {
   created() {
@@ -131,7 +136,7 @@ export default {
     }
   },
   components: {
-    AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, UploadTranscript, EmployeerAccount
+    AccountType, StudentAccount, Education, Work, Experience, Industries, TechnicalRoles, Roles, Skills, AlmostDone, UploadTranscript, EmployeerAccount
   }
 }
 </script>

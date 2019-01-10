@@ -3,23 +3,22 @@
     v-layout(wrap align-center)
       v-flex(xs12, sm12, d-flex)
         h1.label Tell us about your work preferences.
-      v-flex(xs12, sm6, d-block)
+      v-flex(xs12, sm5, d-block)
         .field-label.demiBold Official co-op
         div(d-flex)
           v-btn.demiBold(:class='isButtonSelected(fields.officialCoop,"true")', @click='fields.officialCoop="true"') Yes
           v-btn.demiBold(:class='isButtonSelected(fields.officialCoop,"false")', @click='fields.officialCoop="false"') No
-      v-flex(xs12, sm6, d-block)
+      v-flex(xs12, sm7, d-block)
         .field-label.demiBold Availability
         div(d-flex)
-          v-btn.demiBold(v-for="a in availabilitys" :key="a.id" :class="isLocationSelected(a.id, 'availability')" @click="toggleLocationSelected(a.id, 'availability')") {{ a.title }}
+          v-btn.demiBold.p-left-0(v-for="a in availabilitys" :key="a.id" :class="isLocationSelected(a.id, 'availability')" @click="toggleLocationSelected(a.id, 'availability')") {{ a.title }}
       v-flex(flex-column)
         .field-label.demiBold Work term length
-        .flex.flex-wrap.p10
-          v-btn.demiBold(v-for="termLength in termLengths" :key="termLength.id" :class="isLocationSelected(termLength.id, 'termLength')" @click="toggleLocationSelected(termLength.id, 'termLength')") {{ termLength.title }} Months
+        .flex-wrap.p10.p-left-0.style-1(style="height:130px;overflow-y: scroll;")
+            v-btn.demiBold(v-for="termLength in termLengths" :key="termLength.id" :class="isLocationSelected(termLength.id, 'termLength')" @click="toggleLocationSelected(termLength.id, 'termLength')") {{ termLength.title }} Months
       v-flex(flex-column)
         .field-label.demiBold Work location preference (choose all that apply)
-        .of-scroll(v-bar style="height:150px;")
-          .flex.flex-wrap.m10
+        .flex-wrap.p10.p-left-0.style-1(style="height:130px;overflow-y: scroll;")
             v-btn.demiBold(v-for="workLocation in workLocations" :key="workLocation.id" :class="isLocationSelected(workLocation.id, 'locationPref')" @click="toggleLocationSelected(workLocation.id, 'locationPref')") {{ workLocation.title }}
 </template>
 
@@ -48,6 +47,18 @@ export default {
         title: 'Waterloo'
       }, {
         id: 2,
+        title: 'Ottawa'
+      }, {
+        id: 3,
+        title: 'Ottawa'
+      }, {
+        id: 4,
+        title: 'Ottawa'
+      }, {
+        id: 5,
+        title: 'Ottawa'
+      }, {
+        id: 6,
         title: 'Ottawa'
       }],
       availabilitys: [{

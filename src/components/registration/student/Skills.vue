@@ -1,10 +1,13 @@
 <template lang="pug">
   v-container(grid-list-xl)
-    h1.label What are your strongest skills?
-    .desc-label Choose as many that apply
-    v-input(v-model="criteria" placeholder="Search skills")
-    .flex.space-between.flex-wrap.p10
-      v-btn(v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)") {{ skill.title }}
+    v-flex(xs12, sm12, d-flex).p70-bot
+      h1.label What are your strongest skills?
+    v-layout(wrap align-center)
+      v-flex(flex-column)
+        .desc-label Choose as many that apply
+        v-input(v-model="criteria" placeholder="Search skills")
+        .flex-wrap.p10.p-left-0.style-1(style="height:130px;overflow-y: scroll;")
+          v-btn(v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)") {{ skill.title }}
 </template>
 
 <script>

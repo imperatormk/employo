@@ -1,10 +1,13 @@
 <template lang="pug">
   v-container(grid-list-xl)
-    h1.label Industries you would like to work with?
-    .desc-label Choose as many that apply
-    v-input(v-model="criteria" placeholder="Search industries")
-    .flex.space-between.flex-wrap.p10
-      v-btn(v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)") {{ industry.title }}
+    v-flex(xs12, sm12, d-flex).p70-bot
+            h1.label Industries you would like to work with?
+    v-layout(wrap align-center)
+      v-flex(flex-column)
+        .field-label.demiBold Choose as many that apply
+        v-input(v-model="criteria" placeholder="Search industries")
+        .flex-wrap.p10.p-left-0.style-1(style="height:130px;overflow-y: scroll;")
+          v-btn(v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)") {{ industry.title }}
 </template>
 
 <script>

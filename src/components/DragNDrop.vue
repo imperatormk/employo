@@ -104,9 +104,8 @@ export default {
 <style>
   form{
     display: block;
-    height: 500px;
+    height: 300px;
     border: 5px solid #3164e3;
-    border-radius: 50px;
     border-style: dashed;
     margin: auto;
     text-align: center;

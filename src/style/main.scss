@@ -13,8 +13,31 @@
   src: url("../assets/typo/avenirnextcondensed.ttf") format("truetype");
 }
 
+.style-1::-webkit-scrollbar {
+  width: 2px;
+  background-color: #707070;
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
 .body {
   font-family: 'AvenirNext','Lato','Helvetica', sans-serif;
+}
+
+.style-1::-webkit-scrollbar {
+  width: 6px;
+  background-color: #707070;
+} 
+
+.style-1::-webkit-scrollbar-thumb {
+  background-color: #477ee6;
+}
+
+.style-1::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #707070;
 }
 
 .application {
@@ -38,10 +61,22 @@ p {
   color: #8c8c8c;
 }
 
+.avenirNext {
+  font-family: 'AvenirNext' !important;
+}
+
+.avenir {
+  font-family: 'Avenir' !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 h1 {
   &.label {
     font-size: 40px;
-    font-family: Avenir;
+    font-family: 'AvenirNext';
     font-weight: bold;
     color: #000000;
   }
@@ -98,6 +133,10 @@ h1 {
   flex-wrap: wrap;
 }
 
+.p-left-0 {
+  padding-left: 0px !important;
+}
+
 // .m5, m10 ....
 @for $i from 1 through 20 {
   .m#{$i * 5} {
@@ -121,7 +160,7 @@ h1 {
 // .p5-left, .p10-left...
 @for $i from 1 through 20 {
   .p#{$i * 5}#{-left} {
-    padding-left: $i * 5px
+    padding-left: $i * 5px !important
   }
 }
 // .p5-right, .p10-right...
@@ -246,8 +285,17 @@ h1 {
 .field-label {
   text-transform: uppercase;
   color: #3164e3;
-  padding: 5px 5px 10px 5px;
+  padding: 5px 5px 10px 10px;
   font-size: 1.2em;
+  &.alternate {
+    color: #47afe6;
+  }
+}
+
+.small-label {
+  color: #3164e3;
+  padding: 5px 5px 10px 10px;
+  font-size: 0.9em;
   &.alternate {
     color: #47afe6;
   }
