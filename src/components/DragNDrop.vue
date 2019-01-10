@@ -14,14 +14,15 @@
         span {{ file.name }}
         .remove-container
           a.remove(@click="removeFile(key)") Remove
-      .p20-top
-        v-btn.btn.submit-button(outline @click="submitFiles()" v-show="files.length > 0") Submit
 </template>
 
 <script>
 // import axios from 'axios'
 
 export default {
+  props: {
+    filesProp: Array
+  },
   data() {
     return {
       dragAndDropCapable: false,
@@ -30,6 +31,8 @@ export default {
     }
   },
   mounted() {
+    if (this.filesProp) this.files = this.filesProp
+
     this.dragAndDropCapable = this.determineDragAndDropCapable()
     if (this.dragAndDropCapable) {
       ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop']
@@ -53,6 +56,7 @@ export default {
       const file = e.target.files[0]
       if (file) {
         this.files.push(file)
+        this.$emit('filesChanged', this.files)
       }
     },
     determineDragAndDropCapable() {
@@ -96,6 +100,7 @@ export default {
     },
     removeFile(key) {
       this.files.splice(key, 1)
+      this.$emit('filesChanged', this.files)
     }
   }
 }
