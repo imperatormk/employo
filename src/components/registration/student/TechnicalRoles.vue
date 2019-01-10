@@ -5,16 +5,10 @@
         h1.label Select your preffered technical roles
       v-flex(flex-column)
         .field-label.demiBold Choose as many that apply
-        .flex-wrap.p10.p-left-0.style-1(style="height:130px;overflow-y: scroll;")
-          v-autocomplete(v-model="fields.rolePref"
-          :items="technicalRoles"
-          item-text="title"
-          label="Search Roles"
-          item-disabled
-          multiple
-          persistent-hint)
-        .flex-wrap.p10.p-left-0.style-1(style="height:130px;overflow-y: scroll;")
-            v-btn.demiBold(v-for="role in technicalRoles" :key="role.id" :class="isLocationSelected(role.id, 'rolePref')" @click="toggleLocationSelected(role.id, 'rolePref')") {{ role.title }}
+        .flex-wrap.p10.p-left-0.style-1
+          v-text-field(v-model="criteria" placeholder="Search roles")
+        .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
+            v-btn.demiBold(v-for="role in getVisibleRoles" :key="role.id" :class="isLocationSelected(role.id, 'rolePref')" @click="toggleLocationSelected(role.id, 'rolePref')") {{ role.title }}
 </template>
 
 <script>
@@ -29,11 +23,11 @@ export default {
   },
   data() {
     return {
-      model: null,
+      criteria: '',
       fields: {
         rolePref: []
       },
-      technicalRoles: [{
+      roles: [{
         id: 0,
         title: 'Back-End'
       }, {
@@ -60,6 +54,10 @@ export default {
   computed: {
     checkForSuccess() {
       return helpers.checkEmpty(this.fields)
+    },
+    getVisibleRoles() {
+      if (!this.criteria.trim()) return this.roles
+      return this.roles.filter(role => role.title.toLowerCase().includes(this.criteria.trim()))
     }
   },
   watch: {

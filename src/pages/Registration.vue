@@ -35,9 +35,9 @@
         .p40-side.w100
           v-progress-linear(v-model="progress")
         v-btn.btn(v-if="!isLastPage" @click="goNext" :disabled="!canContinue") Next
-        v-btn.btn(v-else-if="!canContinue" v-model="dialog" width="500") Submit
+        v-btn.btn(v-else-if="!canContinue" width="500" :disabled="true") Submit
         v-dialog(v-else v-model="dialog" width="500")
-          v-btn.btn(@click="submitData" slot="activator" :disabled="!canContinue") Submit
+          v-btn.btn(@click="submitData" slot="activator") Submit
           v-card.border-round.p50-top.p30-side
             v-card-text.fs20.demiBold Thank you for signing up! Make sure to check your email for updates
             v-divider

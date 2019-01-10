@@ -4,10 +4,10 @@
     .flex.row
       .flex-column.w50.align-center
         h1.desc-label Upload your Resumé
-        DragNDrop
+        DragNDrop(:filesProp="fields.resume" @filesChanged="filesChanged($event, 'resume')")
       .flex-column.w50.align-center
         h1.desc-label Upload your Transcript
-        DragNDrop
+        DragNDrop(:filesProp="fields.transcript" @filesChanged="filesChanged($event, 'transcript')")
     .flex-row.flex-wrap
       .p10.w50
         .desc-label LinkedIn URL
@@ -34,10 +34,17 @@ export default {
   data() {
     return {
       fields: {
+        resume: [],
+        transcript: [],
         linkedIn: '',
         gitHub: '',
         website: ''
       }
+    }
+  },
+  methods: {
+    filesChanged(files, field) {
+      this.fields[field] = files
     }
   },
   computed: {

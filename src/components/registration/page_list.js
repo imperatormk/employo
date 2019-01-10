@@ -97,6 +97,8 @@ const studentPages = [{
 {
   pageId: studentPagesList.transcript,
   fields: {
+    resume: [],
+    transcript: [],
     linkedIn: '',
     gitHub: '',
     website: ''
