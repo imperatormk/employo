@@ -23,6 +23,7 @@
 <script>
 import DragNDrop from '@/components/DragNDrop'
 import pagesList from '@/components/registration/page_list'
+import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.transcript
 
@@ -33,25 +34,15 @@ export default {
   data() {
     return {
       fields: {
-        linkedIn: null,
-        gitHub: null,
-        website: null
+        linkedIn: '',
+        gitHub: '',
+        website: ''
       }
     }
   },
   computed: {
     checkForSuccess() {
-      const items = Object.values(this.fields)
-      function checkEmpty(prop) {
-        if (prop instanceof Array) {
-          return prop.length >= 1
-        } else if (prop) {
-          return prop.toString().trim().length >= 0
-        }
-
-        return false
-      }
-      return items.every(checkEmpty)
+      return helpers.checkEmpty(this.fields)
     }
   },
   watch: {

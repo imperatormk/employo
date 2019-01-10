@@ -5,13 +5,14 @@
     v-layout(wrap align-center)
       v-flex(flex-column)
         .field-label.demiBold Choose as many that apply
-        v-input(v-model="criteria" placeholder="Search industries")
+        v-input(v-model="criteria" placeholder="Search industries" hide-details)
         .flex-wrap.p10.p-left-0.style-1(style="height:130px;overflow-y: scroll;")
           v-btn(v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)") {{ industry.title }}
 </template>
 
 <script>
 import pagesList from '@/components/registration/page_list'
+import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.industries
 
@@ -90,17 +91,7 @@ export default {
   },
   computed: {
     checkForSuccess() {
-      const items = Object.values(this.fields)
-      function checkEmpty(prop) {
-        if (prop instanceof Array) {
-          return prop.length >= 1
-        } else if (prop) {
-          return prop.toString().trim().length >= 0
-        }
-
-        return false
-      }
-      return items.every(checkEmpty)
+      return helpers.checkEmpty(this.fields)
     },
     getVisibleIndustries() {
       if (!this.criteria.trim()) return this.industries
