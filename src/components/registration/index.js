@@ -8,7 +8,7 @@ import Roles from './student/Roles'
 import Industries from './student/Industries'
 import TechnicalRoles from './student/TechnicalRoles'
 import Skills from './student/Skills'
-import AlmostDone from './student/AlmostDone'
+import JobSearchProgress from './student/JobSearchProgress'
 import UploadTranscript from './student/UploadTranscript'
 
 import EmployeerAccount from './employeer/Account'
@@ -23,7 +23,7 @@ export {
   Industries,
   TechnicalRoles,
   Skills,
-  AlmostDone,
+  JobSearchProgress,
   UploadTranscript,
   EmployeerAccount
 }

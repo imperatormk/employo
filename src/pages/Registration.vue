@@ -13,7 +13,7 @@
           TechnicalRoles(v-else-if="curPageId === pages.technicalRoles" @success='allowContinue($event)')
           Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
           Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
-          AlmostDone(v-else-if="curPageId === pages.almostDone" @success='allowContinue($event)')
+          JobSearchProgress(v-else-if="curPageId === pages.almostDone" @success='allowContinue($event)')
           UploadTranscript(v-else-if="curPageId === pages.transcript")
         .flex.h100(v-else-if="selStudentRole == 1")
           //- non-technical
@@ -46,7 +46,7 @@
 <script>
 import pagesList, { studentPages, employeerPages } from '@/components/registration/page_list'
 
-import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, TechnicalRoles, AlmostDone, UploadTranscript, EmployeerAccount } from '@/components/registration'
+import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, TechnicalRoles, JobSearchProgress, UploadTranscript, EmployeerAccount } from '@/components/registration'
 
 export default {
   created() {
@@ -136,7 +136,7 @@ export default {
     }
   },
   components: {
-    AccountType, StudentAccount, Education, Work, Experience, Industries, TechnicalRoles, Roles, Skills, AlmostDone, UploadTranscript, EmployeerAccount
+    AccountType, StudentAccount, Education, Work, Experience, Industries, TechnicalRoles, Roles, Skills, JobSearchProgress, UploadTranscript, EmployeerAccount
   }
 }
 </script>

@@ -6,7 +6,7 @@
         h1.desc-label Upload your Resumé
         DragNDrop
       .flex-column.w50.align-center
-        h1.desc-label Upload your Resumé
+        h1.desc-label Upload your Transcript
         DragNDrop
     .flex-row.flex-wrap
       .p10.w50

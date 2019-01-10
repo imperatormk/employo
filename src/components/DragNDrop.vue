@@ -144,12 +144,4 @@ export default {
     font-weight: bold;
     margin-top: 20px;
   }
-
-  progress{
-    width: 400px;
-    margin: auto;
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
 </style>

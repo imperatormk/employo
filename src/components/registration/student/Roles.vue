@@ -28,13 +28,15 @@ export default {
         id: 0,
         title: 'Technical',
         desc: 'Software Engineers...',
-        image: technical
+        image: technical,
+        fullImage: true
       }, {
         id: 1,
         title: 'Non-Technical',
         desc: 'Business Development...',
         image: nontechnical,
-        alternate: true
+        alternate: true,
+        fullImage: true
       }]
     }
   },
