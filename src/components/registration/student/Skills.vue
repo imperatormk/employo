@@ -12,6 +12,7 @@
 
 <script>
 import pagesList from '@/components/registration/page_list'
+import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.skills
 
@@ -90,17 +91,7 @@ export default {
   },
   computed: {
     checkForSuccess() {
-      const items = Object.values(this.fields)
-      function checkEmpty(prop) {
-        if (prop instanceof Array) {
-          return prop.length >= 1
-        } else if (prop) {
-          return prop.toString().trim().length >= 0
-        }
-
-        return false
-      }
-      return items.every(checkEmpty)
+      return helpers.checkEmpty(this.fields)
     },
     getVisibleSkills() {
       if (!this.criteria.trim()) return this.skills
