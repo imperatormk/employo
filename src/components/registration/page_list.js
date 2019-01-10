@@ -93,6 +93,14 @@ const studentPages = [{
     jobSearch: '',
     companySize: [],
   }
+},
+{
+  pageId: studentPagesList.transcript,
+  fields: {
+    linkedIn: '',
+    gitHub: '',
+    website: ''
+  }
 }]
 
 export { studentPages }
@@ -105,7 +113,6 @@ const employeerPages = [{
     companyName: '',
     companyWebsite: '',
     email: '',
-    password: '',
     city: '',
     phoneNumber: '',
   }

@@ -2,7 +2,7 @@
   .of-hidden.m20.role-container(@click="clicked" :class="{ selected: isSelected, alternate: typeData.alternate }")
     .p20-bot.h100.flex-column.space-between.align-center
       div(:class="{p30: !typeData.fullImage}")
-        img(width="100%" :src="typeData.image" style="max-width:380px;height:332px;")
+        img(width="100%" :src="typeData.image" :class="{ front: isFrontPage(typeData.id), techImg: !isFrontPage(typeData.id)}")
       .flex-column.p15-top
         h1.demiBold(:class="{ 'blue-color': true, alternate: typeData.alternate }") {{ typeData.title }}
         span.demiBold {{ typeData.desc }}
@@ -33,6 +33,13 @@ export default {
       }
       return false
     },
+    isFrontPage(id) {
+      if (id === 'student' || id === 'employeer') {
+        return true
+      }
+
+      return false
+    },
     isStudent(id) {
       if (id === 'student') {
         return true
@@ -59,5 +66,15 @@ export default {
     &.alternate {
       background-color: #DEEFFA;
     }
+  }
+
+  .techImg {
+    max-width:380px;
+    height:332px;
+  }
+
+  .front {
+    max-width: 200px !important;
+    height: 150px !important;
   }
 </style>
