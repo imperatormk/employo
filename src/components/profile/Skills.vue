@@ -20,7 +20,7 @@
                       v-container(grid-list-xl)
                         h1.label What are your strongest skills?
                         .desc-label Choose as many that apply
-                        v-input(v-model="criteria" placeholder="Search skills")
+                        v-text-field(v-model="criteria" placeholder="Search skills")
                         .flex.space-between.flex-wrap.p10
                           v-chip(small=true, text-color="black", v-for="skill in skills", :key="skill.id" :class="isSkillSelected(skill.title)" @click="toggleSkillSelected(skill.title)").f1-2m {{skill.title}}
                   div.flex.space-around

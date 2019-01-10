@@ -20,7 +20,7 @@
                       v-container(grid-list-xl)
                         h1.label Location?
                         .desc-label Choose as many that apply
-                        v-input(v-model="criteria" placeholder="Search skills")
+                        v-text-field(v-model="criteria" placeholder="Search skills")
                         .flex.space-between.flex-wrap.p10
                           v-chip(small=true, text-color="black", v-for="location in locations", :key="location.id" :class="isSkillSelected(location.title)" @click="toggleSkillSelected(location.title)").f1-2m {{location.title}}
                   div.flex.space-around

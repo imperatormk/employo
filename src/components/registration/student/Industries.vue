@@ -5,8 +5,9 @@
     v-layout(wrap align-center)
       v-flex(flex-column)
         .field-label.demiBold Choose as many that apply
-        v-input(v-model="criteria" placeholder="Search industries" hide-details)
-        .flex-wrap.p10.p-left-0.style-1(style="height:130px;overflow-y: scroll;")
+        .flex
+          v-text-field(v-model="criteria" placeholder="Search industries" hide-details)
+        .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
           v-btn(v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)") {{ industry.title }}
 </template>
 
