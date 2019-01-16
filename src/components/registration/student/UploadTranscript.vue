@@ -1,23 +1,20 @@
 <template lang="pug">
   v-container
-    h1.label Last step...
+    h1.label.p50-bot Last step...
     .flex.row
       .flex-column.w50.align-center
         h1.desc-label Upload your Resumé
         DragNDrop(:filesProp="fields.resume" @filesChanged="filesChanged($event, 'resume')")
       .flex-column.w50.align-center
-        h1.desc-label Upload your Transcript
-        DragNDrop(:filesProp="fields.transcript" @filesChanged="filesChanged($event, 'transcript')")
-    .flex-row.flex-wrap
-      .p10.w50
-        .desc-label LinkedIn URL
-        v-text-field.br5(v-model="fields.linkedIn" solo background-color="#f5f5f5")
-      .p10.w50
-        .desc-label GitHub URL
-        v-text-field.br5(v-model="fields.gitHub" solo background-color="#f5f5f5")
-      .p10.w50
-        .desc-label Personal Website
-        v-text-field.br5(v-model="fields.website" solo background-color="#f5f5f5")
+        .p10.w100
+          .desc-label LinkedIn URL
+          v-text-field.br5(v-model="fields.linkedIn" solo background-color="#f5f5f5")
+        .p10.w100
+          .desc-label GitHub URL
+          v-text-field.br5(v-model="fields.gitHub" solo background-color="#f5f5f5")
+        .p10.w100
+          .desc-label Personal Website
+          v-text-field.br5(v-model="fields.website" solo background-color="#f5f5f5")
 </template>
 
 <script>

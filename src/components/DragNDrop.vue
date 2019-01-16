@@ -9,11 +9,11 @@
               span.header-text Drag and drop
               span.far.fa-copy.blue-color.fs80
               span.header-text Click to browse
-      div.file-listing(v-for="(file, key) in files" :key="key")
-        img.preview(v-bind:ref="`preview${parseInt(key, 10)}`")
-        span {{ file.name }}
-        .remove-container
-          a.remove(@click="removeFile(key)") Remove
+              div.file-listing(v-for="(file, key) in files" :key="key")
+                img.preview(v-bind:ref="`preview${parseInt(key, 10)}`")
+                span {{ reduceStringSize(file.name) }}
+                .remove-container
+                  a.remove(@click="removeFile(key)") Remove
 </template>
 
 <script>
@@ -32,7 +32,6 @@ export default {
   },
   mounted() {
     if (this.filesProp) this.files = this.filesProp
-
     this.dragAndDropCapable = this.determineDragAndDropCapable()
     if (this.dragAndDropCapable) {
       ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop']
@@ -52,6 +51,14 @@ export default {
     }
   },
   methods: {
+    reduceStringSize(name) {
+      if (name.length > 10) {
+        const string = name.substring(0, 7)
+        const format = name.split('.').pop()
+        return `${string}...${format}`
+      }
+      return name
+    },
     fileBrowsed(e) {
       const file = e.target.files[0]
       if (file) {
@@ -109,23 +116,28 @@ export default {
 <style>
   form{
     display: block;
-    height: 300px;
+    height: auto;
+    min-height: 300px;
     border: 5px solid #3164e3;
     border-style: dashed;
     margin: auto;
     text-align: center;
-    line-height: 100px;
+    line-height: 1.6;
+    padding: 40px;
   }
 
   div.file-listing{
-    width: 500px;
     margin: auto;
     padding: 10px;
     border-bottom: 1px solid #ddd;
   }
 
   div.file-listing img{
-    height: 100px;
+    height: auto;
+  }
+
+  div.file-listing span{
+    line-height: 1.5 !important;
   }
 
   div.remove-container{
