@@ -43,6 +43,8 @@
               v-card-actions
                 v-spacer
                 v-btn.fs20.demiBold(@click="dialog = false" flat) Done
+    .flex.flex-column.justify-center.align-center.p10.h100(v-else)
+      v-progress-circular(indeterminate color="#477EE6" size="100" width="10")
 </template>
 
 <script>
