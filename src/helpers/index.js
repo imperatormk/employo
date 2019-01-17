@@ -18,9 +18,9 @@ const checkEmpty = function f(fields) {
   return items.every(checkEmptyCl)
 }
 
-const getImageData = function f(dataObj) {
+const setImageData = function f(dataObj) {
   const data = [{
-    id: 'techinical',
+    id: 'technical',
     alternate: false,
     fullImage: true,
     image: technical
@@ -41,12 +41,30 @@ const getImageData = function f(dataObj) {
     image: employeer
   }]
 
-  const objType = dataObj.id
-  return data.find(obj => obj.id === objType)
+  const returnArray = []
+  dataObj.forEach((obj) => {
+    const objType = obj.id
+    const imageData = data.find(sourceObj => sourceObj.id === objType)
+
+    const objClone = JSON.parse(JSON.stringify(obj))
+    Object.keys(imageData).forEach((key) => {
+      if (key !== 'id') objClone[key] = imageData[key]
+    })
+    returnArray.push(objClone)
+  })
+
+  return returnArray
+}
+
+const loadSourceData = function f() {
+  const SOURCE_DATA_URL = 'https://thatsmontreal.ca/smartplug/data.php'
+  return fetch(SOURCE_DATA_URL)
+    .then(res => res.json())
 }
 
 const helpers = {}
 helpers.checkEmpty = checkEmpty
-helpers.getImageData = getImageData
+helpers.setImageData = setImageData
+helpers.loadSourceData = loadSourceData
 
 export default helpers
