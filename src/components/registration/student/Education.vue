@@ -5,24 +5,24 @@
         h1.label Tell us about your education.
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold University
-        v-select.br5.demiBold(:items='universities', background-color='#f5f5f5', v-model='fields.selUniversity', item-text='title', :label='`eg. ${universities[0].title}`', solo)
+        v-select.br5.demiBold(:items='source.universities', background-color='#f5f5f5', v-model='fields.selUniversity', item-text='title', :label='`eg. ${source.universities[0].title}`', solo)
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold Field of Study
-        v-select.demiBold(:items='studyFields', background-color='#f5f5f5', v-model='fields.selField', item-text='title', :label='`eg. ${studyFields[0].title}`', solo)
+        v-select.demiBold(:items='source.studyFields', background-color='#f5f5f5', v-model='fields.selField', item-text='title', :label='`eg. ${source.studyFields[0].title}`', solo)
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold Expected Year of Graduation
-        v-select.demiBold(:items='years', background-color='#f5f5f5', v-model='fields.selYear', :label='`eg. ${years[0]}`', solo)
+        v-select.demiBold(:items='source.years', background-color='#f5f5f5', v-model='fields.selYear', :label='`eg. ${source.years[0]}`', solo)
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold Cumulative GPA
         v-text-field.br5.demiBold(v-model="fields.selGpa" solo background-color="#f5f5f5" max="4" min="0" suffix='/4.0' type="number")
       v-flex(flex-column)
         .field-label.demiBold Degree
           .flex.flex-wrap.p10.style-1.of-scroll(style="height:130px;")
-            v-btn.demiBold(v-for="degree in degrees" :key="degree.id" :class="isDegreeSelected(degree)" @click="setDegree(degree)") {{ degree.title }}
+            v-btn.demiBold(v-for="degree in source.degrees" :key="degree.id" :class="isDegreeSelected(degree)" @click="setDegree(degree)") {{ degree.title }}
 </template>
 
 <script>
-import pagesList from '@/components/registration/page_list'
+import pagesList, { studentPagesData } from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.education
@@ -33,51 +33,14 @@ export default {
   },
   data() {
     return {
+      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
       fields: {
         selUniversity: null,
         selField: null,
         selYear: null,
         selGpa: null,
         degree: null,
-      },
-      universities: [{
-        id: 0,
-        title: 'University of Toronto'
-      }, {
-        id: 1,
-        title: 'Western University'
-      }],
-      studyFields: [{
-        id: 0,
-        title: 'Computer Science'
-      }, {
-        id: 1,
-        title: 'Software Engineering'
-      }],
-      years: [2020, 2021],
-      gpas: [3.9, 4],
-      degrees: [{
-        id: 0,
-        title: 'BA'
-      }, {
-        id: 1,
-        title: 'BBA'
-      }, {
-        id: 2,
-        title: 'BBA'
-      }, {
-        id: 3,
-        title: 'BBA'
-      }, {
-        id: 4,
-        title: 'BBA'
-      }, {
-        id: 5,
-        title: 'BBA'
-      }, {
-        id: 6,
-        title: 'BBA'
-      }]
+      }
     }
   },
   computed: {

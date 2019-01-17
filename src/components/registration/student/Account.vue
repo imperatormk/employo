@@ -10,12 +10,6 @@
         .field-label.demiBold Last name
         v-text-field.br5.demiBold(v-model="fields.lastName" solo background-color="#f5f5f5" placeholder="Last name")
       v-flex(xs12, sm6, d-block)
-        .field-label.demiBold Email
-        v-text-field.br5.demiBold(v-model="fields.email" solo background-color="#f5f5f5" placeholder="Email")
-      v-flex(xs12, sm6, d-block)
-        .field-label.demiBold Password
-        v-text-field.br5.demiBold(v-model="fields.password" solo background-color="#f5f5f5" placeholder="Password" type="password")
-      v-flex(xs12, sm6, d-block)
         .field-label.demiBold City of residence
         v-text-field.br5.demiBold(v-model="fields.city" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
 </template>
@@ -35,8 +29,6 @@ export default {
       fields: {
         firstName: '',
         lastName: '',
-        email: '',
-        password: '',
         city: ''
       }
     }

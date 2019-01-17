@@ -1,4 +1,6 @@
-const initialPageList = {
+import helpers from '@/helpers'
+
+const initialPagesList = {
   acctype: 'acctype'
 }
 
@@ -12,8 +14,8 @@ const studentPagesList = {
   technicalRoles: 'technicalRoles',
   industries: 'industries',
   skills: 'skills',
-  almostDone: 'almostDone',
-  transcript: 'transcript',
+  jobSearchProgress: 'jobSearchProgress',
+  transcript: 'transcript'
 }
 
 const employeerPagesList = {
@@ -22,18 +24,16 @@ const employeerPagesList = {
 }
 
 export default {
-  initialPageList,
+  initialPagesList,
   studentPagesList,
   employeerPagesList
 }
 
-const studentPages = [{
+const studentPagesFields = [{
   pageId: studentPagesList.account,
   fields: {
     firstName: '',
     lastName: '',
-    email: '',
-    password: '',
     city: ''
   }
 },
@@ -88,7 +88,7 @@ const studentPages = [{
   }
 },
 {
-  pageId: studentPagesList.almostDone,
+  pageId: studentPagesList.jobSearchProgress,
   fields: {
     jobSearch: '',
     companySize: [],
@@ -98,16 +98,15 @@ const studentPages = [{
   pageId: studentPagesList.transcript,
   fields: {
     resume: [],
-    transcript: [],
     linkedIn: '',
     gitHub: '',
     website: ''
   }
 }]
 
-export { studentPages }
+export { studentPagesFields }
 
-const employeerPages = [{
+const employeerPagesFields = [{
   pageId: employeerPagesList.account,
   fields: {
     firstName: '',
@@ -120,4 +119,27 @@ const employeerPages = [{
   }
 }]
 
-export { employeerPages }
+export { employeerPagesFields }
+
+const studentPagesData = []
+
+export { studentPagesData }
+
+const initialPagesData = []
+
+export { initialPagesData }
+
+const setSourceData = function f(key, data) {
+  if (key === 'initial') {
+    data.forEach(dataObj => initialPagesData.push(dataObj))
+    const roleTypes = helpers.setImageData(initialPagesData.find(obj => obj.pageId === 'acctype').fields.roleTypes)
+    initialPagesData.find(obj => obj.pageId === 'acctype').fields.roleTypes = roleTypes
+  } else if (key === 'student') {
+    data.forEach(dataObj => studentPagesData.push(dataObj))
+    const roleTypes = helpers.setImageData(studentPagesData.find(obj => obj.pageId === 'roles').fields.roleTypes)
+    studentPagesData.find(obj => obj.pageId === 'roles').fields.roleTypes = roleTypes
+  }
+}
+
+export { setSourceData }
+

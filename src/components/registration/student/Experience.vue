@@ -9,13 +9,13 @@
     div
       .desc-label What areas have you had most experience with?
       .flex.space-between.align-center.p10.flex-wrap.style-1.of-scroll(style="height:130px;")
-        v-btn(v-for="area in areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
+        v-btn(v-for="area in source.areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
 </template>
 
 <script>
 import RangeSlider from 'vue-range-slider'
 import 'vue-range-slider/dist/vue-range-slider.css'
-import pagesList from '@/components/registration/page_list'
+import pagesList, { studentPagesData } from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.experience
@@ -26,35 +26,11 @@ export default {
   },
   data() {
     return {
+      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
       fields: {
         selectedAreas: [],
         numYears: 1
-      },
-      areas: [{
-        id: 0,
-        title: 'Frontend'
-      }, {
-        id: 1,
-        title: 'Backend'
-      }, {
-        id: 2,
-        title: 'Databases'
-      }, {
-        id: 3,
-        title: 'Mobile'
-      }, {
-        id: 4,
-        title: 'Design'
-      }, {
-        id: 5,
-        title: 'QA'
-      }, {
-        id: 6,
-        title: 'IT'
-      }, {
-        id: 7,
-        title: 'Full stack'
-      }]
+      }
     }
   },
   computed: {
