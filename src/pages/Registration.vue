@@ -13,7 +13,7 @@
           TechnicalRoles(v-else-if="curPageId === pages.technicalRoles" @success='allowContinue($event)')
           Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
           Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
-          JobSearchProgress(v-else-if="curPageId === pages.almostDone" @success='allowContinue($event)')
+          JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress" @success='allowContinue($event)')
           UploadTranscript(v-else-if="curPageId === pages.transcript" @success='allowContinue($event)')
         .flex.h100(v-else-if="selStudentRole == 1")
           //- non-technical
@@ -21,7 +21,7 @@
           TechnicalRoles(v-else-if="curPageId === pages.technicalRoles" @success='allowContinue($event)')
           Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
           Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
-          JobSearchProgress(v-else-if="curPageId === pages.almostDone" @success='allowContinue($event)')
+          JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress" @success='allowContinue($event)')
           UploadTranscript(v-else-if="curPageId === pages.transcript" @success='allowContinue($event)')
     .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employeer'")
       .flex
@@ -47,13 +47,13 @@
 </template>
 
 <script>
-import pagesList, { studentPages, employeerPages } from '@/components/registration/page_list'
+import pagesList, { studentPagesFields, employeerPagesFields } from '@/components/registration/page_list'
 
 import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, TechnicalRoles, JobSearchProgress, UploadTranscript, EmployeerAccount } from '@/components/registration'
 
 export default {
   created() {
-    this.pages = pagesList.initialPageList
+    this.pages = pagesList.initialPagesList
   },
   watch: {
     selAccountType: function f(val) {
@@ -78,13 +78,13 @@ export default {
       this.$store.dispatch('clearAllData')
       if (accType === 'student') {
         this.pages = pagesList.studentPagesList
-        studentPages.forEach((studentPage) => {
+        studentPagesFields.forEach((studentPage) => {
           const cloneObj = JSON.parse(JSON.stringify(studentPage)) // doing this deep clone just to be sure
           this.$store.dispatch('dataChange', cloneObj)
         })
       } else if (accType === 'employeer') {
         this.pages = pagesList.employeerPagesList
-        employeerPages.forEach((employeerPage) => {
+        employeerPagesFields.forEach((employeerPage) => {
           const cloneObj = JSON.parse(JSON.stringify(employeerPage)) // doing this deep clone just to be sure
           this.$store.dispatch('dataChange', cloneObj)
         })

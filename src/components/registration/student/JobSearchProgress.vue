@@ -22,14 +22,14 @@ v-container(grid-list-xl)
         .small-label.demiBold You're not looking and don't want to hear about relevant opportunities.
     .field-label.demiBold What is your company size preference? (# of employees)
     .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
-      v-btn.demiBold(v-for="size in sizes" :key="size.id" :class="isLocationSelected(size.id, 'companySize')" @click="toggleLocationSelected(size.id, 'companySize')") {{ size.title }}
+      v-btn.demiBold(v-for="size in source.sizes" :key="size.id" :class="isLocationSelected(size.id, 'companySize')" @click="toggleLocationSelected(size.id, 'companySize')") {{ size.title }}
 </template>
 
 <script>
-import pagesList from '@/components/registration/page_list'
+import pagesList, { studentPagesData } from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
-const PAGE_ID = pagesList.studentPagesList.almostDone
+const PAGE_ID = pagesList.studentPagesList.jobSearchProgress
 
 export default {
   created() {
@@ -37,29 +37,11 @@ export default {
   },
   data() {
     return {
+      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
       fields: {
         companySize: [],
         jobSearch: ''
-      },
-      sizes: [{
-        id: 0,
-        title: '1-10'
-      }, {
-        id: 1,
-        title: '11-50'
-      }, {
-        id: 2,
-        title: '51-200'
-      }, {
-        id: 3,
-        title: '201-500'
-      }, {
-        id: 4,
-        title: '501-1000'
-      }, {
-        id: 5,
-        title: '1000+'
-      }]
+      }
     }
   },
   methods: {

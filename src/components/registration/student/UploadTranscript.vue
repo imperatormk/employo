@@ -32,7 +32,6 @@ export default {
     return {
       fields: {
         resume: [],
-        transcript: [],
         linkedIn: '',
         gitHub: '',
         website: ''

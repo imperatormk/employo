@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import pagesList from '@/components/registration/page_list'
+import pagesList, { studentPagesData } from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.technicalRoles
@@ -24,31 +24,10 @@ export default {
   data() {
     return {
       criteria: '',
+      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
       fields: {
         rolePref: []
-      },
-      roles: [{
-        id: 0,
-        title: 'Back-End'
-      }, {
-        id: 1,
-        title: 'Full Stuck'
-      }, {
-        id: 2,
-        title: 'App dev'
-      }, {
-        id: 3,
-        title: 'UX/UI'
-      }, {
-        id: 4,
-        title: 'Full Stuck'
-      }, {
-        id: 5,
-        title: 'UX/UI'
-      }, {
-        id: 6,
-        title: 'Back-End'
-      }]
+      }
     }
   },
   computed: {
@@ -56,8 +35,8 @@ export default {
       return helpers.checkEmpty(this.fields)
     },
     getVisibleRoles() {
-      if (!this.criteria.trim()) return this.roles
-      return this.roles.filter(role => role.title.toLowerCase().includes(this.criteria.trim()))
+      if (!this.criteria.trim()) return this.source.roles
+      return this.source.roles.filter(role => role.title.toLowerCase().includes(this.criteria.trim()))
     }
   },
   watch: {

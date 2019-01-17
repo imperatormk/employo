@@ -3,14 +3,14 @@
     h1.label Are you a student or an employeer?
     .flex-column.justify-center(style="height:85%;")
       .flex-row.justify-center
-        RoleType(v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="roleSelected(roleType.id)")
+        RoleType(v-for="roleType in source.roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="roleSelected(roleType.id)")
 </template>
 
 <script>
 import RoleType from '@/components/RoleType'
+import pagesList, { initialPagesData } from '@/components/registration/page_list'
 
-import student from '@/assets/acc_types/student.png'
-import employer from '@/assets/acc_types/employer.png'
+const PAGE_ID = pagesList.initialPagesList.acctype
 
 export default {
   props: {
@@ -27,18 +27,7 @@ export default {
   },
   data() {
     return {
-      roleTypes: [{
-        id: 'student',
-        title: 'Student',
-        desc: '',
-        image: student
-      }, {
-        id: 'employeer',
-        title: 'Employeer',
-        desc: '',
-        image: employer,
-        alternate: true
-      }],
+      source: initialPagesData.find(item => item.pageId === PAGE_ID).fields,
       selected: null
     }
   },

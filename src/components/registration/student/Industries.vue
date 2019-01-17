@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import pagesList from '@/components/registration/page_list'
+import pagesList, { studentPagesData } from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.industries
@@ -24,34 +24,10 @@ export default {
   data() {
     return {
       criteria: '',
+      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
       fields: {
         selectedIndustries: [],
-      },
-      industries: [{
-        id: 0,
-        title: 'Frontend'
-      }, {
-        id: 1,
-        title: 'Backend'
-      }, {
-        id: 2,
-        title: 'Databases'
-      }, {
-        id: 3,
-        title: 'Mobile'
-      }, {
-        id: 4,
-        title: 'Design'
-      }, {
-        id: 5,
-        title: 'QA'
-      }, {
-        id: 6,
-        title: 'IT'
-      }, {
-        id: 7,
-        title: 'Full stack'
-      }]
+      }
     }
   },
   watch: {
@@ -95,8 +71,8 @@ export default {
       return helpers.checkEmpty(this.fields)
     },
     getVisibleIndustries() {
-      if (!this.criteria.trim()) return this.industries
-      return this.industries.filter(industry => industry.title.toLowerCase().includes(this.criteria.trim()))
+      if (!this.criteria.trim()) return this.source.industries
+      return this.source.industries.filter(industry => industry.title.toLowerCase().includes(this.criteria.trim()))
     }
   }
 }

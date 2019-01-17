@@ -3,15 +3,12 @@
     h1.label What types of roles are you interested in?
     .flex-column.justify-center(style="height:100%;")
       .flex-row.justify-center
-        RoleType(v-for="roleType in roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)")
+        RoleType(v-for="roleType in source.roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)")
 </template>
 
 <script>
 import RoleType from '@/components/RoleType'
-import pagesList from '@/components/registration/page_list'
-
-import technical from '@/assets/role_types/technical.png'
-import nontechnical from '@/assets/role_types/nontechnical.png'
+import pagesList, { studentPagesData } from '@/components/registration/page_list'
 
 const PAGE_ID = pagesList.studentPagesList.roles
 
@@ -21,23 +18,10 @@ export default {
   },
   data() {
     return {
+      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
       fields: {
         selectedRole: null
-      },
-      roleTypes: [{
-        id: 0,
-        title: 'Technical',
-        desc: 'Software Engineers...',
-        image: technical,
-        fullImage: true
-      }, {
-        id: 1,
-        title: 'Non-Technical',
-        desc: 'Business Development...',
-        image: nontechnical,
-        alternate: true,
-        fullImage: true
-      }]
+      }
     }
   },
   computed: {
