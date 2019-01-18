@@ -4,6 +4,8 @@ import nontechnical from '@/assets/role_types/nontechnical.png'
 import student from '@/assets/acc_types/student.png'
 import employeer from '@/assets/acc_types/employer.png'
 
+import sourceData from '@/assets/source-data.json'
+
 const checkEmpty = function f(fields) {
   const items = Object.values(fields)
   function checkEmptyCl(prop) {
@@ -57,9 +59,7 @@ const setImageData = function f(dataObj) {
 }
 
 const loadSourceData = function f() {
-  const SOURCE_DATA_URL = 'https://thatsmontreal.ca/smartplug/data.php'
-  return fetch(SOURCE_DATA_URL)
-    .then(res => res.json())
+  return Promise.resolve(sourceData)
 }
 
 const helpers = {}
