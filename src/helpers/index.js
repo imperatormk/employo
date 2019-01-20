@@ -20,6 +20,19 @@ const checkEmpty = function f(fields) {
   return items.every(checkEmptyCl)
 }
 
+const checkEmptyOne = function f(field) {
+  function checkEmptyCl(prop) {
+    if (prop instanceof Array) {
+      return prop.length >= 1
+    } else if (prop != null) {
+      return prop.toString().trim().length > 0
+    }
+
+    return false
+  }
+  return !checkEmptyCl(field)
+}
+
 const setImageData = function f(dataObj) {
   const data = [{
     id: 'technical',
@@ -66,5 +79,6 @@ const helpers = {}
 helpers.checkEmpty = checkEmpty
 helpers.setImageData = setImageData
 helpers.loadSourceData = loadSourceData
+helpers.checkEmptyOne = checkEmptyOne
 
 export default helpers
