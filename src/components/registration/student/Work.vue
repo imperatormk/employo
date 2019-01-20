@@ -69,23 +69,23 @@ export default {
       }
     },
     setTermLength(termLength) {
-      const prevTerm = this.fields.termLength
+      const prevTerm = this.fields.termLength.value
       if (prevTerm != null && prevTerm === termLength) {
-        this.fields.termLength = null
+        this.fields.termLength.value = null
       } else {
-        this.fields.termLength = termLength
+        this.fields.termLength.value = termLength
       }
     },
     toggleLocationSelected(locationId, field) {
-      const isSelected = this.fields[field].find(id => id === locationId) != null
+      const isSelected = this.fields[field].value.find(id => id === locationId) != null
       if (!isSelected) {
-        this.fields[field].push(locationId)
+        this.fields[field].value.push(locationId)
       } else {
-        this.fields[field] = this.fields[field].filter(id => id !== locationId)
+        this.fields[field].value = this.fields[field].value.filter(id => id !== locationId)
       }
     },
     isLocationSelected(locationId, field) {
-      const isSelected = this.fields[field].find(id => id === locationId) != null
+      const isSelected = this.fields[field].value.find(id => id === locationId) != null
       return {
         p10: true,
         btn: true,

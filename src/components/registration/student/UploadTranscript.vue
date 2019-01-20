@@ -4,17 +4,17 @@
     .flex.row
       .flex-column.w50.align-center
         h1.desc-label Upload your Resumé
-        DragNDrop(:filesProp="fields.resume" @filesChanged="filesChanged($event, 'resume')")
+        DragNDrop(:filesProp="fields.resume.value" @filesChanged="filesChanged($event, 'resume')")
       .flex-column.w50.align-center
         .p10.w100
           .desc-label LinkedIn URL
-          v-text-field.br5(v-model="fields.linkedIn" solo background-color="#f5f5f5")
+          v-text-field.br5(v-model="fields.linkedIn.value" solo background-color="#f5f5f5")
         .p10.w100
           .desc-label GitHub URL
-          v-text-field.br5(v-model="fields.gitHub" solo background-color="#f5f5f5")
+          v-text-field.br5(v-model="fields.gitHub.value" solo background-color="#f5f5f5")
         .p10.w100
           .desc-label Personal Website
-          v-text-field.br5(v-model="fields.website" solo background-color="#f5f5f5")
+          v-text-field.br5(v-model="fields.website.value" solo background-color="#f5f5f5")
 </template>
 
 <script>
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     filesChanged(files, field) {
-      this.fields[field] = files
+      this.fields[field].value = files
     }
   },
   computed: {

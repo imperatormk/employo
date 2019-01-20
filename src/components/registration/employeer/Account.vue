@@ -6,25 +6,25 @@
         .field-label.alternate.demiBold.p-left-0 Tell us a bit about you before we get in touch
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold First name
-        v-text-field.br5.demiBold(v-model="fields.firstName" solo background-color="#f5f5f5" placeholder="First name")
+        v-text-field.br5.demiBold(v-model="fields.firstName.value" solo background-color="#f5f5f5" placeholder="First name")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Last name
-        v-text-field.br5.demiBold(v-model="fields.lastName" solo background-color="#f5f5f5" placeholder="Last name")
+        v-text-field.br5.demiBold(v-model="fields.lastName.value" solo background-color="#f5f5f5" placeholder="Last name")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Company name
-        v-text-field.br5.demiBold(v-model="fields.companyName" solo background-color="#f5f5f5" placeholder="Company name")
+        v-text-field.br5.demiBold(v-model="fields.companyName.value" solo background-color="#f5f5f5" placeholder="Company name")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Company website
-        v-text-field.br5.demiBold(v-model="fields.companyWebsite" solo background-color="#f5f5f5" placeholder="Company website")
+        v-text-field.br5.demiBold(v-model="fields.companyWebsite.value" solo background-color="#f5f5f5" placeholder="Company website")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Email
-        v-text-field.br5.demiBold(v-model="fields.email" solo background-color="#f5f5f5" placeholder="Email")
+        v-text-field.br5.demiBold(v-model="fields.email.value" solo background-color="#f5f5f5" placeholder="Email")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Office location
-        v-text-field.br5.demiBold(v-model="fields.city" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
+        v-text-field.br5.demiBold(v-model="fields.city.value" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Phone number
-        v-text-field.br5.demiBold(v-model="fields.phoneNumber" solo background-color="#f5f5f5" placeholder="Phone number")
+        v-text-field.br5.demiBold(v-model="fields.phoneNumber.value" solo background-color="#f5f5f5" placeholder="Phone number")
 </template>
 
 <script>

@@ -71,15 +71,15 @@ export default {
       }
     },
     setDegree(degree) {
-      const prevDegree = this.fields.degree
+      const prevDegree = this.fields.degree.value
       if (prevDegree != null && prevDegree === degree.id) {
-        this.fields.degree = null
+        this.fields.degree.value = null
       } else {
-        this.fields.degree = degree.id
+        this.fields.degree.value = degree.id
       }
     },
     isDegreeSelected(degree) {
-      const isSelected = this.fields.degree != null && degree != null && this.fields.degree === degree.id
+      const isSelected = this.fields.degree.value != null && degree != null && this.fields.degree.value === degree.id
       return {
         p10: true,
         btn: true,

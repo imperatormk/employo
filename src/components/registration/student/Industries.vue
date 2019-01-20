@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     isIndustrySelected(industryId) {
-      const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
+      const isSelected = this.fields.selectedIndustries.value.find(id => id === industryId) != null
       return {
         p10: true,
         btn: true,
@@ -56,11 +56,11 @@ export default {
       }
     },
     toggleIndustrySelected(industryId) {
-      const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
+      const isSelected = this.fields.selectedIndustries.value.find(id => id === industryId) != null
       if (!isSelected) {
-        this.fields.selectedIndustries.push(industryId)
+        this.fields.selectedIndustries.value.push(industryId)
       } else {
-        this.fields.selectedIndustries = this.fields.selectedIndustries.filter(id => id !== industryId)
+        this.fields.selectedIndustries.value = this.fields.selectedIndustries.value.filter(id => id !== industryId)
       }
     }
   },

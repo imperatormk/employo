@@ -15,16 +15,19 @@ const PAGE_ID = pagesList.studentPagesList.roles
 export default {
   created() {
     this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
+    this.loaded = true
   },
   data() {
     return {
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {}
+      fields: {},
+      loaded: false
     }
   },
   computed: {
     checkForSuccess() {
-      return !!this.fields.selectedRole != null
+      if (!this.loaded) return false
+      return !!this.fields.selectedRole.value != null
     }
   },
   watch: {
@@ -40,14 +43,14 @@ export default {
           pageId: pagesList.studentPagesList[PAGE_ID],
           fields: val
         })
-        if (val) this.$emit('roleChanged', this.fields.selectedRole)
+        if (val) this.$emit('roleChanged', this.fields.selectedRole.value)
       },
       deep: true
     }
   },
   methods: {
     isRoleSelected(roleId) {
-      const isSelected = !!(this.fields.selectedRole != null && this.fields.selectedRole === roleId)
+      const isSelected = !!(this.fields.selectedRole.value != null && this.fields.selectedRole.value === roleId)
       return {
         p10: true,
         btn: true,
@@ -57,7 +60,7 @@ export default {
       }
     },
     toggleRoleSelected(roleId) {
-      this.fields.selectedRole = roleId
+      this.fields.selectedRole.value = roleId
     }
   },
   components: {

@@ -123,7 +123,13 @@ export default {
 
       Object.keys(data)
         .forEach((pageId) => {
-          reqData = Object.assign({}, reqData, data[pageId])
+          const pageData = data[pageId]
+          const pageDataVal = {}
+          Object.keys(pageData).forEach((key) => {
+            const dataObj = pageData[key]
+            pageDataVal[key] = dataObj.value
+          })
+          reqData = Object.assign({}, reqData, pageDataVal)
         })
 
       console.log(reqData)

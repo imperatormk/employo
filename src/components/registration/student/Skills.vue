@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     isSkillSelected(skillId) {
-      const isSelected = this.fields.selectedSkills.find(id => id === skillId) != null
+      const isSelected = this.fields.selectedSkills.value.find(id => id === skillId) != null
       return {
         p10: true,
         btn: true,
@@ -55,11 +55,11 @@ export default {
       }
     },
     toggleSkillSelected(skillId) {
-      const isSelected = this.fields.selectedSkills.find(id => id === skillId) != null
+      const isSelected = this.fields.selectedSkills.value.find(id => id === skillId) != null
       if (!isSelected) {
-        this.fields.selectedSkills.push(skillId)
+        this.fields.selectedSkills.value.push(skillId)
       } else {
-        this.fields.selectedSkills = this.fields.selectedSkills.filter(id => id !== skillId)
+        this.fields.selectedSkills.value = this.fields.selectedSkills.value.filter(id => id !== skillId)
       }
     }
   },
