@@ -30,12 +30,7 @@ export default {
   },
   data() {
     return {
-      fields: {
-        resume: [],
-        linkedIn: '',
-        gitHub: '',
-        website: ''
-      }
+      fields: {}
     }
   },
   methods: {

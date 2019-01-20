@@ -35,12 +35,7 @@ export default {
   data() {
     return {
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        officialCoop: null,
-        availability: [],
-        termLength: [],
-        locationPref: []
-      },
+      fields: {},
     }
   },
   computed: {

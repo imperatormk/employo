@@ -19,9 +19,7 @@ export default {
   data() {
     return {
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        selectedRole: null
-      }
+      fields: {}
     }
   },
   computed: {

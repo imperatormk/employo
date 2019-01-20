@@ -25,9 +25,7 @@ export default {
     return {
       criteria: '',
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        selectedIndustries: [],
-      }
+      fields: {}
     }
   },
   watch: {

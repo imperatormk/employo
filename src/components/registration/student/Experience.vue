@@ -27,10 +27,7 @@ export default {
   data() {
     return {
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        selectedAreas: [],
-        numYears: 1
-      }
+      fields: {}
     }
   },
   computed: {

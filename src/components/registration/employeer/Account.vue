@@ -39,15 +39,7 @@ export default {
   },
   data() {
     return {
-      fields: {
-        firstName: '',
-        lastName: '',
-        companyName: '',
-        companyWebsite: '',
-        email: '',
-        city: '',
-        phoneNumber: '',
-      }
+      fields: {}
     }
   },
   computed: {

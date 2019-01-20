@@ -34,13 +34,7 @@ export default {
   data() {
     return {
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        selUniversity: null,
-        selField: null,
-        selYear: null,
-        selGpa: null,
-        degree: null,
-      }
+      fields: {}
     }
   },
   computed: {

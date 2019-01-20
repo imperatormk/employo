@@ -40,7 +40,7 @@ export default {
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
       fields: {
         companySize: [],
-        jobSearch: ''
+        jobSearch: 0
       }
     }
   },
