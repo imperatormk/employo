@@ -5,13 +5,15 @@
     v-layout(wrap align-center)
       v-flex(flex-column)
         .field-label.demiBold Choose as many that apply
-        .flex
-          v-text-field(v-model="criteria" placeholder="Search industries" hide-details)
+        PropertyItem(:data="fields.selectedIndustries")
+          .flex
+            v-text-field(v-model="criteria" placeholder="Search industries" hide-details)
         .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
           v-btn(v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)") {{ industry.title }}
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
@@ -25,9 +27,7 @@ export default {
     return {
       criteria: '',
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        selectedIndustries: [],
-      }
+      fields: {}
     }
   },
   watch: {
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     isIndustrySelected(industryId) {
-      const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
+      const isSelected = this.fields.selectedIndustries.value.find(id => id === industryId) != null
       return {
         p10: true,
         btn: true,
@@ -58,11 +58,11 @@ export default {
       }
     },
     toggleIndustrySelected(industryId) {
-      const isSelected = this.fields.selectedIndustries.find(id => id === industryId) != null
+      const isSelected = this.fields.selectedIndustries.value.find(id => id === industryId) != null
       if (!isSelected) {
-        this.fields.selectedIndustries.push(industryId)
+        this.fields.selectedIndustries.value.push(industryId)
       } else {
-        this.fields.selectedIndustries = this.fields.selectedIndustries.filter(id => id !== industryId)
+        this.fields.selectedIndustries.value = this.fields.selectedIndustries.value.filter(id => id !== industryId)
       }
     }
   },
@@ -74,6 +74,9 @@ export default {
       if (!this.criteria.trim()) return this.source.industries
       return this.source.industries.filter(industry => industry.title.toLowerCase().includes(this.criteria.trim()))
     }
+  },
+  components: {
+    PropertyItem
   }
 }
 </script>

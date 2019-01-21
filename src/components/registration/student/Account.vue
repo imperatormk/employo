@@ -5,16 +5,20 @@
         h1.label Account information
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold First name
-        v-text-field.br5.demiBold(v-model="fields.firstName" solo background-color="#f5f5f5" placeholder="First name")
+        PropertyItem(:data="fields.firstName")
+          v-text-field.br5.demiBold(v-model="fields.firstName.value" solo background-color="#f5f5f5" placeholder="First name")
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold Last name
-        v-text-field.br5.demiBold(v-model="fields.lastName" solo background-color="#f5f5f5" placeholder="Last name")
+        PropertyItem(:data="fields.lastName")
+          v-text-field.br5.demiBold(v-model="fields.lastName.value" solo background-color="#f5f5f5" placeholder="Last name")
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold City of residence
-        v-text-field.br5.demiBold(v-model="fields.city" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
+        PropertyItem(:data="fields.city")
+          v-text-field.br5.demiBold(v-model="fields.city.value" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import pagesList from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
@@ -26,11 +30,7 @@ export default {
   },
   data() {
     return {
-      fields: {
-        firstName: '',
-        lastName: '',
-        city: ''
-      }
+      fields: {}
     }
   },
   computed: {
@@ -54,6 +54,9 @@ export default {
       },
       deep: true
     }
+  },
+  components: {
+    PropertyItem
   }
 }
 </script>

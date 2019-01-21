@@ -32,102 +32,186 @@ export default {
 const studentPagesFields = [{
   pageId: studentPagesList.account,
   fields: {
-    firstName: '',
-    lastName: '',
-    city: ''
+    firstName: {
+      value: '',
+      required: true
+    },
+    lastName: {
+      value: '',
+      required: true
+    },
+    city: {
+      value: '',
+      required: true
+    }
   }
 },
 {
   pageId: studentPagesList.education,
   fields: {
-    selUniversity: null,
-    selField: null,
-    selYear: null,
-    selGpa: null,
-    degree: null,
+    selUniversity: {
+      value: null,
+      required: true
+    },
+    selField: {
+      value: null,
+      required: true
+    },
+    selYear: {
+      value: null,
+      required: true
+    },
+    selGpa: {
+      value: null,
+      required: true
+    },
+    degree: {
+      value: null,
+      required: true
+    },
   }
 },
 {
   pageId: studentPagesList.work,
   fields: {
-    officialCoop: null,
-    availability: [],
-    termLength: [],
-    locationPref: [],
+    officialCoop: {
+      value: [],
+      required: true
+    },
+    availability: {
+      value: [],
+      required: true
+    },
+    termLength: {
+      value: [],
+      required: true
+    },
+    locationPref: {
+      value: [],
+      required: true
+    },
   }
 },
 {
   pageId: studentPagesList.roles,
   fields: {
-    selectedRole: null
+    selectedRole: {
+      value: null,
+      required: true
+    }
   }
 },
 {
   pageId: studentPagesList.experience,
   fields: {
-    selectedAreas: [],
-    numYears: 1
+    selectedAreas: {
+      value: [],
+      required: true
+    },
+    numYears: {
+      value: 1,
+      required: true
+    }
   }
 },
 {
   pageId: studentPagesList.technicalRoles,
   fields: {
-    rolePref: [],
+    rolePref: {
+      value: [],
+      required: true
+    },
   }
 },
 {
   pageId: studentPagesList.industries,
   fields: {
-    selectedIndustries: []
+    selectedIndustries: {
+      value: [],
+      required: true
+    }
   }
 },
 {
   pageId: studentPagesList.skills,
   fields: {
-    selectedSkills: []
+    selectedSkills: {
+      value: [],
+      required: true
+    }
   }
 },
 {
   pageId: studentPagesList.jobSearchProgress,
   fields: {
-    jobSearch: '',
-    companySize: [],
+    jobSearch: {
+      value: 0,
+      required: true
+    },
+    companySize: {
+      value: [],
+      required: true
+    },
   }
 },
 {
   pageId: studentPagesList.transcript,
   fields: {
-    resume: [],
-    linkedIn: '',
-    gitHub: '',
-    website: ''
+    resume: {
+      value: [],
+      required: true
+    },
+    linkedIn: {
+      value: '',
+      required: true
+    },
+    gitHub: {
+      value: '',
+      required: true
+    },
+    website: {
+      value: '',
+      required: true
+    }
   }
 }]
-
-export { studentPagesFields }
 
 const employeerPagesFields = [{
   pageId: employeerPagesList.account,
   fields: {
-    firstName: '',
-    lastName: '',
-    companyName: '',
-    companyWebsite: '',
-    email: '',
-    city: '',
-    phoneNumber: '',
+    firstName: {
+      value: '',
+      required: true
+    },
+    lastName: {
+      value: '',
+      required: true
+    },
+    companyName: {
+      value: '',
+      required: true
+    },
+    companyWebsite: {
+      value: '',
+      required: true
+    },
+    email: {
+      value: '',
+      required: true
+    },
+    city: {
+      value: '',
+      required: true
+    },
+    phoneNumber: {
+      value: '',
+      required: true
+    },
   }
 }]
 
-export { employeerPagesFields }
-
 const studentPagesData = []
-
-export { studentPagesData }
-
 const initialPagesData = []
-
-export { initialPagesData }
 
 const setSourceData = function f(key, data) {
   if (key === 'initial') {
@@ -141,5 +225,9 @@ const setSourceData = function f(key, data) {
   }
 }
 
+export { studentPagesFields }
+export { employeerPagesFields }
+export { studentPagesData }
+export { initialPagesData }
 export { setSourceData }
 

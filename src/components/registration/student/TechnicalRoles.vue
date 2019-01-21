@@ -5,13 +5,15 @@
         h1.label Select your preffered technical roles
       v-flex(flex-column)
         .field-label.demiBold Choose as many that apply
-        .flex-wrap.p10.p-left-0.style-1
-          v-text-field(v-model="criteria" placeholder="Search roles")
-        .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
-            v-btn.demiBold(v-for="role in getVisibleRoles" :key="role.id" :class="isLocationSelected(role.id, 'rolePref')" @click="toggleLocationSelected(role.id, 'rolePref')") {{ role.title }}
+        PropertyItem(:data="fields.rolePref")
+          .flex-wrap.p10.p-left-0.style-1
+            v-text-field(v-model="criteria" placeholder="Search roles")
+          .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
+              v-btn.demiBold(v-for="role in getVisibleRoles" :key="role.id" :class="isLocationSelected(role.id, 'rolePref')" @click="toggleLocationSelected(role.id, 'rolePref')") {{ role.title }}
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
@@ -25,9 +27,7 @@ export default {
     return {
       criteria: '',
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        rolePref: []
-      }
+      fields: {}
     }
   },
   computed: {
@@ -65,23 +65,23 @@ export default {
       }
     },
     setTermLength(termLength) {
-      const prevTerm = this.fields.termLength
+      const prevTerm = this.fields.termLength.value
       if (prevTerm != null && prevTerm === termLength) {
-        this.fields.termLength = null
+        this.fields.termLength.value = null
       } else {
-        this.fields.termLength = termLength
+        this.fields.termLength.value = termLength
       }
     },
     toggleLocationSelected(locationId, field) {
-      const isSelected = this.fields[field].find(id => id === locationId) != null
+      const isSelected = this.fields[field].value.find(id => id === locationId) != null
       if (!isSelected) {
-        this.fields[field].push(locationId)
+        this.fields[field].value.push(locationId)
       } else {
-        this.fields[field] = this.fields[field].filter(id => id !== locationId)
+        this.fields[field].value = this.fields[field].value.filter(id => id !== locationId)
       }
     },
     isLocationSelected(locationId, field) {
-      const isSelected = this.fields[field].find(id => id === locationId) != null
+      const isSelected = this.fields[field].value.find(id => id === locationId) != null
       return {
         p10: true,
         btn: true,
@@ -89,6 +89,9 @@ export default {
         'btn-selected': isSelected
       }
     },
+  },
+  components: {
+    PropertyItem
   }
 }
 </script>

@@ -5,24 +5,29 @@
         h1.label Tell us about your work preferences.
       v-flex(xs12, sm5, d-block)
         .field-label.demiBold Official co-op
-        div(d-flex)
-          v-btn.demiBold(:class='isButtonSelected(fields.officialCoop,"true")', @click='fields.officialCoop="true"') Yes
-          v-btn.demiBold(:class='isButtonSelected(fields.officialCoop,"false")', @click='fields.officialCoop="false"') No
+        PropertyItem(:data="fields.officialCoop")
+          div(d-flex)
+            v-btn.demiBold(:class='isButtonSelected(fields.officialCoop.value,true)', @click='fields.officialCoop.value=true') Yes
+            v-btn.demiBold(:class='isButtonSelected(fields.officialCoop.value,false)', @click='fields.officialCoop.value=false') No
       v-flex(xs12, sm7, d-block)
         .field-label.demiBold Availability
-        div(d-flex)
-          v-btn.demiBold.p-left-0(v-for="a in source.availabilities" :key="a.id" :class="isLocationSelected(a.id, 'availability')" @click="toggleLocationSelected(a.id, 'availability')") {{ a.title }}
+        PropertyItem(:data="fields.availability")
+          div(d-flex)
+            v-btn.demiBold.p-left-0(v-for="a in source.availabilities" :key="a.id" :class="isLocationSelected(a.id, 'availability')" @click="toggleLocationSelected(a.id, 'availability')") {{ a.title }}
       v-flex(flex-column)
         .field-label.demiBold Work term length
-        .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
-            v-btn.demiBold(v-for="termLength in source.termLengths" :key="termLength.id" :class="isLocationSelected(termLength.id, 'termLength')" @click="toggleLocationSelected(termLength.id, 'termLength')") {{ termLength.title }} Months
+        PropertyItem(:data="fields.termLength")
+          .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
+              v-btn.demiBold(v-for="termLength in source.termLengths" :key="termLength.id" :class="isLocationSelected(termLength.id, 'termLength')" @click="toggleLocationSelected(termLength.id, 'termLength')") {{ termLength.title }} Months
       v-flex(flex-column)
         .field-label.demiBold Work location preference (choose all that apply)
-        .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
-            v-btn.demiBold(v-for="workLocation in source.workLocations" :key="workLocation.id" :class="isLocationSelected(workLocation.id, 'locationPref')" @click="toggleLocationSelected(workLocation.id, 'locationPref')") {{ workLocation.title }}
+        PropertyItem(:data="fields.locationPref")
+          .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
+              v-btn.demiBold(v-for="workLocation in source.workLocations" :key="workLocation.id" :class="isLocationSelected(workLocation.id, 'locationPref')" @click="toggleLocationSelected(workLocation.id, 'locationPref')") {{ workLocation.title }}
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
@@ -35,12 +40,7 @@ export default {
   data() {
     return {
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        officialCoop: null,
-        availability: [],
-        termLength: [],
-        locationPref: []
-      },
+      fields: {},
     }
   },
   computed: {
@@ -74,23 +74,23 @@ export default {
       }
     },
     setTermLength(termLength) {
-      const prevTerm = this.fields.termLength
+      const prevTerm = this.fields.termLength.value
       if (prevTerm != null && prevTerm === termLength) {
-        this.fields.termLength = null
+        this.fields.termLength.value = null
       } else {
-        this.fields.termLength = termLength
+        this.fields.termLength.value = termLength
       }
     },
     toggleLocationSelected(locationId, field) {
-      const isSelected = this.fields[field].find(id => id === locationId) != null
+      const isSelected = this.fields[field].value.find(id => id === locationId) != null
       if (!isSelected) {
-        this.fields[field].push(locationId)
+        this.fields[field].value.push(locationId)
       } else {
-        this.fields[field] = this.fields[field].filter(id => id !== locationId)
+        this.fields[field].value = this.fields[field].value.filter(id => id !== locationId)
       }
     },
     isLocationSelected(locationId, field) {
-      const isSelected = this.fields[field].find(id => id === locationId) != null
+      const isSelected = this.fields[field].value.find(id => id === locationId) != null
       return {
         p10: true,
         btn: true,
@@ -98,6 +98,9 @@ export default {
         'btn-selected': isSelected
       }
     },
+  },
+  components: {
+    PropertyItem
   }
 }
 </script>

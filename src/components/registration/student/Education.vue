@@ -5,23 +5,29 @@
         h1.label Tell us about your education.
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold University
-        v-select.br5.demiBold(:items='source.universities', background-color='#f5f5f5', v-model='fields.selUniversity', item-text='title', :label='`eg. ${source.universities[0].title}`', solo)
+        PropertyItem(:data="fields.selUniversity")
+          v-select.br5.demiBold(:items='source.universities', background-color='#f5f5f5', v-model='fields.selUniversity.value', item-text='title', :label='`eg. ${source.universities[0].title}`', solo)
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold Field of Study
-        v-select.demiBold(:items='source.studyFields', background-color='#f5f5f5', v-model='fields.selField', item-text='title', :label='`eg. ${source.studyFields[0].title}`', solo)
+        PropertyItem(:data="fields.selField")
+          v-select.demiBold(:items='source.studyFields', background-color='#f5f5f5', v-model='fields.selField.value', item-text='title', :label='`eg. ${source.studyFields[0].title}`', solo)
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold Expected Year of Graduation
-        v-select.demiBold(:items='source.years', background-color='#f5f5f5', v-model='fields.selYear', :label='`eg. ${source.years[0]}`', solo)
+        PropertyItem(:data="fields.selYear")
+          v-select.demiBold(:items='source.years', background-color='#f5f5f5', v-model='fields.selYear.value', :label='`eg. ${source.years[0]}`', solo)
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold Cumulative GPA
-        v-text-field.br5.demiBold(v-model="fields.selGpa" solo background-color="#f5f5f5" max="4" min="0" suffix='/4.0' type="number")
+        PropertyItem(:data="fields.selGpa")
+          v-text-field.br5.demiBold(v-model="fields.selGpa.value" solo background-color="#f5f5f5" max="4" min="0" suffix='/4.0' type="number")
       v-flex(flex-column)
         .field-label.demiBold Degree
-          .flex.flex-wrap.p10.style-1.of-scroll(style="height:130px;")
-            v-btn.demiBold(v-for="degree in source.degrees" :key="degree.id" :class="isDegreeSelected(degree)" @click="setDegree(degree)") {{ degree.title }}
+        PropertyItem(:data="fields.degree")
+            .flex.flex-wrap.p10.style-1.of-scroll(style="height:130px;")
+              v-btn.demiBold(v-for="degree in source.degrees" :key="degree.id" :class="isDegreeSelected(degree)" @click="setDegree(degree)") {{ degree.title }}
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
@@ -34,13 +40,7 @@ export default {
   data() {
     return {
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        selUniversity: null,
-        selField: null,
-        selYear: null,
-        selGpa: null,
-        degree: null,
-      }
+      fields: {}
     }
   },
   computed: {
@@ -77,15 +77,15 @@ export default {
       }
     },
     setDegree(degree) {
-      const prevDegree = this.fields.degree
+      const prevDegree = this.fields.degree.value
       if (prevDegree != null && prevDegree === degree.id) {
-        this.fields.degree = null
+        this.fields.degree.value = null
       } else {
-        this.fields.degree = degree.id
+        this.fields.degree.value = degree.id
       }
     },
     isDegreeSelected(degree) {
-      const isSelected = this.fields.degree != null && degree != null && this.fields.degree === degree.id
+      const isSelected = this.fields.degree.value != null && degree != null && this.fields.degree.value === degree.id
       return {
         p10: true,
         btn: true,
@@ -93,6 +93,9 @@ export default {
         'btn-selected': isSelected
       }
     }
+  },
+  components: {
+    PropertyItem
   }
 }
 </script>

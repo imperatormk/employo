@@ -3,16 +3,19 @@
     h1.label Tell us about your experience
     div
       .desc-label How many years of experience do you have?
-      .flex.space-between.align-center.p10
-        range-slider(class="yearSlider" min="0" max="5" step="1" v-model="fields.numYears")
-        v-chip.chip {{ fields.numYears }} years
+      PropertyItem(:data="fields.numYears")
+        .flex.space-between.align-center.p10
+          range-slider(class="yearSlider" min="0" max="5" step="1" v-model="fields.numYears.value")
+          v-chip.chip {{ fields.numYears.value }} years
     div
       .desc-label What areas have you had most experience with?
-      .flex.space-between.align-center.p10.flex-wrap.style-1.of-scroll(style="height:130px;")
-        v-btn(v-for="area in source.areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
+      PropertyItem(:data="fields.selectedAreas")
+        .flex.space-between.align-center.p10.flex-wrap.style-1.of-scroll(style="height:130px;")
+          v-btn(v-for="area in source.areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import RangeSlider from 'vue-range-slider'
 import 'vue-range-slider/dist/vue-range-slider.css'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
@@ -27,10 +30,7 @@ export default {
   data() {
     return {
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        selectedAreas: [],
-        numYears: 1
-      }
+      fields: {}
     }
   },
   computed: {
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     isAreaSelected(areaId) {
-      const isSelected = this.fields.selectedAreas.find(id => id === areaId) != null
+      const isSelected = this.fields.selectedAreas.value.find(id => id === areaId) != null
       return {
         p10: true,
         btn: true,
@@ -66,16 +66,17 @@ export default {
       }
     },
     toggleAreaSelected(areaId) {
-      const isSelected = this.fields.selectedAreas.find(id => id === areaId) != null
+      const isSelected = this.fields.selectedAreas.value.find(id => id === areaId) != null
       if (!isSelected) {
-        this.fields.selectedAreas.push(areaId)
+        this.fields.selectedAreas.value.push(areaId)
       } else {
-        this.fields.selectedAreas = this.fields.selectedAreas.filter(id => id !== areaId)
+        this.fields.selectedAreas.value = this.fields.selectedAreas.value.filter(id => id !== areaId)
       }
     }
   },
   components: {
-    RangeSlider
+    RangeSlider,
+    PropertyItem
   }
 }
 </script>

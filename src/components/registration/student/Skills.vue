@@ -5,12 +5,14 @@
     v-layout(wrap align-center)
       v-flex(flex-column)
         .field-label Choose as many that apply
-        v-text-field(v-model="criteria" placeholder="Search skills")
-        .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
-          v-btn(v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)") {{ skill.title }}
+        PropertyItem(:data="fields.selectedSkills")
+          v-text-field(v-model="criteria" placeholder="Search skills")
+          .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
+            v-btn(v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)") {{ skill.title }}
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
@@ -24,9 +26,7 @@ export default {
     return {
       criteria: '',
       source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
-      fields: {
-        selectedSkills: [],
-      }
+      fields: {}
     }
   },
   watch: {
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     isSkillSelected(skillId) {
-      const isSelected = this.fields.selectedSkills.find(id => id === skillId) != null
+      const isSelected = this.fields.selectedSkills.value.find(id => id === skillId) != null
       return {
         p10: true,
         btn: true,
@@ -57,11 +57,11 @@ export default {
       }
     },
     toggleSkillSelected(skillId) {
-      const isSelected = this.fields.selectedSkills.find(id => id === skillId) != null
+      const isSelected = this.fields.selectedSkills.value.find(id => id === skillId) != null
       if (!isSelected) {
-        this.fields.selectedSkills.push(skillId)
+        this.fields.selectedSkills.value.push(skillId)
       } else {
-        this.fields.selectedSkills = this.fields.selectedSkills.filter(id => id !== skillId)
+        this.fields.selectedSkills.value = this.fields.selectedSkills.value.filter(id => id !== skillId)
       }
     }
   },
@@ -73,6 +73,9 @@ export default {
       if (!this.criteria.trim()) return this.source.skills
       return this.source.skills.filter(skill => skill.title.toLowerCase().includes(this.criteria.trim()))
     }
+  },
+  components: {
+    PropertyItem
   }
 }
 </script>
