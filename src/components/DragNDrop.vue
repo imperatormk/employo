@@ -9,11 +9,12 @@
               span.header-text Drag and drop
               span.far.fa-copy.blue-color.fs80
               span.header-text Click to browse
-              div.file-listing(v-for="(file, key) in files" :key="key")
+              .file-listing(v-for="(file, key) in files" :key="key")
                 img.preview(v-bind:ref="`preview${parseInt(key, 10)}`")
-                span {{ reduceStringSize(file.name) }}
                 .remove-container
-                  a.remove(@click="removeFile(key)") Remove
+                  span {{ reduceStringSize(file.name) }}
+                  span.p10-side
+                  a.remove(@click.stop.prevent="removeFile(key)") Remove
 </template>
 
 <script>
@@ -129,7 +130,6 @@ export default {
   div.file-listing{
     margin: auto;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
   }
 
   div.file-listing img{

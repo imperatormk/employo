@@ -27,15 +27,13 @@
           EmployeerAccount(v-if="curPageId === pages.account")
       .spacer
       .flex.align-end.p30
-        .flex.justify-end(v-if="curPageId === pages.acctype")
-          v-btn.btn(v-if="!isLastPage" @click="goNext") Next
-        .flex.align-center(v-else)
-          v-btn.btn.back(@click="goBack") Back
+        .flex.align-center
+          v-btn.btn.back(@click="goBack" v-show="!isInitialPage") Back
           .p40-side.w100
-            v-progress-linear(v-model="progress")
+            v-progress-linear(v-model="progress" v-show="!isInitialPage")
           v-btn.btn(v-if="!isLastPage" @click="goNext") Next
-          v-dialog(v-else v-model="dialog" width="500")
-            v-btn.btn(@click="submitData" slot="activator") Submit
+          v-btn.btn(v-else @click="submitData") Submit
+          v-dialog(v-model="dialog" width="500")
             v-card.border-round.p50-top.p30-side
               v-card-text.fs20.demiBold Thank you for signing up! Make sure to check your email for updates
               v-divider
@@ -107,43 +105,56 @@ export default {
         this.curPage = prevPage
       }
     },
-    goNext() {
+    getErrors() {
       let errors = 0
       MessageBus.$emit('getErrorState', (hasError) => {
         if (hasError) {
           errors += 1
         }
       })
-
-      setTimeout(() => {
-        if (errors) {
-          MessageBus.$emit('isHotChanged', true)
-        } else {
-          MessageBus.$emit('isHotChanged', false)
-          const nextPage = this.curPage + 1
-          const nextPageId = this.getPageIdByIndex(nextPage)
-          if (this.pages[nextPageId]) {
-            this.curPage = nextPage
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(errors), 20)
+      })
+    },
+    goNext() {
+      this.getErrors()
+        .then((errors) => {
+          if (errors) {
+            MessageBus.$emit('isHotChanged', true)
+          } else {
+            MessageBus.$emit('isHotChanged', false)
+            const nextPage = this.curPage + 1
+            const nextPageId = this.getPageIdByIndex(nextPage)
+            if (this.pages[nextPageId]) {
+              this.curPage = nextPage
+            }
           }
-        }
-      }, 20)
+        })
     },
     submitData() {
-      const data = this.$store.getters.getAll
-      let reqData = {}
+      this.getErrors()
+        .then((errors) => {
+          if (errors) {
+            MessageBus.$emit('isHotChanged', true)
+          } else {
+            MessageBus.$emit('isHotChanged', false)
+            const data = this.$store.getters.getAll
+            let reqData = {}
 
-      Object.keys(data)
-        .forEach((pageId) => {
-          const pageData = data[pageId]
-          const pageDataVal = {}
-          Object.keys(pageData).forEach((key) => {
-            const dataObj = pageData[key]
-            pageDataVal[key] = dataObj.value
-          })
-          reqData = Object.assign({}, reqData, pageDataVal)
+            Object.keys(data)
+              .forEach((pageId) => {
+                const pageData = data[pageId]
+                const pageDataVal = {}
+                Object.keys(pageData).forEach((key) => {
+                  const dataObj = pageData[key]
+                  pageDataVal[key] = dataObj.value
+                })
+                reqData = Object.assign({}, reqData, pageDataVal)
+              })
+            console.log(reqData)
+            this.dialog = true
+          }
         })
-
-      console.log(reqData)
     },
     getPageIdByIndex(index) {
       const key = Object.keys(this.pages)[index]
