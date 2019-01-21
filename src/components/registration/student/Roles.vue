@@ -2,12 +2,14 @@
   v-container(grid-list-xl style="height:100%;")
     h1.label What types of roles are you interested in?
     .flex-column.justify-center(style="height:100%;")
-      .flex-row.justify-center
-        RoleType(v-for="roleType in source.roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)")
+      PropertyItem(:data="fields.selectedRole" :center="true")
+        .flex-row.justify-center
+          RoleType(v-for="roleType in source.roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="toggleRoleSelected(roleType.id)")
 </template>
 
 <script>
 import RoleType from '@/components/RoleType'
+import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 
 const PAGE_ID = pagesList.studentPagesList.roles
@@ -52,7 +54,8 @@ export default {
     }
   },
   components: {
-    RoleType
+    RoleType,
+    PropertyItem
   }
 }
 </script>

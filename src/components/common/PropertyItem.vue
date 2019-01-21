@@ -1,5 +1,5 @@
 <template lang="pug">
-  .flex-column
+  .flex-column(:class="{'align-center': center}")
     span.p10-side.p5(v-if="hasError && isHot" style="color:#ff0000") Please fill in this field
     slot
 </template>
@@ -10,7 +10,8 @@ import MessageBus from '@/services/messageBus'
 
 export default {
   props: {
-    data: Object
+    data: Object,
+    center: Boolean // aux variable for whether to center the slot items
   },
   mounted() {
     MessageBus.$on('isHotChanged', (isHot) => { this.isHot = isHot })

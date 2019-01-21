@@ -474,6 +474,10 @@ $darker-blue: #477EE6;
   flex-grow: 1;
 }
 
+.fit {
+  width: fit-content;
+}
+
 // vuetify tweaks start
 
 .v-input__slot {
