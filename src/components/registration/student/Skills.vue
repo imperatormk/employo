@@ -5,8 +5,8 @@
     v-layout(wrap align-center)
       v-flex(flex-column)
         .field-label Choose as many that apply
+        v-text-field(v-model="criteria" placeholder="Search skills")
         PropertyItem(:data="fields.selectedSkills")
-          v-text-field(v-model="criteria" placeholder="Search skills")
           .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
             v-btn(v-for="skill in getVisibleSkills" :key="skill.id" :class="isSkillSelected(skill.id)" @click="toggleSkillSelected(skill.id)") {{ skill.title }}
 </template>

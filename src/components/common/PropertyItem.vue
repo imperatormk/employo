@@ -1,20 +1,28 @@
 <template lang="pug">
   .flex-column
-    span.p10-side(v-if="hasError") Please fill in this field
+    span.p10-side.p5(v-if="hasError && isHot" style="color:#ff0000") Please fill in this field
     slot
 </template>
 
 <script>
 import helpers from '@/helpers'
+import MessageBus from '@/services/messageBus'
 
 export default {
   props: {
     data: Object
   },
-  watch: {
-    hasError(val) {
-      const errNum = val ? 1 : 0
-      this.$emit('errNumChanged', errNum)
+  mounted() {
+    MessageBus.$on('isHotChanged', (isHot) => { this.isHot = isHot })
+    MessageBus.$on('getErrorState', cb => cb(this.hasError))
+  },
+  beforeDestroy() {
+    MessageBus.$off('isHotChanged')
+    MessageBus.$off('getErrorState')
+  },
+  data() {
+    return {
+      isHot: false
     }
   },
   computed: {

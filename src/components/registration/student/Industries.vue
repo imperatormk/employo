@@ -5,11 +5,11 @@
     v-layout(wrap align-center)
       v-flex(flex-column)
         .field-label.demiBold Choose as many that apply
+        .flex
+          v-text-field(v-model="criteria" placeholder="Search industries" hide-details)
         PropertyItem(:data="fields.selectedIndustries")
-          .flex
-            v-text-field(v-model="criteria" placeholder="Search industries" hide-details)
-        .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
-          v-btn(v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)") {{ industry.title }}
+          .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
+            v-btn(v-for="industry in getVisibleIndustries" :key="industry.id" :class="isIndustrySelected(industry.id)" @click="toggleIndustrySelected(industry.id)") {{ industry.title }}
 </template>
 
 <script>

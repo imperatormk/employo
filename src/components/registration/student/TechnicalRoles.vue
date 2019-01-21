@@ -5,9 +5,9 @@
         h1.label Select your preffered technical roles
       v-flex(flex-column)
         .field-label.demiBold Choose as many that apply
+        .flex-wrap.p10.p-left-0.style-1
+          v-text-field(v-model="criteria" placeholder="Search roles")
         PropertyItem(:data="fields.rolePref")
-          .flex-wrap.p10.p-left-0.style-1
-            v-text-field(v-model="criteria" placeholder="Search roles")
           .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
               v-btn.demiBold(v-for="role in getVisibleRoles" :key="role.id" :class="isLocationSelected(role.id, 'rolePref')" @click="toggleLocationSelected(role.id, 'rolePref')") {{ role.title }}
 </template>

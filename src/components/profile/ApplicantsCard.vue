@@ -7,7 +7,7 @@
             h2 {{user.firstName}} {{user.lastName}}
           .p20-left {{user.university}}
           .p20-left {{user.studyFields}} , {{user.class}}
-          .p20-left.p20-btm
+          .p20-left.p20-bot
             a.p20-right Resume
             a.p20 Transcript
             a.p20 Linkedin

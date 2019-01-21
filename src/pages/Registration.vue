@@ -1,40 +1,39 @@
 <template lang="pug">
   .flex.flex-column.space-between.p10.h100
     .flex.flex-column.space-between.p10.h100(v-if="loaded")
-      AccountType(v-if="curPageId === pages.acctype" @roleSelected="selAccountType = $event" @success='allowContinue($event)' :currentType="selAccountType")
+      AccountType(v-if="curPageId === pages.acctype" @roleSelected="selAccountType = $event" :currentType="selAccountType")
       .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'student'")
         .flex.h100
-          StudentAccount(v-if="curPageId === pages.account" @success='allowContinue($event)')
-          Education(v-else-if="curPageId === pages.education" @success='allowContinue($event)')
-          Work(v-else-if="curPageId === pages.work" @success='allowContinue($event)')
-          Roles(v-else-if="curPageId === pages.roles" @success='allowContinue($event)' @roleChanged="selStudentRole = $event")
+          StudentAccount(v-if="curPageId === pages.account")
+          Education(v-else-if="curPageId === pages.education")
+          Work(v-else-if="curPageId === pages.work")
+          Roles(v-else-if="curPageId === pages.roles" @roleChanged="selStudentRole = $event")
           .flex.h100(v-else-if="selStudentRole == 'technical'")
-            Experience(v-if="curPageId === pages.experience" @success='allowContinue($event)')
-            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles" @success='allowContinue($event)')
-            Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
-            Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
-            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress" @success='allowContinue($event)')
-            UploadTranscript(v-else-if="curPageId === pages.transcript" @success='allowContinue($event)')
+            Experience(v-if="curPageId === pages.experience")
+            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles")
+            Industries(v-else-if="curPageId === pages.industries")
+            Skills(v-else-if="curPageId === pages.skills")
+            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress")
+            UploadTranscript(v-else-if="curPageId === pages.transcript")
           .flex.h100(v-else-if="selStudentRole == 'nontechnical'")
-            Experience(v-if="curPageId === pages.experience" @success='allowContinue($event)')
-            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles" @success='allowContinue($event)')
-            Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
-            Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
-            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress" @success='allowContinue($event)')
-            UploadTranscript(v-else-if="curPageId === pages.transcript" @success='allowContinue($event)')
+            Experience(v-if="curPageId === pages.experience")
+            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles")
+            Industries(v-else-if="curPageId === pages.industries")
+            Skills(v-else-if="curPageId === pages.skills")
+            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress")
+            UploadTranscript(v-else-if="curPageId === pages.transcript")
       .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employeer'")
         .flex
-          EmployeerAccount(v-if="curPageId === pages.account" @success='allowContinue($event)')
+          EmployeerAccount(v-if="curPageId === pages.account")
       .spacer
       .flex.align-end.p30
         .flex.justify-end(v-if="curPageId === pages.acctype")
-          v-btn.btn(v-if="!isLastPage" @click="goNext" :disabled="!canContinue") Next
+          v-btn.btn(v-if="!isLastPage" @click="goNext") Next
         .flex.align-center(v-else)
           v-btn.btn.back(@click="goBack") Back
           .p40-side.w100
             v-progress-linear(v-model="progress")
-          v-btn.btn(v-if="!isLastPage" @click="goNext" :disabled="!canContinue") Next
-          v-btn.btn(v-else-if="!canContinue" width="500" :disabled="true") Submit
+          v-btn.btn(v-if="!isLastPage" @click="goNext") Next
           v-dialog(v-else v-model="dialog" width="500")
             v-btn.btn(@click="submitData" slot="activator") Submit
             v-card.border-round.p50-top.p30-side
@@ -49,6 +48,7 @@
 
 <script>
 import helpers from '@/helpers'
+import MessageBus from '@/services/messageBus'
 import pagesList, { studentPagesFields, employeerPagesFields, setSourceData } from '@/components/registration/page_list'
 import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, TechnicalRoles, JobSearchProgress, UploadTranscript, EmployeerAccount } from '@/components/registration'
 
@@ -67,16 +67,12 @@ export default {
       selAccountType: null,
       selStudentRole: null,
       curPage: 0,
-      canContinue: false,
       dialog: false,
       pages: {},
       loaded: false
     }
   },
   methods: {
-    allowContinue(e) {
-      this.canContinue = e
-    },
     initStore(accType) {
       this.$store.dispatch('clearAllData')
       if (accType === 'student') {
@@ -104,6 +100,7 @@ export default {
         })
     },
     goBack() {
+      MessageBus.$emit('isHotChanged', false)
       const prevPage = this.curPage - 1
       const prevPageId = this.getPageIdByIndex(prevPage)
       if (this.pages[prevPageId]) {
@@ -111,11 +108,26 @@ export default {
       }
     },
     goNext() {
-      const nextPage = this.curPage + 1
-      const nextPageId = this.getPageIdByIndex(nextPage)
-      if (this.pages[nextPageId] && this.canContinue) {
-        this.curPage = nextPage
-      }
+      let errors = 0
+      MessageBus.$emit('getErrorState', (hasError) => {
+        if (hasError) {
+          errors += 1
+        }
+      })
+
+      setTimeout(() => {
+        console.log(errors)
+        if (errors) {
+          MessageBus.$emit('isHotChanged', true)
+        } else {
+          MessageBus.$emit('isHotChanged', false)
+          const nextPage = this.curPage + 1
+          const nextPageId = this.getPageIdByIndex(nextPage)
+          if (this.pages[nextPageId]) {
+            this.curPage = nextPage
+          }
+        }
+      }, 20)
     },
     submitData() {
       const data = this.$store.getters.getAll
