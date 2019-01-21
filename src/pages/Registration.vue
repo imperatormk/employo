@@ -31,8 +31,7 @@
           v-btn.btn.back(@click="goBack" v-show="!isInitialPage") Back
           .p40-side.w100
             v-progress-linear(v-model="progress" v-show="!isInitialPage")
-          v-btn.btn(v-if="!isLastPage" @click="goNext") Next
-          v-btn.btn(v-else @click="submitData") Submit
+          v-btn.btn(@click="goNext") {{ !isLastPage ? 'Next' : 'Submit' }}
           v-dialog(v-model="dialog" width="500")
             v-card.border-round.p50-top.p30-side
               v-card-text.fs20.demiBold Thank you for signing up! Make sure to check your email for updates
@@ -123,38 +122,34 @@ export default {
             MessageBus.$emit('isHotChanged', true)
           } else {
             MessageBus.$emit('isHotChanged', false)
-            const nextPage = this.curPage + 1
-            const nextPageId = this.getPageIdByIndex(nextPage)
-            if (this.pages[nextPageId]) {
-              this.curPage = nextPage
+            if (!this.isLastPage) {
+              const nextPage = this.curPage + 1
+              const nextPageId = this.getPageIdByIndex(nextPage)
+              if (this.pages[nextPageId]) {
+                this.curPage = nextPage
+              }
+            } else {
+              this.submitData()
             }
           }
         })
     },
     submitData() {
-      this.getErrors()
-        .then((errors) => {
-          if (errors) {
-            MessageBus.$emit('isHotChanged', true)
-          } else {
-            MessageBus.$emit('isHotChanged', false)
-            const data = this.$store.getters.getAll
-            let reqData = {}
+      const data = this.$store.getters.getAll
+      let reqData = {}
 
-            Object.keys(data)
-              .forEach((pageId) => {
-                const pageData = data[pageId]
-                const pageDataVal = {}
-                Object.keys(pageData).forEach((key) => {
-                  const dataObj = pageData[key]
-                  pageDataVal[key] = dataObj.value
-                })
-                reqData = Object.assign({}, reqData, pageDataVal)
-              })
-            console.log(reqData)
-            this.dialog = true
-          }
+      Object.keys(data)
+        .forEach((pageId) => {
+          const pageData = data[pageId]
+          const pageDataVal = {}
+          Object.keys(pageData).forEach((key) => {
+            const dataObj = pageData[key]
+            pageDataVal[key] = dataObj.value
+          })
+          reqData = Object.assign({}, reqData, pageDataVal)
         })
+      console.log(reqData)
+      this.dialog = true
     },
     getPageIdByIndex(index) {
       const key = Object.keys(this.pages)[index]
