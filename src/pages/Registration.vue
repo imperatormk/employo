@@ -1,42 +1,39 @@
 <template lang="pug">
   .flex.flex-column.space-between.p10.h100
     .flex.flex-column.space-between.p10.h100(v-if="loaded")
-      AccountType(v-if="curPageId === pages.acctype" @roleSelected="selAccountType = $event" @success='allowContinue($event)' :currentType="selAccountType")
+      AccountType(v-if="curPageId === pages.acctype" @roleSelected="selAccountType = $event" :currentType="selAccountType")
       .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'student'")
         .flex.h100
-          StudentAccount(v-if="curPageId === pages.account" @success='allowContinue($event)')
-          Education(v-else-if="curPageId === pages.education" @success='allowContinue($event)')
-          Work(v-else-if="curPageId === pages.work" @success='allowContinue($event)')
-          Roles(v-else-if="curPageId === pages.roles" @success='allowContinue($event)' @roleChanged="selStudentRole = $event")
+          StudentAccount(v-if="curPageId === pages.account")
+          Education(v-else-if="curPageId === pages.education")
+          Work(v-else-if="curPageId === pages.work")
+          Roles(v-else-if="curPageId === pages.roles" @roleChanged="selStudentRole = $event")
           .flex.h100(v-else-if="selStudentRole == 'technical'")
-            Experience(v-if="curPageId === pages.experience" @success='allowContinue($event)')
-            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles" @success='allowContinue($event)')
-            Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
-            Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
-            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress" @success='allowContinue($event)')
-            UploadTranscript(v-else-if="curPageId === pages.transcript" @success='allowContinue($event)')
+            Experience(v-if="curPageId === pages.experience")
+            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles")
+            Industries(v-else-if="curPageId === pages.industries")
+            Skills(v-else-if="curPageId === pages.skills")
+            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress")
+            UploadTranscript(v-else-if="curPageId === pages.transcript")
           .flex.h100(v-else-if="selStudentRole == 'nontechnical'")
-            Experience(v-if="curPageId === pages.experience" @success='allowContinue($event)')
-            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles" @success='allowContinue($event)')
-            Industries(v-else-if="curPageId === pages.industries" @success='allowContinue($event)')
-            Skills(v-else-if="curPageId === pages.skills" @success='allowContinue($event)')
-            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress" @success='allowContinue($event)')
-            UploadTranscript(v-else-if="curPageId === pages.transcript" @success='allowContinue($event)')
+            Experience(v-if="curPageId === pages.experience")
+            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles")
+            Industries(v-else-if="curPageId === pages.industries")
+            Skills(v-else-if="curPageId === pages.skills")
+            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress")
+            UploadTranscript(v-else-if="curPageId === pages.transcript")
       .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employeer'")
         .flex
-          EmployeerAccount(v-if="curPageId === pages.account" @success='allowContinue($event)')
+          EmployeerAccount(v-if="curPageId === pages.account")
       .spacer
       .flex.align-end.p30
-        .flex.justify-end(v-if="curPageId === pages.acctype")
-          v-btn.btn(v-if="!isLastPage" @click="goNext" :disabled="!canContinue") Next
-        .flex.align-center(v-else)
-          v-btn.btn.back(@click="goBack") Back
+        .flex.align-center
+          v-btn.btn.back(@click="goBack" v-show="!isInitialPage") Back
           .p40-side.w100
-            v-progress-linear(v-model="progress")
-          v-btn.btn(v-if="!isLastPage" @click="goNext" :disabled="!canContinue") Next
-          v-btn.btn(v-else-if="!canContinue" width="500" :disabled="true") Submit
-          v-dialog(v-else v-model="dialog" width="500")
-            v-btn.btn(@click="submitData" slot="activator") Submit
+            v-progress-linear(v-model="progress" v-show="!isInitialPage")
+          v-btn.btn(v-if="!isLastPage" @click="goNext") Next
+          v-btn.btn(v-else @click="submitData") Submit
+          v-dialog(v-model="dialog" width="500")
             v-card.border-round.p50-top.p30-side
               v-card-text.fs20.demiBold Thank you for signing up! Make sure to check your email for updates
               v-divider
@@ -49,6 +46,7 @@
 
 <script>
 import helpers from '@/helpers'
+import MessageBus from '@/services/messageBus'
 import pagesList, { studentPagesFields, employeerPagesFields, setSourceData } from '@/components/registration/page_list'
 import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, TechnicalRoles, JobSearchProgress, UploadTranscript, EmployeerAccount } from '@/components/registration'
 
@@ -67,16 +65,12 @@ export default {
       selAccountType: null,
       selStudentRole: null,
       curPage: 0,
-      canContinue: false,
       dialog: false,
       pages: {},
       loaded: false
     }
   },
   methods: {
-    allowContinue(e) {
-      this.canContinue = e
-    },
     initStore(accType) {
       this.$store.dispatch('clearAllData')
       if (accType === 'student') {
@@ -104,35 +98,63 @@ export default {
         })
     },
     goBack() {
+      MessageBus.$emit('isHotChanged', false)
       const prevPage = this.curPage - 1
       const prevPageId = this.getPageIdByIndex(prevPage)
       if (this.pages[prevPageId]) {
         this.curPage = prevPage
       }
     },
+    getErrors() {
+      let errors = 0
+      MessageBus.$emit('getErrorState', (hasError) => {
+        if (hasError) {
+          errors += 1
+        }
+      })
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(errors), 20)
+      })
+    },
     goNext() {
-      const nextPage = this.curPage + 1
-      const nextPageId = this.getPageIdByIndex(nextPage)
-      if (this.pages[nextPageId] && this.canContinue) {
-        this.curPage = nextPage
-      }
+      this.getErrors()
+        .then((errors) => {
+          if (errors) {
+            MessageBus.$emit('isHotChanged', true)
+          } else {
+            MessageBus.$emit('isHotChanged', false)
+            const nextPage = this.curPage + 1
+            const nextPageId = this.getPageIdByIndex(nextPage)
+            if (this.pages[nextPageId]) {
+              this.curPage = nextPage
+            }
+          }
+        })
     },
     submitData() {
-      const data = this.$store.getters.getAll
-      let reqData = {}
+      this.getErrors()
+        .then((errors) => {
+          if (errors) {
+            MessageBus.$emit('isHotChanged', true)
+          } else {
+            MessageBus.$emit('isHotChanged', false)
+            const data = this.$store.getters.getAll
+            let reqData = {}
 
-      Object.keys(data)
-        .forEach((pageId) => {
-          const pageData = data[pageId]
-          const pageDataVal = {}
-          Object.keys(pageData).forEach((key) => {
-            const dataObj = pageData[key]
-            pageDataVal[key] = dataObj.value
-          })
-          reqData = Object.assign({}, reqData, pageDataVal)
+            Object.keys(data)
+              .forEach((pageId) => {
+                const pageData = data[pageId]
+                const pageDataVal = {}
+                Object.keys(pageData).forEach((key) => {
+                  const dataObj = pageData[key]
+                  pageDataVal[key] = dataObj.value
+                })
+                reqData = Object.assign({}, reqData, pageDataVal)
+              })
+            console.log(reqData)
+            this.dialog = true
+          }
         })
-
-      console.log(reqData)
     },
     getPageIdByIndex(index) {
       const key = Object.keys(this.pages)[index]

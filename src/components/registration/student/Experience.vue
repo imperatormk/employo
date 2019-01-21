@@ -19,7 +19,6 @@ import PropertyItem from '@/components/common/PropertyItem'
 import RangeSlider from 'vue-range-slider'
 import 'vue-range-slider/dist/vue-range-slider.css'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
-import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.experience
 
@@ -33,18 +32,7 @@ export default {
       fields: {}
     }
   },
-  computed: {
-    checkForSuccess() {
-      return helpers.checkEmpty(this.fields)
-    }
-  },
   watch: {
-    checkForSuccess: {
-      handler: function f(val) {
-        this.$emit('success', val)
-      },
-      deep: true
-    },
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {

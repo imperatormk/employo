@@ -2,12 +2,14 @@
   v-container(grid-list-xl)
     h1.label Are you a student or an employeer?
     .flex-column.justify-center(style="height:85%;")
-      .flex-row.justify-center
-        RoleType(v-for="roleType in source.roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="roleSelected(roleType.id)")
+      PropertyItem(:data="{value:selected,required:true}" :center="true")
+        .flex-row.justify-center.fit
+          RoleType(v-for="roleType in source.roleTypes" :key="roleType.id" :typeData="roleType" :isSelected="isRoleSelected(roleType.id).isSelected" @clicked="roleSelected(roleType.id)")
 </template>
 
 <script>
 import RoleType from '@/components/RoleType'
+import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { initialPagesData } from '@/components/registration/page_list'
 
 const PAGE_ID = pagesList.initialPagesList.acctype
@@ -22,7 +24,6 @@ export default {
   created() {
     if (this.currentType) {
       this.selected = this.currentType
-      this.$emit('success', true)
     }
   },
   data() {
@@ -45,11 +46,11 @@ export default {
     roleSelected(e) {
       this.selected = e
       this.$emit('roleSelected', e)
-      this.$emit('success', true)
     }
   },
   components: {
-    RoleType
+    RoleType,
+    PropertyItem
   }
 }
 </script>

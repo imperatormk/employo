@@ -154,7 +154,8 @@ h1 {
 // .p5-side, .p10-side...
 @for $i from 1 through 20 {
   .p#{$i * 5}#{-side} {
-    padding: 0 $i * 5px
+    padding-left: $i * 5px;
+    padding-right: $i * 5px;
   }
 }
 // .p5-left, .p10-left...
@@ -178,15 +179,10 @@ h1 {
 // .p5-bot, .p10-bot...
 @for $i from 1 through 40 {
   .p#{$i * 5}#{-bot} {
-    padding: 0 0 $i * 5px 0
-  }
-}
-
-@for $i from 1 through 300 {
-  .p#{$i}#{-btm} {
     padding-bottom: $i * 1px
   }
 }
+
 // .h5, .h10...
 @for $i from 1 through 100 {
   .h#{$i * 1} {
@@ -476,6 +472,10 @@ $darker-blue: #477EE6;
 
 .spacer {
   flex-grow: 1;
+}
+
+.fit {
+  width: fit-content;
 }
 
 // vuetify tweaks start
