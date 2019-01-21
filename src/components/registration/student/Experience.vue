@@ -3,16 +3,19 @@
     h1.label Tell us about your experience
     div
       .desc-label How many years of experience do you have?
-      .flex.space-between.align-center.p10
-        range-slider(class="yearSlider" min="0" max="5" step="1" v-model="fields.numYears.value")
-        v-chip.chip {{ fields.numYears.value }} years
+      PropertyItem(:data="fields.numYears")
+        .flex.space-between.align-center.p10
+          range-slider(class="yearSlider" min="0" max="5" step="1" v-model="fields.numYears.value")
+          v-chip.chip {{ fields.numYears.value }} years
     div
       .desc-label What areas have you had most experience with?
-      .flex.space-between.align-center.p10.flex-wrap.style-1.of-scroll(style="height:130px;")
-        v-btn(v-for="area in source.areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
+      PropertyItem(:data="fields.selectedAreas")
+        .flex.space-between.align-center.p10.flex-wrap.style-1.of-scroll(style="height:130px;")
+          v-btn(v-for="area in source.areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import RangeSlider from 'vue-range-slider'
 import 'vue-range-slider/dist/vue-range-slider.css'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
@@ -72,7 +75,8 @@ export default {
     }
   },
   components: {
-    RangeSlider
+    RangeSlider,
+    PropertyItem
   }
 }
 </script>

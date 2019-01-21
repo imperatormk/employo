@@ -75,7 +75,7 @@ const studentPagesFields = [{
   pageId: studentPagesList.work,
   fields: {
     officialCoop: {
-      value: null,
+      value: [],
       required: true
     },
     availability: {

@@ -6,28 +6,36 @@
         .field-label.alternate.demiBold.p-left-0 Tell us a bit about you before we get in touch
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold First name
-        v-text-field.br5.demiBold(v-model="fields.firstName.value" solo background-color="#f5f5f5" placeholder="First name")
+        PropertyItem(:data="fields.firstName")
+          v-text-field.br5.demiBold(v-model="fields.firstName.value" solo background-color="#f5f5f5" placeholder="First name")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Last name
-        v-text-field.br5.demiBold(v-model="fields.lastName.value" solo background-color="#f5f5f5" placeholder="Last name")
+        PropertyItem(:data="fields.lastName")
+          v-text-field.br5.demiBold(v-model="fields.lastName.value" solo background-color="#f5f5f5" placeholder="Last name")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Company name
-        v-text-field.br5.demiBold(v-model="fields.companyName.value" solo background-color="#f5f5f5" placeholder="Company name")
+        PropertyItem(:data="fields.companyName")
+          v-text-field.br5.demiBold(v-model="fields.companyName.value" solo background-color="#f5f5f5" placeholder="Company name")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Company website
-        v-text-field.br5.demiBold(v-model="fields.companyWebsite.value" solo background-color="#f5f5f5" placeholder="Company website")
+        PropertyItem(:data="fields.companyWebsite")
+          v-text-field.br5.demiBold(v-model="fields.companyWebsite.value" solo background-color="#f5f5f5" placeholder="Company website")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Email
-        v-text-field.br5.demiBold(v-model="fields.email.value" solo background-color="#f5f5f5" placeholder="Email")
+        PropertyItem(:data="fields.email")
+          v-text-field.br5.demiBold(v-model="fields.email.value" solo background-color="#f5f5f5" placeholder="Email")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Office location
-        v-text-field.br5.demiBold(v-model="fields.city.value" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
+        PropertyItem(:data="fields.city")
+          v-text-field.br5.demiBold(v-model="fields.city.value" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
       v-flex(xs12, sm6, d-block)
         .field-label.alternate.demiBold Phone number
-        v-text-field.br5.demiBold(v-model="fields.phoneNumber.value" solo background-color="#f5f5f5" placeholder="Phone number")
+        PropertyItem(:data="fields.phoneNumber")
+          v-text-field.br5.demiBold(v-model="fields.phoneNumber.value" solo background-color="#f5f5f5" placeholder="Phone number")
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import pagesList from '@/components/registration/page_list'
 import helpers from '@/helpers'
 
@@ -63,6 +71,9 @@ export default {
       },
       deep: true
     }
+  },
+  components: {
+    PropertyItem
   }
 }
 </script>

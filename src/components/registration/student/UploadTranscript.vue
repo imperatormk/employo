@@ -4,7 +4,8 @@
     .flex.row
       .flex-column.w50.align-center
         h1.desc-label Upload your Resumé
-        DragNDrop(:filesProp="fields.resume.value" @filesChanged="filesChanged($event, 'resume')")
+        PropertyItem.w100.justify-center.align-center(:data="fields.resume")
+          DragNDrop(:filesProp="fields.resume.value" @filesChanged="filesChanged($event, 'resume')")
       .flex-column.w50.align-center
         .p10.w100
           .desc-label LinkedIn URL
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import DragNDrop from '@/components/DragNDrop'
 import pagesList from '@/components/registration/page_list'
 import helpers from '@/helpers'
@@ -61,7 +63,8 @@ export default {
     }
   },
   components: {
-    DragNDrop
+    DragNDrop,
+    PropertyItem
   }
 }
 </script>

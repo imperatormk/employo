@@ -1,6 +1,6 @@
 <template lang="pug">
   .flex-column
-    span(v-if="hasError") Please fill in this field
+    span.p10-side(v-if="hasError") Please fill in this field
     slot
 </template>
 
