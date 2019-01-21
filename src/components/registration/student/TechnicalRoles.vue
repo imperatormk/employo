@@ -15,7 +15,6 @@
 <script>
 import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
-import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.technicalRoles
 
@@ -31,21 +30,12 @@ export default {
     }
   },
   computed: {
-    checkForSuccess() {
-      return helpers.checkEmpty(this.fields)
-    },
     getVisibleRoles() {
       if (!this.criteria.trim()) return this.source.roles
       return this.source.roles.filter(role => role.title.toLowerCase().includes(this.criteria.trim()))
     }
   },
   watch: {
-    checkForSuccess: {
-      handler: function f(val) {
-        this.$emit('success', val)
-      },
-      deep: true
-    },
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {

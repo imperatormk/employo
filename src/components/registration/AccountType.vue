@@ -22,7 +22,6 @@ export default {
   created() {
     if (this.currentType) {
       this.selected = this.currentType
-      this.$emit('success', true)
     }
   },
   data() {
@@ -45,7 +44,6 @@ export default {
     roleSelected(e) {
       this.selected = e
       this.$emit('roleSelected', e)
-      this.$emit('success', true)
     }
   },
   components: {

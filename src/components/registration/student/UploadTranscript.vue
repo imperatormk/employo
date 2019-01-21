@@ -22,7 +22,6 @@
 import PropertyItem from '@/components/common/PropertyItem'
 import DragNDrop from '@/components/DragNDrop'
 import pagesList from '@/components/registration/page_list'
-import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.transcript
 
@@ -40,18 +39,7 @@ export default {
       this.fields[field].value = files
     }
   },
-  computed: {
-    checkForSuccess() {
-      return helpers.checkEmpty(this.fields)
-    }
-  },
   watch: {
-    checkForSuccess: {
-      handler: function f(val) {
-        this.$emit('success', val)
-      },
-      deep: true
-    },
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {

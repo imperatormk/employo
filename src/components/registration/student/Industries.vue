@@ -15,7 +15,6 @@
 <script>
 import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
-import helpers from '@/helpers'
 
 const PAGE_ID = pagesList.studentPagesList.industries
 
@@ -31,12 +30,6 @@ export default {
     }
   },
   watch: {
-    checkForSuccess: {
-      handler: function f(val) {
-        this.$emit('success', val)
-      },
-      deep: true
-    },
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
@@ -67,9 +60,6 @@ export default {
     }
   },
   computed: {
-    checkForSuccess() {
-      return helpers.checkEmpty(this.fields)
-    },
     getVisibleIndustries() {
       if (!this.criteria.trim()) return this.source.industries
       return this.source.industries.filter(industry => industry.title.toLowerCase().includes(this.criteria.trim()))

@@ -116,7 +116,6 @@ export default {
       })
 
       setTimeout(() => {
-        console.log(errors)
         if (errors) {
           MessageBus.$emit('isHotChanged', true)
         } else {

@@ -24,19 +24,7 @@ export default {
       loaded: false
     }
   },
-  computed: {
-    checkForSuccess() {
-      if (!this.loaded) return false
-      return !!this.fields.selectedRole.value != null
-    }
-  },
   watch: {
-    checkForSuccess: {
-      handler: function f(val) {
-        this.$emit('success', val)
-      },
-      deep: true
-    },
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
