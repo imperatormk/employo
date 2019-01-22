@@ -2,7 +2,7 @@ import technical from '@/assets/role_types/technical.png'
 import nontechnical from '@/assets/role_types/nontechnical.png'
 
 import student from '@/assets/acc_types/student.png'
-import employeer from '@/assets/acc_types/employer.png'
+import employer from '@/assets/acc_types/employer.png'
 
 import sourceData from '@/assets/source-data.json'
 
@@ -50,10 +50,10 @@ const setImageData = function f(dataObj) {
     fullImage: false,
     image: student
   }, {
-    id: 'employeer',
+    id: 'employer',
     alternate: true,
     fullImage: false,
-    image: employeer
+    image: employer
   }]
 
   const returnArray = []

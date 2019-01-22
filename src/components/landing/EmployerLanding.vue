@@ -50,7 +50,7 @@
         br
         v-btn-toggle.btn-toggle.of-hidden(v-model="faq")
           v-btn(active-class="v-btn--active blue-color" flat fab value="students") Students
-          v-btn(active-class="v-btn--active blue-color" flat fab value="employees") Employees
+          v-btn(active-class="v-btn--active blue-color" flat fab value="employers") Employers
         br
         .flex-row.justify-center.w100
           .flex-column.flex-1

@@ -6,10 +6,10 @@ import Registration from '@/pages/Registration'
 import JobBoard from '@/pages/students/JobBoard'
 import SavedJobs from '@/pages/students/SavedJobs'
 import StudentProfile from '@/pages/students/Profile'
-import Postings from '@/pages/employeer/Postings'
-import EmployeeProfile from '@/pages/employeer/Profile'
-import EmployeeLanding from '@/components/landing/EmployeeLanding'
-import Applicants from '@/pages/employeer/Applicants'
+import Postings from '@/pages/employer/Postings'
+import EmployerProfile from '@/pages/employer/Profile'
+import EmployerLanding from '@/components/landing/EmployerLanding'
+import Applicants from '@/pages/employer/Applicants'
 
 Vue.use(Router)
 
@@ -41,15 +41,15 @@ export default new Router({
       component: StudentProfile
     },
     {
-      path: '/employeer/profile',
-      component: EmployeeProfile
+      path: '/employer/profile',
+      component: EmployerProfile
     },
     {
-      path: '/employeer',
-      component: EmployeeLanding
+      path: '/employer',
+      component: EmployerLanding
     },
     {
-      path: '/employeer/applicants',
+      path: '/employer/applicants',
       component: Applicants
     }
   ],

@@ -11,7 +11,7 @@ import Skills from './student/Skills'
 import JobSearchProgress from './student/JobSearchProgress'
 import UploadTranscript from './student/UploadTranscript'
 
-import EmployeerAccount from './employeer/Account'
+import EmployerAccount from './employer/Account'
 
 export {
   AccountType,
@@ -25,5 +25,5 @@ export {
   Skills,
   JobSearchProgress,
   UploadTranscript,
-  EmployeerAccount
+  EmployerAccount
 }

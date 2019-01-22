@@ -34,7 +34,7 @@ export default {
       return false
     },
     isFrontPage(id) {
-      if (id === 'student' || id === 'employeer') {
+      if (id === 'student' || id === 'employer') {
         return true
       }
 
