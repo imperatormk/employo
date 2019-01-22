@@ -97,10 +97,10 @@
 <script>
 import Header from '@/components/Header'
 
-import laptop from '@/assets/landing/employe/Laptop.png'
-import profile from '@/assets/landing/employe/CandidateProfile.png'
-import postings from '@/assets/landing/employe/JobInput.png'
-import banner from '@/assets/landing/employe/Banner.png'
+import laptop from '@/assets/landing/employer/Laptop.png'
+import profile from '@/assets/landing/employer/CandidateProfile.png'
+import postings from '@/assets/landing/employer/JobInput.png'
+import banner from '@/assets/landing/employer/Banner.png'
 
 export default {
   data() {

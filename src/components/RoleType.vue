@@ -26,7 +26,7 @@ export default {
         return {
           studentSelected: true
         }
-      } else if (this.isSelected && id === 'employee') {
+      } else if (this.isSelected && id === 'employer') {
         return {
           employerSelected: true
         }
