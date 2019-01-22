@@ -18,7 +18,7 @@ const studentPagesList = {
   transcript: 'transcript'
 }
 
-const employeerPagesList = {
+const employerPagesList = {
   acctype: 'acctype',
   account: 'account'
 }
@@ -26,7 +26,7 @@ const employeerPagesList = {
 export default {
   initialPagesList,
   studentPagesList,
-  employeerPagesList
+  employerPagesList
 }
 
 const studentPagesFields = [{
@@ -176,8 +176,8 @@ const studentPagesFields = [{
   }
 }]
 
-const employeerPagesFields = [{
-  pageId: employeerPagesList.account,
+const employerPagesFields = [{
+  pageId: employerPagesList.account,
   fields: {
     firstName: {
       value: '',
@@ -226,7 +226,7 @@ const setSourceData = function f(key, data) {
 }
 
 export { studentPagesFields }
-export { employeerPagesFields }
+export { employerPagesFields }
 export { studentPagesData }
 export { initialPagesData }
 export { setSourceData }

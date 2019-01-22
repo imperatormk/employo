@@ -2,8 +2,8 @@
   v-container(grid-list-xl)
     v-layout(wrap, align-center)
       v-flex(xs12, sm12, d-block)
-        h1.label.p10 Let's
-        .field-label.demiBold Choose as many that apply
+        h1.label Let's Chat
+        .desc-label.demiBold Our team is here to answer any of your questions.
       v-flex(xs12, sm6, d-block)
         .field-label.demiBold First name
         v-text-field.br5.demiBold(v-model="fields.firstName" solo background-color="#f5f5f5" placeholder="First name")
@@ -14,10 +14,10 @@
         .field-label.demiBold Email Address
         v-text-field.br5.demiBold(v-model="fields.email" solo background-color="#f5f5f5" placeholder="Email")
       v-flex(xs12, sm6, d-block)
-        .field-label.demiBold Are You a Student or
+        .field-label.demiBold Are You a Student or Employer?
         v-select.br5.demiBold(:items='roles', background-color='#f5f5f5', v-model='fields.selRoles', item-text='title', :label='`eg. ${roles[0].title}`', solo)
     v-flex(flex-column)
-        .field-label.demiBold Meesage
+        .field-label.demiBold Message
           .flex.flex-wrap.p10-top
             v-textarea(solo v-model="fields.message" background-color="#f5f5f5" name="input-7-4" placeholder="How can we help?" :value="fields.message")
     v-flex(flex-column)

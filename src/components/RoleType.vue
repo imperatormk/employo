@@ -26,7 +26,7 @@ export default {
         return {
           studentSelected: true
         }
-      } else if (this.isSelected && id === 'employee') {
+      } else if (this.isSelected && id === 'employer') {
         return {
           employerSelected: true
         }
@@ -34,7 +34,7 @@ export default {
       return false
     },
     isFrontPage(id) {
-      if (id === 'student' || id === 'employeer') {
+      if (id === 'student' || id === 'employer') {
         return true
       }
 

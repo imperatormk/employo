@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container(grid-list-xl)
-    h1.label Are you a student or an employeer?
+    h1.label Are you a student or an employer?
     .flex-column.justify-center(style="height:85%;")
       PropertyItem(:data="{value:selected,required:true}" :center="true")
         .flex-row.justify-center.fit

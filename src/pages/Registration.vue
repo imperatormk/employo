@@ -22,9 +22,9 @@
             Skills(v-else-if="curPageId === pages.skills")
             JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress")
             UploadTranscript(v-else-if="curPageId === pages.transcript")
-      .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employeer'")
+      .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employer'")
         .flex
-          EmployeerAccount(v-if="curPageId === pages.account")
+          EmployerAccount(v-if="curPageId === pages.account")
       .spacer
       .flex.align-end.p30
         .flex.align-center
@@ -46,8 +46,8 @@
 <script>
 import helpers from '@/helpers'
 import MessageBus from '@/services/messageBus'
-import pagesList, { studentPagesFields, employeerPagesFields, setSourceData } from '@/components/registration/page_list'
-import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, TechnicalRoles, JobSearchProgress, UploadTranscript, EmployeerAccount } from '@/components/registration'
+import pagesList, { studentPagesFields, employerPagesFields, setSourceData } from '@/components/registration/page_list'
+import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, TechnicalRoles, JobSearchProgress, UploadTranscript, EmployerAccount } from '@/components/registration'
 
 export default {
   created() {
@@ -78,10 +78,10 @@ export default {
           const cloneObj = JSON.parse(JSON.stringify(studentPage)) // doing this deep clone just to be sure
           this.$store.dispatch('dataChange', cloneObj)
         })
-      } else if (accType === 'employeer') {
-        this.pages = pagesList.employeerPagesList
-        employeerPagesFields.forEach((employeerPage) => {
-          const cloneObj = JSON.parse(JSON.stringify(employeerPage)) // doing this deep clone just to be sure
+      } else if (accType === 'employer') {
+        this.pages = pagesList.employerPagesList
+        employerPagesFields.forEach((employerPage) => {
+          const cloneObj = JSON.parse(JSON.stringify(employerPage)) // doing this deep clone just to be sure
           this.$store.dispatch('dataChange', cloneObj)
         })
       }
@@ -91,7 +91,7 @@ export default {
         .then((res) => {
           setSourceData('initial', res.initial)
           setSourceData('student', res.student)
-          setSourceData('employee', res.employee)
+          setSourceData('employer', res.employer)
 
           this.loaded = true
         })
@@ -175,7 +175,7 @@ export default {
     }
   },
   components: {
-    AccountType, StudentAccount, Education, Work, Experience, Industries, TechnicalRoles, Roles, Skills, JobSearchProgress, UploadTranscript, EmployeerAccount
+    AccountType, StudentAccount, Education, Work, Experience, Industries, TechnicalRoles, Roles, Skills, JobSearchProgress, UploadTranscript, EmployerAccount
   }
 }
 </script>

@@ -10,8 +10,8 @@
             "desc":""
           },
           {  
-            "id":"employeer",
-            "title":"Employeer",
+            "id":"employer",
+            "title":"Employer",
             "desc":""
           }
         ]
@@ -362,5 +362,5 @@
       }
     }
   ],
-  "employee":[]
+  "employer":[]
 }
