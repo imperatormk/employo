@@ -4,7 +4,7 @@
       h1.label What are your strongest skills?
     v-layout(wrap align-center)
       v-flex(flex-column)
-        .field-label Choose as many that apply
+        .field-label.alternate Choose as many that apply
         v-text-field(v-model="criteria" placeholder="Search skills")
         PropertyItem(:data="fields.selectedSkills")
           .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
@@ -15,16 +15,16 @@
 import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.studentPagesList.skills
+const PAGE_ID = pagesList.studentPagesList.nontechnical.skills
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
+    this.fields = this.$store.getters.getById(PAGE_ID, 'nontechnical').fields
   },
   data() {
     return {
       criteria: '',
-      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
+      source: studentPagesData.find(obj => Object.keys(obj).includes('nontechnical')).nontechnical.find(item => item.pageId === PAGE_ID).fields,
       fields: {}
     }
   },
@@ -32,7 +32,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList.studentPagesList[PAGE_ID],
+          pageId: PAGE_ID,
           fields: val
         })
       },

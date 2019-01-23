@@ -10,12 +10,23 @@ const studentPagesList = {
   education: 'education',
   work: 'work',
   roles: 'roles',
-  experience: 'experience',
-  technicalRoles: 'technicalRoles',
-  industries: 'industries',
-  skills: 'skills',
-  jobSearchProgress: 'jobSearchProgress',
-  transcript: 'transcript'
+  // here starts the diff
+  technical: {
+    experience: 'experience',
+    roles: 'specificRoles',
+    industries: 'industries',
+    skills: 'skills',
+    jobSearchProgress: 'jobSearchProgress',
+    transcript: 'transcript'
+  },
+  nontechnical: {
+    experience: 'experience',
+    roles: 'specificRoles',
+    industries: 'industries',
+    skills: 'skills',
+    jobSearchProgress: 'jobSearchProgress',
+    transcript: 'transcript'
+  }
 }
 
 const employerPagesList = {
@@ -101,79 +112,160 @@ const studentPagesFields = [{
     }
   }
 },
+// split starts here
 {
-  pageId: studentPagesList.experience,
-  fields: {
-    selectedAreas: {
-      value: [],
-      required: true
-    },
-    numYears: {
-      value: 1,
-      required: true
+  subtype: 'technical',
+  pages: [{
+    pageId: studentPagesList.technical.experience,
+    fields: {
+      selectedAreas: {
+        value: [],
+        required: true
+      },
+      numYears: {
+        value: 1,
+        required: true
+      }
     }
-  }
-},
-{
-  pageId: studentPagesList.technicalRoles,
-  fields: {
-    rolePref: {
-      value: [],
-      required: true
-    },
-  }
-},
-{
-  pageId: studentPagesList.industries,
-  fields: {
-    selectedIndustries: {
-      value: [],
-      required: true
+  },
+  {
+    pageId: studentPagesList.technical.roles,
+    fields: {
+      rolePref: {
+        value: [],
+        required: true
+      },
     }
-  }
-},
-{
-  pageId: studentPagesList.skills,
-  fields: {
-    selectedSkills: {
-      value: [],
-      required: true
+  },
+  {
+    pageId: studentPagesList.technical.industries,
+    fields: {
+      selectedIndustries: {
+        value: [],
+        required: true
+      }
     }
-  }
-},
-{
-  pageId: studentPagesList.jobSearchProgress,
-  fields: {
-    jobSearch: {
-      value: 0,
-      required: true
-    },
-    companySize: {
-      value: [],
-      required: true
-    },
-  }
-},
-{
-  pageId: studentPagesList.transcript,
-  fields: {
-    resume: {
-      value: [],
-      required: true
-    },
-    linkedIn: {
-      value: '',
-      required: true
-    },
-    gitHub: {
-      value: '',
-      required: true
-    },
-    website: {
-      value: '',
-      required: true
+  },
+  {
+    pageId: studentPagesList.technical.skills,
+    fields: {
+      selectedSkills: {
+        value: [],
+        required: true
+      }
     }
-  }
+  },
+  {
+    pageId: studentPagesList.technical.jobSearchProgress,
+    fields: {
+      jobSearch: {
+        value: 0,
+        required: true
+      },
+      companySize: {
+        value: [],
+        required: true
+      },
+    }
+  },
+  {
+    pageId: studentPagesList.technical.transcript,
+    fields: {
+      resume: {
+        value: [],
+        required: true
+      },
+      linkedIn: {
+        value: '',
+        required: true
+      },
+      gitHub: {
+        value: '',
+        required: true
+      },
+      website: {
+        value: '',
+        required: true
+      }
+    }
+  }]
+},
+{
+  subtype: 'nontechnical',
+  pages: [{
+    pageId: studentPagesList.nontechnical.experience,
+    fields: {
+      selectedAreas: {
+        value: [],
+        required: true
+      },
+      numYears: {
+        value: 1,
+        required: true
+      }
+    }
+  },
+  {
+    pageId: studentPagesList.nontechnical.roles,
+    fields: {
+      rolePref: {
+        value: [],
+        required: true
+      },
+    }
+  },
+  {
+    pageId: studentPagesList.nontechnical.industries,
+    fields: {
+      selectedIndustries: {
+        value: [],
+        required: true
+      }
+    }
+  },
+  {
+    pageId: studentPagesList.nontechnical.skills,
+    fields: {
+      selectedSkills: {
+        value: [],
+        required: true
+      }
+    }
+  },
+  {
+    pageId: studentPagesList.nontechnical.jobSearchProgress,
+    fields: {
+      jobSearch: {
+        value: 0,
+        required: true
+      },
+      companySize: {
+        value: [],
+        required: true
+      },
+    }
+  },
+  {
+    pageId: studentPagesList.nontechnical.transcript,
+    fields: {
+      resume: {
+        value: [],
+        required: true
+      },
+      linkedIn: {
+        value: '',
+        required: true
+      },
+      gitHub: {
+        value: '',
+        required: true
+      },
+      website: {
+        value: '',
+        required: true
+      }
+    }
+  }]
 }]
 
 const employerPagesFields = [{

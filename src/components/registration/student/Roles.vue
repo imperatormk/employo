@@ -16,7 +16,7 @@ const PAGE_ID = pagesList.studentPagesList.roles
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
+    this.fields = this.$store.getters.getById(PAGE_ID)
     this.loaded = true
   },
   data() {
@@ -30,7 +30,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList.studentPagesList[PAGE_ID],
+          pageId: PAGE_ID,
           fields: val
         })
         if (val) this.$emit('roleChanged', this.fields.selectedRole.value)
@@ -71,11 +71,6 @@ export default {
   }
   .md-field.md-theme-default:after {
     background-color: transparent;
-  }
-  .field-label {
-    text-transform: uppercase;
-    color: #3164e3;
-    padding: 5px 5px 10px 5px;
   }
   .yearSlider {
     width: 100%;

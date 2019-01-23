@@ -67,11 +67,6 @@ export default {
   .md-field.md-theme-default:after {
     background-color: transparent;
   }
-  .field-label {
-    text-transform: uppercase;
-    color: #3164e3;
-    padding: 5px 5px 10px 5px;
-  }
   .yearSlider {
     width: 100%;
   }

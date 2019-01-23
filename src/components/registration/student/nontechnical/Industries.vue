@@ -4,7 +4,7 @@
             h1.label Industries you would like to work with?
     v-layout(wrap align-center)
       v-flex(flex-column)
-        .field-label.demiBold Choose as many that apply
+        .field-label.alternate.demiBold Choose as many that apply
         .flex
           v-text-field(v-model="criteria" placeholder="Search industries" hide-details)
         PropertyItem(:data="fields.selectedIndustries")
@@ -16,16 +16,16 @@
 import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.studentPagesList.industries
+const PAGE_ID = pagesList.studentPagesList.nontechnical.industries
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
+    this.fields = this.$store.getters.getById(PAGE_ID, 'nontechnical').fields
   },
   data() {
     return {
       criteria: '',
-      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
+      source: studentPagesData.find(obj => Object.keys(obj).includes('nontechnical')).nontechnical.find(item => item.pageId === PAGE_ID).fields,
       fields: {}
     }
   },
@@ -33,7 +33,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList.studentPagesList[PAGE_ID],
+          pageId: PAGE_ID,
           fields: val
         })
       },

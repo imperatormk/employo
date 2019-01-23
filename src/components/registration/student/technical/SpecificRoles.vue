@@ -2,7 +2,7 @@
   v-container(grid-list-xl)
     v-layout(wrap align-center)
       v-flex(xs12, sm12, d-flex)
-        h1.label Select your preffered technical roles
+        h1.label Select your preferred technical roles
       v-flex(flex-column)
         .field-label.demiBold Choose as many that apply
         .flex-wrap.p10.p-left-0.style-1
@@ -16,16 +16,16 @@
 import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.studentPagesList.technicalRoles
+const PAGE_ID = pagesList.studentPagesList.technical.roles
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
+    this.fields = this.$store.getters.getById(PAGE_ID, 'technical').fields
   },
   data() {
     return {
       criteria: '',
-      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
+      source: studentPagesData.find(obj => Object.keys(obj).includes('technical')).technical.find(item => item.pageId === PAGE_ID).fields,
       fields: {}
     }
   },
@@ -39,7 +39,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList.studentPagesList[PAGE_ID],
+          pageId: PAGE_ID,
           fields: val
         })
       },

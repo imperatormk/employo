@@ -2,13 +2,13 @@
   v-container(grid-list-xl)
     h1.label Tell us about your experience
     div
-      .desc-label How many years of experience do you have?
+      .desc-label.alternate How many years of experience do you have?
       PropertyItem(:data="fields.numYears")
         .flex.space-between.align-center.p10
-          range-slider(class="yearSlider" min="0" max="5" step="1" v-model="fields.numYears.value")
+          range-slider.alternate.yearSlider(min="0" max="5" step="1" v-model="fields.numYears.value")
           v-chip.chip {{ fields.numYears.value }} years
     div
-      .desc-label What areas have you had most experience with?
+      .desc-label.alternate What areas have you had most experience with?
       PropertyItem(:data="fields.selectedAreas")
         .flex.space-between.align-center.p10.flex-wrap.style-1.of-scroll(style="height:130px;")
           v-btn(v-for="area in source.areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
@@ -20,15 +20,15 @@ import RangeSlider from 'vue-range-slider'
 import 'vue-range-slider/dist/vue-range-slider.css'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.studentPagesList.experience
+const PAGE_ID = pagesList.studentPagesList.nontechnical.experience
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
+    this.fields = this.$store.getters.getById(PAGE_ID, 'nontechnical').fields
   },
   data() {
     return {
-      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
+      source: studentPagesData.find(obj => Object.keys(obj).includes('nontechnical')).nontechnical.find(item => item.pageId === PAGE_ID).fields,
       fields: {}
     }
   },
@@ -36,7 +36,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList.studentPagesList[PAGE_ID],
+          pageId: PAGE_ID,
           fields: val
         })
       },
@@ -80,11 +80,6 @@ export default {
   }
   .md-field.md-theme-default:after {
     background-color: transparent;
-  }
-  .field-label {
-    text-transform: uppercase;
-    color: #3164e3;
-    padding: 5px 5px 10px 5px;
   }
   .yearSlider {
     width: 100%;

@@ -9,19 +9,19 @@
           Work(v-else-if="curPageId === pages.work")
           Roles(v-else-if="curPageId === pages.roles" @roleChanged="selStudentRole = $event")
           .flex.h100(v-else-if="selStudentRole == 'technical'")
-            Experience(v-if="curPageId === pages.experience")
-            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles")
-            Industries(v-else-if="curPageId === pages.industries")
-            Skills(v-else-if="curPageId === pages.skills")
-            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress")
-            UploadTranscript(v-else-if="curPageId === pages.transcript")
+            TechnicalExperience(v-if="curPageId === pages.technical.experience")
+            TechnicalSpecificRoles(v-else-if="curPageId === pages.technical.roles")
+            TechnicalIndustries(v-else-if="curPageId === pages.technical.industries")
+            TechnicalSkills(v-else-if="curPageId === pages.technical.skills")
+            TechnicalJobSearchProgress(v-else-if="curPageId === pages.technical.jobSearchProgress")
+            TechnicalUploadTranscript(v-else-if="curPageId === pages.technical.transcript")
           .flex.h100(v-else-if="selStudentRole == 'nontechnical'")
-            Experience(v-if="curPageId === pages.experience")
-            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles")
-            Industries(v-else-if="curPageId === pages.industries")
-            Skills(v-else-if="curPageId === pages.skills")
-            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress")
-            UploadTranscript(v-else-if="curPageId === pages.transcript")
+            NontechnicalExperience(v-if="curPageId === pages.nontechnical.experience")
+            NontechnicalSpecificRoles(v-else-if="curPageId === pages.nontechnical.roles")
+            NontechnicalIndustries(v-else-if="curPageId === pages.nontechnical.industries")
+            NontechnicalSkills(v-else-if="curPageId === pages.nontechnical.skills")
+            NontechnicalJobSearchProgress(v-else-if="curPageId === pages.nontechnical.jobSearchProgress")
+            NontechnicalUploadTranscript(v-else-if="curPageId === pages.nontechnical.transcript")
       .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employer'")
         .flex
           EmployerAccount(v-if="curPageId === pages.account")
@@ -47,7 +47,7 @@
 import helpers from '@/helpers'
 import MessageBus from '@/services/messageBus'
 import pagesList, { studentPagesFields, employerPagesFields, setSourceData } from '@/components/registration/page_list'
-import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, TechnicalRoles, JobSearchProgress, UploadTranscript, EmployerAccount } from '@/components/registration'
+import { AccountType, StudentAccount, Education, Work, Roles, TechnicalExperience, TechnicalIndustries, TechnicalSpecificRoles, TechnicalSkills, TechnicalJobSearchProgress, TechnicalUploadTranscript, NontechnicalExperience, NontechnicalIndustries, NontechnicalSpecificRoles, NontechnicalSkills, NontechnicalJobSearchProgress, NontechnicalUploadTranscript, EmployerAccount } from '@/components/registration'
 
 export default {
   created() {
@@ -76,7 +76,11 @@ export default {
         this.pages = pagesList.studentPagesList
         studentPagesFields.forEach((studentPage) => {
           const cloneObj = JSON.parse(JSON.stringify(studentPage)) // doing this deep clone just to be sure
-          this.$store.dispatch('dataChange', cloneObj)
+          if (!cloneObj.subtype) {
+            this.$store.dispatch('dataChange', cloneObj)
+          } else {
+            this.$store.dispatch('dataChange', cloneObj)
+          }
         })
       } else if (accType === 'employer') {
         this.pages = pagesList.employerPagesList
@@ -100,7 +104,10 @@ export default {
       MessageBus.$emit('isHotChanged', false)
       const prevPage = this.curPage - 1
       const prevPageId = this.getPageIdByIndex(prevPage)
-      if (this.pages[prevPageId]) {
+
+      if (this.selStudentRole && Object.values(this.pages[this.selStudentRole]).includes(prevPageId)) {
+        this.curPage = prevPage
+      } else if (Object.values(this.pages).includes(prevPageId)) {
         this.curPage = prevPage
       }
     },
@@ -125,7 +132,9 @@ export default {
             if (!this.isLastPage) {
               const nextPage = this.curPage + 1
               const nextPageId = this.getPageIdByIndex(nextPage)
-              if (this.pages[nextPageId]) {
+              if (this.selStudentRole && Object.values(this.pages[this.selStudentRole]).includes(nextPageId)) {
+                this.curPage = nextPage
+              } else if (Object.values(this.pages).includes(nextPageId)) {
                 this.curPage = nextPage
               }
             } else {
@@ -134,14 +143,29 @@ export default {
           }
         })
     },
+    isSpecific(pageId) {
+      return pageId === 'technical' || pageId === 'nontechnical'
+    },
     submitData() {
       const data = this.$store.getters.getAll
       let reqData = {}
 
       Object.keys(data)
         .forEach((pageId) => {
-          const pageData = data[pageId]
+          let pageData = {}
           const pageDataVal = {}
+
+          if (!this.isSpecific(pageId)) {
+            pageData = data[pageId]
+          } else if (pageId === this.selStudentRole) {
+            const pages = data[this.selStudentRole]
+            pageData = {}
+            pages.forEach((page) => {
+              pageData = Object.assign({}, pageData, page.fields)
+            })
+          }
+
+          console.log(pageData)
           Object.keys(pageData).forEach((key) => {
             const dataObj = pageData[key]
             pageDataVal[key] = dataObj.value
@@ -153,7 +177,17 @@ export default {
     },
     getPageIdByIndex(index) {
       const key = Object.keys(this.pages)[index]
-      return this.pages[key]
+      const isPage = typeof this.pages[key] === 'string'
+      if (isPage) return this.pages[key]
+
+      const allKeys = Object.keys(this.pages)
+      let generalPagesCount = 0
+      allKeys.forEach((allKey) => {
+        if (typeof this.pages[allKey] === 'string') generalPagesCount += 1
+      })
+      const subIndex = index - generalPagesCount
+      const subKey = Object.keys(this.pages[this.selStudentRole])[subIndex] // we are trusting that selStudentRole will be set here!
+      return this.pages[this.selStudentRole][subKey]
     }
   },
   computed: {
@@ -171,11 +205,14 @@ export default {
       return this.getPageIdByIndex(this.curPage)
     },
     pagesCount() {
-      return Object.keys(this.pages).length
+      const generalPagesCount = Object.keys(this.pages).filter(page => !this.isSpecific(page)).length
+      const specificPagesCount = 6 // we can try to find a better solution in the future
+
+      return generalPagesCount + specificPagesCount
     }
   },
   components: {
-    AccountType, StudentAccount, Education, Work, Experience, Industries, TechnicalRoles, Roles, Skills, JobSearchProgress, UploadTranscript, EmployerAccount
+    AccountType, StudentAccount, Education, Work, Roles, TechnicalExperience, TechnicalIndustries, TechnicalSpecificRoles, TechnicalSkills, TechnicalJobSearchProgress, TechnicalUploadTranscript, NontechnicalExperience, NontechnicalIndustries, NontechnicalSpecificRoles, NontechnicalSkills, NontechnicalJobSearchProgress, NontechnicalUploadTranscript, EmployerAccount
   }
 }
 </script>
