@@ -132,7 +132,7 @@ export default {
             if (!this.isLastPage) {
               const nextPage = this.curPage + 1
               const nextPageId = this.getPageIdByIndex(nextPage)
-              if (this.selStudentRole && Object.values(this.pages[this.selStudentRole]).includes(nextPageId)) {
+              if (this.selAccountType === 'student' && this.selStudentRole && Object.values(this.pages[this.selStudentRole]).includes(nextPageId)) {
                 this.curPage = nextPage
               } else if (Object.values(this.pages).includes(nextPageId)) {
                 this.curPage = nextPage
@@ -165,7 +165,6 @@ export default {
             })
           }
 
-          console.log(pageData)
           Object.keys(pageData).forEach((key) => {
             const dataObj = pageData[key]
             pageDataVal[key] = dataObj.value
@@ -206,7 +205,7 @@ export default {
     },
     pagesCount() {
       const generalPagesCount = Object.keys(this.pages).filter(page => !this.isSpecific(page)).length
-      const specificPagesCount = 6 // we can try to find a better solution in the future
+      const specificPagesCount = this.selAccountType === 'student' ? 6 : 0 // we can try to find a better solution in the future
 
       return generalPagesCount + specificPagesCount
     }

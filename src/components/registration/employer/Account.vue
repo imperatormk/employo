@@ -38,7 +38,7 @@
 import PropertyItem from '@/components/common/PropertyItem'
 import pagesList from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.studentPagesList.account
+const PAGE_ID = pagesList.employerPagesList.account
 
 export default {
   created() {

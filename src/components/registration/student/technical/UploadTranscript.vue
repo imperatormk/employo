@@ -9,13 +9,16 @@
       .flex-column.w50.align-center
         .p10.w100
           .desc-label LinkedIn URL
-          v-text-field.br5(v-model="fields.linkedIn.value" solo background-color="#f5f5f5")
+          PropertyItem(:data="fields.linkedIn")
+            v-text-field.br5(v-model="fields.linkedIn.value" solo background-color="#f5f5f5")
         .p10.w100
           .desc-label GitHub URL
-          v-text-field.br5(v-model="fields.gitHub.value" solo background-color="#f5f5f5")
+          PropertyItem(:data="fields.gitHub")
+            v-text-field.br5(v-model="fields.gitHub.value" solo background-color="#f5f5f5")
         .p10.w100
           .desc-label Personal Website
-          v-text-field.br5(v-model="fields.website.value" solo background-color="#f5f5f5")
+          PropertyItem(:data="fields.website")
+            v-text-field.br5(v-model="fields.website.value" solo background-color="#f5f5f5")
 </template>
 
 <script>

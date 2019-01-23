@@ -17,7 +17,7 @@
       v-flex(flex-column)
         .field-label.demiBold Work term length
         PropertyItem(:data="fields.termLength")
-          .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
+          .flex-wrap.p10.p-left-0.style-1
               v-btn.demiBold(v-for="termLength in source.termLengths" :key="termLength.id" :class="isLocationSelected(termLength.id, 'termLength')" @click="toggleLocationSelected(termLength.id, 'termLength')") {{ termLength.title }} Months
       v-flex(flex-column)
         .field-label.demiBold Work location preference (choose all that apply)

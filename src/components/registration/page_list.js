@@ -112,7 +112,7 @@ const studentPagesFields = [{
     }
   }
 },
-// split starts here
+// here starts the diff
 {
   subtype: 'technical',
   pages: [{
@@ -253,10 +253,6 @@ const studentPagesFields = [{
         required: true
       },
       linkedIn: {
-        value: '',
-        required: true
-      },
-      gitHub: {
         value: '',
         required: true
       },
