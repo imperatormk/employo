@@ -6,9 +6,9 @@
           form(ref="fileform" :class="{alternate:alternate}")
             input.hidden(type="file" ref="fileInput" @change="fileBrowsed")
             .flex-column.h100.justify-center
-              span.header-text.alternate Drag and drop
-              span.far.fa-copy.alternate.blue-color.fs80
-              span.header-text.alternate Click to browse
+              span.header-text(:class="{alternate:alternate}") Drag and drop
+              span.far.fa-copy.blue-color.fs80(:class="{alternate:alternate}")
+              span.header-text(:class="{alternate:alternate}") Click to browse
               .file-listing(v-for="(file, key) in files" :key="key")
                 img.preview(v-bind:ref="`preview${parseInt(key, 10)}`")
                 .remove-container
