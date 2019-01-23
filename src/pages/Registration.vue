@@ -143,14 +143,28 @@ export default {
           }
         })
     },
+    isSpecific(pageId) {
+      return pageId === 'technical' || pageId === 'nontechnical'
+    },
     submitData() {
       const data = this.$store.getters.getAll
       let reqData = {}
 
       Object.keys(data)
         .forEach((pageId) => {
-          const pageData = data[pageId]
+          let pageData = null
           const pageDataVal = {}
+
+          if (!this.isSpecific(pageId)) {
+            pageData = data[pageId]
+          } else if (pageId === this.selStudentRole) {
+            const pages = data[this.selStudentRole]
+            pageData = {}
+            pages.forEach((page) => {
+              pageData = Object.assign({}, pageData, page.fields)
+            })
+          }
+
           Object.keys(pageData).forEach((key) => {
             const dataObj = pageData[key]
             pageDataVal[key] = dataObj.value
@@ -190,8 +204,7 @@ export default {
       return this.getPageIdByIndex(this.curPage)
     },
     pagesCount() {
-      const isSpecific = pageId => pageId === 'technical' || pageId === 'nontechnical'
-      const generalPagesCount = Object.keys(this.pages).filter(page => !isSpecific(page)).length
+      const generalPagesCount = Object.keys(this.pages).filter(page => !this.isSpecific(page)).length
       const specificPagesCount = 6 // we can try to find a better solution in the future
 
       return generalPagesCount + specificPagesCount
