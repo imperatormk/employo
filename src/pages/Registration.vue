@@ -89,14 +89,10 @@ export default {
           this.$store.dispatch('dataChange', cloneObj)
         })
       }
-
-      const PAGE_ID = pagesList.studentPagesList.technical.experience
-      console.log(this.$store.getters.getById(PAGE_ID, 'technical'))
     },
     loadSourceData() {
       helpers.loadSourceData()
         .then((res) => {
-          console.log(res.student)
           setSourceData('initial', res.initial)
           setSourceData('student', res.student)
           setSourceData('employer', res.employer)

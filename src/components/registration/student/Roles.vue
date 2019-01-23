@@ -16,7 +16,6 @@ const PAGE_ID = pagesList.studentPagesList.roles
 
 export default {
   created() {
-    console.log(this.$store.getters.getAll)
     this.fields = this.$store.getters.getById(PAGE_ID)
     this.loaded = true
   },
