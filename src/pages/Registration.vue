@@ -152,7 +152,7 @@ export default {
 
       Object.keys(data)
         .forEach((pageId) => {
-          let pageData = null
+          let pageData = {}
           const pageDataVal = {}
 
           if (!this.isSpecific(pageId)) {
@@ -165,6 +165,7 @@ export default {
             })
           }
 
+          console.log(pageData)
           Object.keys(pageData).forEach((key) => {
             const dataObj = pageData[key]
             pageDataVal[key] = dataObj.value
