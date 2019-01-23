@@ -4,7 +4,7 @@
       h1.label What are your strongest skills?
     v-layout(wrap align-center)
       v-flex(flex-column)
-        .field-label Choose as many that apply
+        .field-label.alternate Choose as many that apply
         v-text-field(v-model="criteria" placeholder="Search skills")
         PropertyItem(:data="fields.selectedSkills")
           .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")

@@ -86,10 +86,10 @@ h1 {
   font-family: AvenirNext;
   font-weight: 600;
   &.employer {
-    color: #69BDF2;
+    color: #47afe6;
   }
   &.student {
-    color: #477EE6;
+    color: #3164e3;
   }
 }
 
@@ -234,6 +234,9 @@ h1 {
 
 .range-slider-fill {
   background-color: #448aff !important;
+  &.alternate {
+    background-color: #47afe6 !important;
+  }
 }
 
 .button-chip {

@@ -2,9 +2,9 @@
   v-container(grid-list-xl)
     v-layout(wrap align-center)
       v-flex(xs12, sm12, d-flex)
-        h1.label Select your preferred technical roles
+        h1.label Select your preferred non-technical roles
       v-flex(flex-column)
-        .field-label.demiBold Choose as many that apply
+        .field-label.alternate.demiBold Choose as many that apply
         .flex-wrap.p10.p-left-0.style-1
           v-text-field(v-model="criteria" placeholder="Search roles")
         PropertyItem(:data="fields.rolePref")

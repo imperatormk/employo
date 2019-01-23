@@ -4,7 +4,7 @@
             h1.label Industries you would like to work with?
     v-layout(wrap align-center)
       v-flex(flex-column)
-        .field-label.demiBold Choose as many that apply
+        .field-label.alternate.demiBold Choose as many that apply
         .flex
           v-text-field(v-model="criteria" placeholder="Search industries" hide-details)
         PropertyItem(:data="fields.selectedIndustries")

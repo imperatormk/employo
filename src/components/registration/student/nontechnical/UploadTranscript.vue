@@ -3,18 +3,18 @@
     h1.label.p50-bot Last step...
     .flex.row
       .flex-column.w50.align-center
-        h1.desc-label Upload your Resumé
+        h1.desc-label.alternate Upload your Resumé
         PropertyItem.w100.justify-center.align-center(:data="fields.resume")
-          DragNDrop(:filesProp="fields.resume.value" @filesChanged="filesChanged($event, 'resume')")
+          DragNDrop(:filesProp="fields.resume.value" @filesChanged="filesChanged($event, 'resume')" alternate)
       .flex-column.w50.align-center
         .p10.w100
-          .desc-label LinkedIn URL
+          .desc-label.alternate LinkedIn URL
           v-text-field.br5(v-model="fields.linkedIn.value" solo background-color="#f5f5f5")
         .p10.w100
-          .desc-label GitHub URL
+          .desc-label.alternate GitHub URL
           v-text-field.br5(v-model="fields.gitHub.value" solo background-color="#f5f5f5")
         .p10.w100
-          .desc-label Personal Website
+          .desc-label.alternate Personal Website
           v-text-field.br5(v-model="fields.website.value" solo background-color="#f5f5f5")
 </template>
 

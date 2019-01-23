@@ -3,12 +3,12 @@
     .flex-column.align-center
       .w70
         label
-          form(ref="fileform")
+          form(ref="fileform" :class="{alternate:alternate}")
             input.hidden(type="file" ref="fileInput" @change="fileBrowsed")
             .flex-column.h100.justify-center
-              span.header-text Drag and drop
-              span.far.fa-copy.blue-color.fs80
-              span.header-text Click to browse
+              span.header-text.alternate Drag and drop
+              span.far.fa-copy.alternate.blue-color.fs80
+              span.header-text.alternate Click to browse
               .file-listing(v-for="(file, key) in files" :key="key")
                 img.preview(v-bind:ref="`preview${parseInt(key, 10)}`")
                 .remove-container
@@ -22,7 +22,8 @@
 
 export default {
   props: {
-    filesProp: Array
+    filesProp: Array,
+    alternate: Boolean
   },
   data() {
     return {
@@ -114,8 +115,8 @@ export default {
 }
 </script>
 
-<style>
-  form{
+<style lang="scss">
+  form {
     display: block;
     height: auto;
     min-height: 300px;
@@ -125,31 +126,34 @@ export default {
     text-align: center;
     line-height: 1.6;
     padding: 40px;
+    &.alternate {
+      border-color: #47afe6
+    }
   }
 
-  div.file-listing{
+  div.file-listing {
     margin: auto;
     padding: 10px;
   }
 
-  div.file-listing img{
+  div.file-listing img {
     height: auto;
   }
 
-  div.file-listing span{
+  div.file-listing span {
     line-height: 1.5 !important;
   }
 
-  div.remove-container{
+  div.remove-container {
     text-align: center;
   }
 
-  div.remove-container a{
+  div.remove-container a {
     color: red;
     cursor: pointer;
   }
 
-  a.submit-button{
+  a.submit-button {
     display: block;
     margin: auto;
     text-align: center;
