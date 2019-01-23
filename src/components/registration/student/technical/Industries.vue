@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       criteria: '',
-      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
+      source: studentPagesData.technical.find(item => item.pageId === PAGE_ID).fields,
       fields: {}
     }
   },

@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      source: studentPagesData.find(item => item.pageId === PAGE_ID).fields,
+      source: studentPagesData.nontechnical.find(item => item.pageId === PAGE_ID).fields,
       fields: {},
       loaded: false
     }
