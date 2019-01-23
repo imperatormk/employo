@@ -16,7 +16,7 @@
 import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.studentPagesList.technicalRoles
+const PAGE_ID = pagesList.studentPagesList.technical.roles
 
 export default {
   created() {

@@ -23,7 +23,7 @@ import PropertyItem from '@/components/common/PropertyItem'
 import DragNDrop from '@/components/DragNDrop'
 import pagesList from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.studentPagesList.transcript
+const PAGE_ID = pagesList.studentPagesList.nontechnical.transcript
 
 export default {
   created() {

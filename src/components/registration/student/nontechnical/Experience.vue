@@ -20,7 +20,7 @@ import RangeSlider from 'vue-range-slider'
 import 'vue-range-slider/dist/vue-range-slider.css'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.studentPagesList.experience
+const PAGE_ID = pagesList.studentPagesList.nontechnical.experience
 
 export default {
   created() {

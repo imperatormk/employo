@@ -10,12 +10,23 @@ const studentPagesList = {
   education: 'education',
   work: 'work',
   roles: 'roles',
-  experience: 'experience',
-  technicalRoles: 'technicalRoles',
-  industries: 'industries',
-  skills: 'skills',
-  jobSearchProgress: 'jobSearchProgress',
-  transcript: 'transcript'
+  // here starts the diff
+  technical: {
+    experience: 'experience',
+    roles: 'roles',
+    industries: 'industries',
+    skills: 'skills',
+    jobSearchProgress: 'jobSearchProgress',
+    transcript: 'transcript'
+  },
+  nontechnical: {
+    experience: 'experience',
+    roles: 'roles',
+    industries: 'industries',
+    skills: 'skills',
+    jobSearchProgress: 'jobSearchProgress',
+    transcript: 'transcript'
+  }
 }
 
 const employerPagesList = {
