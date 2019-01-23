@@ -256,10 +256,6 @@ const studentPagesFields = [{
         value: '',
         required: true
       },
-      gitHub: {
-        value: '',
-        required: true
-      },
       website: {
         value: '',
         required: true
