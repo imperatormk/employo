@@ -9,19 +9,19 @@
           Work(v-else-if="curPageId === pages.work")
           Roles(v-else-if="curPageId === pages.roles" @roleChanged="selStudentRole = $event")
           .flex.h100(v-else-if="selStudentRole == 'technical'")
-            Experience(v-if="curPageId === pages.technical.experience")
-            SpecificRoles(v-else-if="curPageId === pages.technical.roles")
-            Industries(v-else-if="curPageId === pages.technical.industries")
-            Skills(v-else-if="curPageId === pages.technical.skills")
-            JobSearchProgress(v-else-if="curPageId === pages.technical.jobSearchProgress")
-            UploadTranscript(v-else-if="curPageId === pages.technical.transcript")
+            TechnicalExperience(v-if="curPageId === pages.technical.experience")
+            TechnicalSpecificRoles(v-else-if="curPageId === pages.technical.roles")
+            TechnicalIndustries(v-else-if="curPageId === pages.technical.industries")
+            TechnicalSkills(v-else-if="curPageId === pages.technical.skills")
+            TechnicalJobSearchProgress(v-else-if="curPageId === pages.technical.jobSearchProgress")
+            TechnicalUploadTranscript(v-else-if="curPageId === pages.technical.transcript")
           .flex.h100(v-else-if="selStudentRole == 'nontechnical'")
-            Experience(v-if="curPageId === pages.nontechnical.experience")
-            SpecificRoles(v-else-if="curPageId === pages.nontechnical.roles")
-            Industries(v-else-if="curPageId === pages.nontechnical.industries")
-            Skills(v-else-if="curPageId === pages.nontechnical.skills")
-            JobSearchProgress(v-else-if="curPageId === pages.nontechnical.jobSearchProgress")
-            UploadTranscript(v-else-if="curPageId === pages.nontechnical.transcript")
+            NontechnicalExperience(v-if="curPageId === pages.nontechnical.experience")
+            NontechnicalSpecificRoles(v-else-if="curPageId === pages.nontechnical.roles")
+            NontechnicalIndustries(v-else-if="curPageId === pages.nontechnical.industries")
+            NontechnicalSkills(v-else-if="curPageId === pages.nontechnical.skills")
+            NontechnicalJobSearchProgress(v-else-if="curPageId === pages.nontechnical.jobSearchProgress")
+            NontechnicalUploadTranscript(v-else-if="curPageId === pages.nontechnical.transcript")
       .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employer'")
         .flex
           EmployerAccount(v-if="curPageId === pages.account")
@@ -47,7 +47,7 @@
 import helpers from '@/helpers'
 import MessageBus from '@/services/messageBus'
 import pagesList, { studentPagesFields, employerPagesFields, setSourceData } from '@/components/registration/page_list'
-import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, SpecificRoles, JobSearchProgress, UploadTranscript, EmployerAccount } from '@/components/registration'
+import { AccountType, StudentAccount, Education, Work, Roles, TechnicalExperience, TechnicalIndustries, TechnicalSpecificRoles, TechnicalSkills, TechnicalJobSearchProgress, TechnicalUploadTranscript, NontechnicalExperience, NontechnicalIndustries, NontechnicalSpecificRoles, NontechnicalSkills, NontechnicalJobSearchProgress, NontechnicalUploadTranscript, EmployerAccount } from '@/components/registration'
 
 export default {
   created() {
@@ -211,7 +211,7 @@ export default {
     }
   },
   components: {
-    AccountType, StudentAccount, Education, Work, Experience, Industries, SpecificRoles, Roles, Skills, JobSearchProgress, UploadTranscript, EmployerAccount
+    AccountType, StudentAccount, Education, Work, Roles, TechnicalExperience, TechnicalIndustries, TechnicalSpecificRoles, TechnicalSkills, TechnicalJobSearchProgress, TechnicalUploadTranscript, NontechnicalExperience, NontechnicalIndustries, NontechnicalSpecificRoles, NontechnicalSkills, NontechnicalJobSearchProgress, NontechnicalUploadTranscript, EmployerAccount
   }
 }
 </script>
