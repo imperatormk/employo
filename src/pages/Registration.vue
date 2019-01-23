@@ -104,7 +104,10 @@ export default {
       MessageBus.$emit('isHotChanged', false)
       const prevPage = this.curPage - 1
       const prevPageId = this.getPageIdByIndex(prevPage)
-      if (this.pages[prevPageId]) {
+
+      if (this.selStudentRole && Object.values(this.pages[this.selStudentRole]).includes(prevPageId)) {
+        this.curPage = prevPage
+      } else if (Object.values(this.pages).includes(prevPageId)) {
         this.curPage = prevPage
       }
     },

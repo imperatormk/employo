@@ -21,7 +21,6 @@ const PAGE_ID = pagesList.studentPagesList.technical.roles
 export default {
   created() {
     this.fields = this.$store.getters.getById(PAGE_ID, 'technical').fields
-    console.log(studentPagesData.find(obj => Object.keys(obj).includes('technical')).technical)
   },
   data() {
     return {
