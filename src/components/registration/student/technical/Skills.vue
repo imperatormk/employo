@@ -19,12 +19,12 @@ const PAGE_ID = pagesList.studentPagesList.technical.skills
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
+    this.fields = this.$store.getters.getById(PAGE_ID, 'technical').fields
   },
   data() {
     return {
       criteria: '',
-      source: studentPagesData.technical.find(item => item.pageId === PAGE_ID).fields,
+      source: studentPagesData.find(obj => Object.keys(obj).includes('technical')).technical.find(item => item.pageId === PAGE_ID).fields,
       fields: {}
     }
   },
@@ -32,7 +32,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList.studentPagesList[PAGE_ID],
+          pageId: PAGE_ID,
           fields: val
         })
       },

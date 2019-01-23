@@ -20,7 +20,7 @@ const PAGE_ID = pagesList.studentPagesList.technicalRoles
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
+    this.fields = this.$store.getters.getById(PAGE_ID)
   },
   data() {
     return {
@@ -39,7 +39,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList.studentPagesList[PAGE_ID],
+          pageId: PAGE_ID,
           fields: val
         })
       },

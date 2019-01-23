@@ -16,16 +16,16 @@
 import PropertyItem from '@/components/common/PropertyItem'
 import pagesList, { studentPagesData } from '@/components/registration/page_list'
 
-const PAGE_ID = pagesList.studentPagesList.technical.roles
+const PAGE_ID = pagesList.studentPagesList.nontechnical.roles
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
+    this.fields = this.$store.getters.getById(PAGE_ID, 'nontechnical').fields
   },
   data() {
     return {
       criteria: '',
-      source: studentPagesData.technical.find(item => item.pageId === PAGE_ID).fields,
+      source: studentPagesData.find(obj => Object.keys(obj).includes('nontechnical')).nontechnical.find(item => item.pageId === PAGE_ID).fields,
       fields: {}
     }
   },
@@ -39,7 +39,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList.studentPagesList[PAGE_ID],
+          pageId: PAGE_ID,
           fields: val
         })
       },

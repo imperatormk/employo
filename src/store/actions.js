@@ -6,8 +6,8 @@ export default {
     commit(CLEAR_DATA, data)
     return Promise.resolve()
   },
-  dataChange({ commit }, data) {
-    commit(DATA_CHANGE, data)
+  dataChange({ commit }, data, roleType) {
+    commit(DATA_CHANGE, data, roleType)
     return Promise.resolve()
   }
 }

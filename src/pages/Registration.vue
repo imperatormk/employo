@@ -9,19 +9,19 @@
           Work(v-else-if="curPageId === pages.work")
           Roles(v-else-if="curPageId === pages.roles" @roleChanged="selStudentRole = $event")
           .flex.h100(v-else-if="selStudentRole == 'technical'")
-            Experience(v-if="curPageId === pages.experience")
-            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles")
-            Industries(v-else-if="curPageId === pages.industries")
-            Skills(v-else-if="curPageId === pages.skills")
-            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress")
-            UploadTranscript(v-else-if="curPageId === pages.transcript")
+            Experience(v-if="curPageId === pages.technical.experience")
+            SpecificRoles(v-else-if="curPageId === pages.technical.roles")
+            Industries(v-else-if="curPageId === pages.technical.industries")
+            Skills(v-else-if="curPageId === pages.technical.skills")
+            JobSearchProgress(v-else-if="curPageId === pages.technical.jobSearchProgress")
+            UploadTranscript(v-else-if="curPageId === pages.technical.transcript")
           .flex.h100(v-else-if="selStudentRole == 'nontechnical'")
-            Experience(v-if="curPageId === pages.experience")
-            TechnicalRoles(v-else-if="curPageId === pages.technicalRoles")
-            Industries(v-else-if="curPageId === pages.industries")
-            Skills(v-else-if="curPageId === pages.skills")
-            JobSearchProgress(v-else-if="curPageId === pages.jobSearchProgress")
-            UploadTranscript(v-else-if="curPageId === pages.transcript")
+            Experience(v-if="curPageId === pages.nontechnical.experience")
+            SpecificRoles(v-else-if="curPageId === pages.nontechnical.roles")
+            Industries(v-else-if="curPageId === pages.nontechnical.industries")
+            Skills(v-else-if="curPageId === pages.nontechnical.skills")
+            JobSearchProgress(v-else-if="curPageId === pages.nontechnical.jobSearchProgress")
+            UploadTranscript(v-else-if="curPageId === pages.nontechnical.transcript")
       .flex.flex-column.space-between-p10.h100(v-else-if="selAccountType == 'employer'")
         .flex
           EmployerAccount(v-if="curPageId === pages.account")
@@ -47,7 +47,7 @@
 import helpers from '@/helpers'
 import MessageBus from '@/services/messageBus'
 import pagesList, { studentPagesFields, employerPagesFields, setSourceData } from '@/components/registration/page_list'
-import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, TechnicalRoles, JobSearchProgress, UploadTranscript, EmployerAccount } from '@/components/registration'
+import { AccountType, StudentAccount, Education, Work, Experience, Industries, Roles, Skills, SpecificRoles, JobSearchProgress, UploadTranscript, EmployerAccount } from '@/components/registration'
 
 export default {
   created() {
@@ -76,7 +76,11 @@ export default {
         this.pages = pagesList.studentPagesList
         studentPagesFields.forEach((studentPage) => {
           const cloneObj = JSON.parse(JSON.stringify(studentPage)) // doing this deep clone just to be sure
-          this.$store.dispatch('dataChange', cloneObj)
+          if (!cloneObj.subtype) {
+            this.$store.dispatch('dataChange', cloneObj)
+          } else {
+            this.$store.dispatch('dataChange', cloneObj)
+          }
         })
       } else if (accType === 'employer') {
         this.pages = pagesList.employerPagesList
@@ -85,10 +89,14 @@ export default {
           this.$store.dispatch('dataChange', cloneObj)
         })
       }
+
+      const PAGE_ID = pagesList.studentPagesList.technical.experience
+      console.log(this.$store.getters.getById(PAGE_ID, 'technical'))
     },
     loadSourceData() {
       helpers.loadSourceData()
         .then((res) => {
+          console.log(res.student)
           setSourceData('initial', res.initial)
           setSourceData('student', res.student)
           setSourceData('employer', res.employer)
@@ -125,7 +133,10 @@ export default {
             if (!this.isLastPage) {
               const nextPage = this.curPage + 1
               const nextPageId = this.getPageIdByIndex(nextPage)
+              console.log(nextPageId)
               if (this.pages[nextPageId]) {
+                this.curPage = nextPage
+              } else if (this.selStudentRole && this.pages[this.selStudentRole][nextPageId]) {
                 this.curPage = nextPage
               }
             } else {
@@ -153,7 +164,16 @@ export default {
     },
     getPageIdByIndex(index) {
       const key = Object.keys(this.pages)[index]
-      return this.pages[key]
+      const isPage = typeof this.pages[key] === 'string'
+      if (isPage) return this.pages[key]
+
+      const allKeys = Object.keys(this.pages)
+      let generalPagesCount = 0
+      allKeys.forEach((allKey) => {
+        if (typeof this.pages[allKey] === 'string') generalPagesCount += 1
+      })
+      const subIndex = index - generalPagesCount
+      return Object.keys(this.pages[this.selStudentRole])[subIndex] // we are trusting that selStudentRole will be set here!
     }
   },
   computed: {
@@ -175,7 +195,7 @@ export default {
     }
   },
   components: {
-    AccountType, StudentAccount, Education, Work, Experience, Industries, TechnicalRoles, Roles, Skills, JobSearchProgress, UploadTranscript, EmployerAccount
+    AccountType, StudentAccount, Education, Work, Experience, Industries, SpecificRoles, Roles, Skills, JobSearchProgress, UploadTranscript, EmployerAccount
   }
 }
 </script>

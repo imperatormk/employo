@@ -16,7 +16,8 @@ const PAGE_ID = pagesList.studentPagesList.roles
 
 export default {
   created() {
-    this.fields = this.$store.getters.getById(pagesList.studentPagesList[PAGE_ID])
+    console.log(this.$store.getters.getAll)
+    this.fields = this.$store.getters.getById(PAGE_ID)
     this.loaded = true
   },
   data() {
@@ -30,7 +31,7 @@ export default {
     fields: {
       handler: function f(val) {
         this.$store.dispatch('dataChange', {
-          pageId: pagesList.studentPagesList[PAGE_ID],
+          pageId: PAGE_ID,
           fields: val
         })
         if (val) this.$emit('roleChanged', this.fields.selectedRole.value)
