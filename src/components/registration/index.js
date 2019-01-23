@@ -7,7 +7,7 @@ import Roles from './student/Roles'
 
 import Experience from './student/technical/Experience'
 import Industries from './student/technical/Industries'
-import SpecificRoles from './student/technical/Roles'
+import SpecificRoles from './student/technical/SpecificRoles'
 import Skills from './student/technical/Skills'
 import JobSearchProgress from './student/technical/JobSearchProgress'
 import UploadTranscript from './student/technical/UploadTranscript'

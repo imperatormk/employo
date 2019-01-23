@@ -13,7 +13,7 @@ const studentPagesList = {
   // here starts the diff
   technical: {
     experience: 'experience',
-    roles: 'roles',
+    roles: 'specificRoles',
     industries: 'industries',
     skills: 'skills',
     jobSearchProgress: 'jobSearchProgress',
@@ -21,7 +21,7 @@ const studentPagesList = {
   },
   nontechnical: {
     experience: 'experience',
-    roles: 'roles',
+    roles: 'specificRoles',
     industries: 'industries',
     skills: 'skills',
     jobSearchProgress: 'jobSearchProgress',

@@ -129,10 +129,9 @@ export default {
             if (!this.isLastPage) {
               const nextPage = this.curPage + 1
               const nextPageId = this.getPageIdByIndex(nextPage)
-              console.log(nextPageId)
-              if (this.pages[nextPageId]) {
+              if (this.selStudentRole && Object.values(this.pages[this.selStudentRole]).includes(nextPageId)) {
                 this.curPage = nextPage
-              } else if (this.selStudentRole && this.pages[this.selStudentRole][nextPageId]) {
+              } else if (Object.values(this.pages).includes(nextPageId)) {
                 this.curPage = nextPage
               }
             } else {
@@ -169,7 +168,8 @@ export default {
         if (typeof this.pages[allKey] === 'string') generalPagesCount += 1
       })
       const subIndex = index - generalPagesCount
-      return Object.keys(this.pages[this.selStudentRole])[subIndex] // we are trusting that selStudentRole will be set here!
+      const subKey = Object.keys(this.pages[this.selStudentRole])[subIndex] // we are trusting that selStudentRole will be set here!
+      return this.pages[this.selStudentRole][subKey]
     }
   },
   computed: {
@@ -187,7 +187,11 @@ export default {
       return this.getPageIdByIndex(this.curPage)
     },
     pagesCount() {
-      return Object.keys(this.pages).length
+      const isSpecific = pageId => pageId === 'technical' || pageId === 'nontechnical'
+      const generalPagesCount = Object.keys(this.pages).filter(page => !isSpecific(page)).length
+      const specificPagesCount = 6 // we can try to find a better solution in the future
+
+      return generalPagesCount + specificPagesCount
     }
   },
   components: {
