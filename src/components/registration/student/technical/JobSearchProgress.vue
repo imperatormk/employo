@@ -20,10 +20,10 @@ v-container(grid-list-xl)
         v-btn.border-round(@click="setJobSearchStatus(3)")
           v-radio(label="Closed to Offers" :value="3")
         .small-label.demiBold You're not looking and don't want to hear about relevant opportunities.
-    .field-label.demiBold What is your company size preference? (# of employers)
     PropertyItem(:data="fields.companySize")
-    .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
-      v-btn.demiBold(v-for="size in source.sizes" :key="size.id" :class="isLocationSelected(size.id, 'companySize')" @click="toggleLocationSelected(size.id, 'companySize')") {{ size.title }}
+      .field-label.demiBold(slot="title") What is your company size preference? (# of employers)
+      .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
+        v-btn.demiBold(v-for="size in source.sizes" :key="size.id" :class="isLocationSelected(size.id, 'companySize')" @click="toggleLocationSelected(size.id, 'companySize')") {{ size.title }}
 </template>
 
 <script>

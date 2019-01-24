@@ -4,24 +4,24 @@
       v-flex(xs12, sm12, d-flex)
         h1.label Tell us about your work preferences.
       v-flex(xs12, sm5, d-block)
-        .field-label.demiBold Official co-op
         PropertyItem(:data="fields.officialCoop")
+          .field-label.demiBold(slot="title") Official co-op
           div(d-flex)
             v-btn.demiBold(:class='isButtonSelected(fields.officialCoop.value,true)', @click='fields.officialCoop.value=true') Yes
             v-btn.demiBold(:class='isButtonSelected(fields.officialCoop.value,false)', @click='fields.officialCoop.value=false') No
       v-flex(xs12, sm7, d-block)
-        .field-label.demiBold Availability
         PropertyItem(:data="fields.availability")
+          .field-label.demiBold(slot="title") Availability
           div(d-flex)
             v-btn.demiBold.p-left-0(v-for="a in source.availabilities" :key="a.id" :class="isLocationSelected(a.id, 'availability')" @click="toggleLocationSelected(a.id, 'availability')") {{ a.title }}
       v-flex(flex-column)
-        .field-label.demiBold Work term length
         PropertyItem(:data="fields.termLength")
+          .field-label.demiBold(slot="title") Work term length
           .flex-wrap.p10.p-left-0.style-1
               v-btn.demiBold(v-for="termLength in source.termLengths" :key="termLength.id" :class="isLocationSelected(termLength.id, 'termLength')" @click="toggleLocationSelected(termLength.id, 'termLength')") {{ termLength.title }} Months
       v-flex(flex-column)
-        .field-label.demiBold Work location preference (choose all that apply)
         PropertyItem(:data="fields.locationPref")
+          .field-label.demiBold(slot="title") Work location preference (choose all that apply)
           .flex-wrap.p10.p-left-0.style-1.of-scroll(style="height:130px;")
               v-btn.demiBold(v-for="workLocation in source.workLocations" :key="workLocation.id" :class="isLocationSelected(workLocation.id, 'locationPref')" @click="toggleLocationSelected(workLocation.id, 'locationPref')") {{ workLocation.title }}
 </template>

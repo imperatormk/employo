@@ -4,26 +4,26 @@
       v-flex(xs12, sm12, d-flex)
         h1.label Tell us about your education.
       v-flex(xs12, sm6, d-block)
-        .field-label.demiBold University
         PropertyItem(:data="fields.selUniversity")
+          .field-label.demiBold(slot="title") University
           v-select.br5.demiBold(:items='source.universities', background-color='#f5f5f5', v-model='fields.selUniversity.value', item-text='title', :label='`eg. ${source.universities[0].title}`', solo)
       v-flex(xs12, sm6, d-block)
-        .field-label.demiBold Field of Study
         PropertyItem(:data="fields.selField")
+          .field-label.demiBold(slot="title") Field of Study
           v-select.demiBold(:items='source.studyFields', background-color='#f5f5f5', v-model='fields.selField.value', item-text='title', :label='`eg. ${source.studyFields[0].title}`', solo)
       v-flex(xs12, sm6, d-block)
-        .field-label.demiBold Expected Year of Graduation
         PropertyItem(:data="fields.selYear")
+          .field-label.demiBold(slot="title") Expected Year of Graduation
           v-select.demiBold(:items='source.years', background-color='#f5f5f5', v-model='fields.selYear.value', :label='`eg. ${source.years[0]}`', solo)
       v-flex(xs12, sm6, d-block)
-        .field-label.demiBold Cumulative GPA
         PropertyItem(:data="fields.selGpa")
+          .field-label.demiBold(slot="title") Cumulative GPA
           v-text-field.br5.demiBold(v-model="fields.selGpa.value" solo background-color="#f5f5f5" max="4" min="0" suffix='/4.0' type="number")
       v-flex(flex-column)
-        .field-label.demiBold Degree
         PropertyItem(:data="fields.degree")
-            .flex.flex-wrap.p10.style-1.of-scroll(style="height:130px;")
-              v-btn.demiBold(v-for="degree in source.degrees" :key="degree.id" :class="isDegreeSelected(degree)" @click="setDegree(degree)") {{ degree.title }}
+          .field-label.demiBold(slot="title") Degree
+          .flex.flex-wrap.p10.style-1.of-scroll(style="height:130px;")
+            v-btn.demiBold(v-for="degree in source.degrees" :key="degree.id" :class="isDegreeSelected(degree)" @click="setDegree(degree)") {{ degree.title }}
 </template>
 
 <script>
