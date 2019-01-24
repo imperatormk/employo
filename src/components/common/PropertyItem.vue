@@ -2,7 +2,7 @@
   .flex-column(:class="{'align-center': center}")
     .flex-row
       slot(name="title")
-      span.p-left-0(:class="getSlotClasses") {{ asterisk }}
+      span.p-left-0(v-if="asterisk" :class="getSlotClasses") *
     span.p10-side.p5(v-if="hasError && isHot" style="color:#ff0000") Please fill in this field
     slot
 </template>
@@ -41,7 +41,7 @@ export default {
       return this.data.required
     },
     asterisk() {
-      return this.$slots.title && this.required ? '*' : ''
+      return this.$slots.title && this.required
     },
     getSlotClasses() {
       if (!this.$slots.title) return {}
