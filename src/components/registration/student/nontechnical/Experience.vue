@@ -2,15 +2,15 @@
   v-container(grid-list-xl)
     h1.label Tell us about your experience
     div
-      .desc-label.alternate How many years of experience do you have?
       PropertyItem(:data="fields.numYears")
+        .desc-label.alternate(slot="title") How many years of experience do you have?
         .flex.space-between.align-center.p10
           range-slider.alternate.yearSlider(min="0" max="5" step="1" v-model="fields.numYears.value")
           v-chip.chip {{ fields.numYears.value }} years
     div
-      .desc-label.alternate What areas have you had most experience with?
       PropertyItem(:data="fields.selectedAreas")
-        .flex.space-between.align-center.p10.flex-wrap.style-1.of-scroll(style="height:130px;")
+        .desc-label.alternate(slot="title") What areas have you had most experience with?
+        .flex.align-center.p10.flex-wrap.style-1.of-scroll(style="height:130px;")
           v-btn(v-for="area in source.areas" :key="area.id" :class="isAreaSelected(area.id)" @click="toggleAreaSelected(area.id)") {{ area.title }}
 </template>
 

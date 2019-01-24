@@ -4,6 +4,7 @@
       slot(name="title")
       span.p-left-0(v-if="asterisk" :class="getSlotClasses") *
     span.p10-side.p5(v-if="hasError && isHot" style="color:#ff0000") Please fill in this field
+    slot(name="misc")
     slot
 </template>
 

@@ -3,21 +3,21 @@
     h1.label.p50-bot Last step...
     .flex.row
       .flex-column.w50.align-center
-        h1.desc-label Upload your Resumé
         PropertyItem.w100.justify-center.align-center(:data="fields.resume")
+          h1.desc-label(slot="title") Upload your Resumé
           DragNDrop(:filesProp="fields.resume.value" @filesChanged="filesChanged($event, 'resume')")
       .flex-column.w50.align-center
         .p10.w100
-          .desc-label LinkedIn URL
           PropertyItem(:data="fields.linkedIn")
+            .desc-label(slot="title") LinkedIn URL
             v-text-field.br5(v-model="fields.linkedIn.value" solo background-color="#f5f5f5")
         .p10.w100
-          .desc-label GitHub URL
           PropertyItem(:data="fields.gitHub")
+            .desc-label(slot="title") GitHub URL
             v-text-field.br5(v-model="fields.gitHub.value" solo background-color="#f5f5f5")
         .p10.w100
-          .desc-label Personal Website
           PropertyItem(:data="fields.website")
+            .desc-label(slot="title") Personal Website
             v-text-field.br5(v-model="fields.website.value" solo background-color="#f5f5f5")
 </template>
 
