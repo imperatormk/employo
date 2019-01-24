@@ -4,16 +4,16 @@
       v-flex(xs12, sm12, d-flex)
         h1.label Account information
       v-flex(xs12, sm6, d-block)
-        .field-label.demiBold First name
         PropertyItem(:data="fields.firstName")
+          .field-label.demiBold(slot="title") First name
           v-text-field.br5.demiBold(v-model="fields.firstName.value" solo background-color="#f5f5f5" placeholder="First name")
       v-flex(xs12, sm6, d-block)
-        .field-label.demiBold Last name
         PropertyItem(:data="fields.lastName")
+          .field-label.demiBold(slot="title") Last name
           v-text-field.br5.demiBold(v-model="fields.lastName.value" solo background-color="#f5f5f5" placeholder="Last name")
       v-flex(xs12, sm6, d-block)
-        .field-label.demiBold City of residence
         PropertyItem(:data="fields.city")
+          .field-label.demiBold(slot="title") City of residence
           v-text-field.br5.demiBold(v-model="fields.city.value" solo background-color="#f5f5f5" placeholder="City, Province (eg.Toronto, ON)")
 </template>
 
