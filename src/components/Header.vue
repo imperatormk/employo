@@ -11,7 +11,7 @@
           <contact-pop-up @success="dialogContact=false"></contact-pop-up>
         </v-card>
       </v-dialog>
-      <v-dialog content-class="dialog-round ovf-visible" v-model="dialogSignup" width="40%" >
+      <v-dialog content-class="dialog-round ovf-visible" v-model="dialogSignup" width="35%" >
         <v-btn flat slot="activator" class="dark-text-blue bold-weight f1-8m">
           Sign up
         </v-btn>

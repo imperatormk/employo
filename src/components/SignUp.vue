@@ -3,7 +3,7 @@
     .flex-row.justify-center
       v-img.overlay.br50(:src="logo" width="150px")
     .flex-row.justify-center.align-center
-      .w90.p50-top
+      .w95.p50-top
         v-text-field(placeholder="Email")
         v-text-field(placeholder="Password")
         v-text-field(placeholder="Confirm Password")
@@ -12,18 +12,18 @@
 </template>
 
 <script>
+import PropertyItem from '@/components/common/PropertyItem'
 import logo from '@/assets/EmployoLogo.svg'
 
 export default {
   data() {
     return {
       dialog: false,
+      logo
     }
   },
-  computed: {
-    logo() {
-      return logo
-    }
+  components: {
+    PropertyItem
   }
 }
 </script>
@@ -33,7 +33,7 @@ export default {
     position: absolute;
     top: -60px;
     background-color: white;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     z-index: 1;
   }
 </style>
