@@ -1,12 +1,13 @@
 <template>
   <v-dialog
+    content-class="dialog-round"
     v-model="dialog"
     width="500"
   >
     <div slot="activator">
       <slot name="act"></slot>
     </div>
-    <v-card class="dialog-round" style="max-height:300px; overflow-y:scroll;">
+    <v-card class="dialog-round style-1 of-scroll" style="max-height:300px;">
       <v-btn
             color="primary"
             flat

@@ -32,7 +32,7 @@
           .p40-side.w100
             v-progress-linear(v-model="progress" v-show="!isInitialPage")
           v-btn.btn(@click="goNext") {{ !isLastPage ? 'Next' : 'Submit' }}
-          v-dialog(v-model="dialog" width="500")
+          v-dialog(content-class="dialog-round" v-model="dialog" width="500")
             v-card.border-round.p50-top.p30-side
               v-card-text.fs20.demiBold Thank you for signing up! Make sure to check your email for updates
               v-divider

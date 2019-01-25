@@ -164,7 +164,7 @@ const studentPagesFields = [{
       },
       companySize: {
         value: [],
-        required: true
+        required: false
       },
     }
   },
@@ -177,15 +177,15 @@ const studentPagesFields = [{
       },
       linkedIn: {
         value: '',
-        required: true
+        required: false
       },
       gitHub: {
         value: '',
-        required: true
+        required: false
       },
       website: {
         value: '',
-        required: true
+        required: false
       }
     }
   }]
@@ -241,7 +241,7 @@ const studentPagesFields = [{
       },
       companySize: {
         value: [],
-        required: true
+        required: false
       },
     }
   },
@@ -254,11 +254,11 @@ const studentPagesFields = [{
       },
       linkedIn: {
         value: '',
-        required: true
+        required: false
       },
       website: {
         value: '',
-        required: true
+        required: false
       }
     }
   }]

@@ -3,7 +3,7 @@
       v-toolbar
         v-toolbar-title.dark-text-blue.f1-8m Career Interests
         v-spacer
-        v-dialog(v-model="dialog", width="600" persistent=true)
+        v-dialog(content-class="dialog-round" v-model="dialog", width="600" persistent=true)
           v-btn.noShadow(slot="activator", fab=true small=true)
             v-icon create
           v-card.border-round
@@ -14,7 +14,7 @@
                 v-flex(xs12, sm12, d-block)
                   p.dark-text-blue Roles:
                   v-chip(disabled=true, small=true, text-color="black", v-for="role in selectedFields.roles", :key="role.id").f1-2m {{role}}
-                  v-dialog(v-model="dialog2", width="600")
+                  v-dialog(content-class="dialog-round" v-model="dialog2", width="600")
                       v-btn(slot="activator", icon=true, small=true).f1-2m
                         i.material-icons add
                       v-card.border-round
@@ -27,7 +27,7 @@
                 v-flex(xs12, sm12, d-block)
                   p.dark-text-blue Industry:
                   v-chip(disabled=true, small=true, text-color="black", v-for="ind in fields.industry", :key="ind.id").f1-2m {{ind}}
-                  v-dialog(v-model="dialog4", width="600")
+                  v-dialog(content-class="dialog-round" v-model="dialog4", width="600")
                       v-btn(slot="activator", icon=true, small=true).f1-2m
                         i.material-icons add
                       v-card.border-round
@@ -41,7 +41,7 @@
                 v-flex(xs12, sm12, d-block)
                   p.dark-text-blue Company Size:
                   v-chip(disabled=true, small=true, text-color="black", v-for="skill in fields.companySize", :key="skill.id").f1-2m {{skill}}
-                  v-dialog(v-model="dialog4", width="600")
+                  v-dialog(content-class="dialog-round" v-model="dialog4", width="600")
                     v-btn(slot="activator", icon=true, small=true).f1-2m
                       i.material-icons add
                     v-card.border-round

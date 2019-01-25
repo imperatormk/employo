@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(v-model="dialog", width="500")
+  v-dialog(content-class="dialog-round" v-model="dialog", width="500")
     div(slot="activator")
       slot(name="act")
     v-card.dialog-round
