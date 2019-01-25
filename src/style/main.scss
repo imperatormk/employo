@@ -485,10 +485,18 @@ $darker-blue: #477EE6;
   overflow-y: visible;
 }
 
+.no-m {
+  margin: 0;
+}
+
 // vuetify tweaks start
 
 .v-input__slot {
   border-radius: 15px !important;
+}
+
+.v-text-field.nop {
+  padding: 0px;
 }
 
 // vuetify tweaks end
