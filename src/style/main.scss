@@ -481,6 +481,10 @@ $darker-blue: #477EE6;
   width: fit-content;
 }
 
+.ovf-visible {
+  overflow-y: visible;
+}
+
 // vuetify tweaks start
 
 .v-input__slot {
