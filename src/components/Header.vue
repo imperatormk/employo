@@ -3,7 +3,7 @@
       <v-toolbar-side-icon class="h-img"><v-img :src="image"></v-img></v-toolbar-side-icon>
       <v-toolbar-title class="dark-text-blue f3em bold-weight">employo</v-toolbar-title>
       <v-spacer></v-spacer>
-       <v-dialog v-model="dialog" width="50%" >
+       <v-dialog content-class="dialog-round" v-model="dialog" width="50%" >
       <v-btn flat slot="activator" class="dark-text-blue bold-weight f1-8m">
         Contact us
       </v-btn>

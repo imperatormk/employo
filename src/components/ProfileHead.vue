@@ -3,7 +3,7 @@
     .flex.profile-head.justify-center
       div(d-block=true style="text-align: center;")
         h1 {{fields.firstName}} {{fields.lastName}}
-          v-dialog(v-model="dialog", width="600" persistent=true)
+          v-dialog(content-class="dialog-round" v-model="dialog", width="600" persistent=true)
             v-btn.noShadow(slot="activator", flat=true dark=true)
                 v-icon create
             v-card.border-round

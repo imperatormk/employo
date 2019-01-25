@@ -3,7 +3,7 @@
       v-toolbar
         v-toolbar-title.dark-text-blue.f1-8m Technical Skills
         v-spacer
-        v-dialog(v-model="dialog", width="600" persistent=true)
+        v-dialog(content-class="dialog-round" v-model="dialog", width="600" persistent=true)
           v-btn.noShadow(slot="activator", fab=true small=true)
             v-icon create
           v-card.border-round
@@ -13,7 +13,7 @@
                   h1.label Technical Skills
                 v-flex(xs12, sm12, d-block)
                   v-chip(disabled=true, small=true, text-color="black", v-for="skill in fields.selectedSkills", :key="skill").f1-2m {{skill}}
-                  v-dialog(v-model="dialog2", width="600")
+                  v-dialog(content-class="dialog-round" v-model="dialog2", width="600")
                     v-btn(slot="activator", icon=true, small=true).f1-2m
                       i.material-icons add
                     v-card.border-round
